@@ -23,7 +23,7 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>inFridge</Text>
-        <Text style={styles.instructions}>Helping the world conserve food.</Text>
+        <Text style={styles.instructions}>Help the world by sharing your food.</Text>
         {/* <Text style={styles.instructions}>{instructions}</Text> */}
       </View>
     );
@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#3498db',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 50,
     textAlign: 'center',
     margin: 10,
   },
