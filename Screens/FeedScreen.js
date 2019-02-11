@@ -1,7 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-class FeedScreen extends Component {
+import PostForm from '../components/PostForm';
+import Post from '../components/Post';
+import { startAddTransaction } from '../actions/transactions';
+
+class FeedScreen extends React.Component {
+    constructor(props){
+      super(props);
+    }
+
     render() {
       return (
         <View style={styles.container}>
@@ -10,6 +19,17 @@ class FeedScreen extends Component {
             title="Go to Home Page"
             onPress={() => this.props.navigation.navigate('Home')}
           />
+
+          <PostForm
+            onSubmit={(transaction) => {
+              this.props.dispatch(startAddTransaction(transaction));
+            }}
+          />
+          {
+            this.props.transactions.map(transaction => {
+              <Post transaction={transaction}/>
+            })
+          }
         </View>
       );
     }
@@ -27,6 +47,10 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       margin: 10,
     }
-  });
+});
 
-export default FeedScreen;
+const mapStateToProps = (state) => ({
+  transactions: state.transactions
+});
+
+export default connect(mapStateToProps)(FeedScreen)

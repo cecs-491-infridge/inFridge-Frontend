@@ -8,7 +8,19 @@
  */
 
 import React from 'react';
+import { Text, View } from 'react-native';
+// Used to Provide Redux store to all child components
+import { Provider } from 'react-redux'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+
+import HomeScreen from './Screens/HomeScreen';
+import FeedScreen from './Screens/FeedScreen';
+import configureStore from './store/configureStore';
+import { startSetFeed } from './actions/feed';
+import { startSetFriends } from './actions/friends';
+import { startSetTransactions } from './actions/transactions';
+
+const store = configureStore();
 
 const AppNavigator = createStackNavigator(
   {
@@ -19,11 +31,36 @@ const AppNavigator = createStackNavigator(
     initialRouteName: 'Home'
   }
 );
-
 const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      finishedLoading: false
+    };
+  }
+
+  componentDidMount(){
+    Promise.all([
+      // store.dispatch(startSetFeed),
+      // store.dispatch(startSetFriends),
+      store.dispatch(startSetTransactions)
+    ])
+    .then(() => {
+      this.setState({ finishedLoading: true });
+    });
+  }
+
   render() {
-    return <AppContainer/>
+
+    return this.state.finishedLoading ?
+      (
+        <Provider store={store}>
+          <AppContainer/>
+        </Provider>
+      )
+      : <Text>Loading...</Text>;
   }
 }
