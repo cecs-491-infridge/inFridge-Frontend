@@ -13,6 +13,7 @@ import { Text, View } from 'react-native';
 import { Provider } from 'react-redux'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+import SignInScreen from './Screens/SignInScreen';
 import HomeScreen from './Screens/HomeScreen';
 import FeedScreen from './Screens/FeedScreen';
 import configureStore from './store/configureStore';
@@ -24,11 +25,12 @@ const store = configureStore();
 
 const AppNavigator = createStackNavigator(
   {
+    SignIn: SignInScreen,
     Home: HomeScreen,
     Feed: FeedScreen
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'SignIn'
   }
 );
 const AppContainer = createAppContainer(AppNavigator);
