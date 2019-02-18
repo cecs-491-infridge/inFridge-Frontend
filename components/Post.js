@@ -9,10 +9,10 @@ class Post extends React.Component {
     render(){
         return (
             <View>
-                <Text>{props.transaction.author}</Text>
-                <Text>{props.transaction.body}</Text>
-                <Text>{props.transaction.location}</Text>
-                <Text>{props.transaction.tradeType}</Text>
+                <Text>{this.props.transaction.author}</Text>
+                <Text>{this.props.transaction.body}</Text>
+                <Text>{this.props.transaction.location}</Text>
+                <Text>{this.props.transaction.tradeType}</Text>
                 
                 <Button
                     title='Complete'

@@ -26,9 +26,9 @@ class FeedScreen extends React.Component {
             }}
           />
           {
-            this.props.transactions.map(transaction => {
+            this.props.transactions.map(transaction => 
               <Post transaction={transaction}/>
-            })
+            )
           }
         </View>
       );
