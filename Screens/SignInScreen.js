@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import {Header} from 'react-native-elements'
 
 class SignInScreen extends React.Component {
     constructor(props) {
@@ -17,6 +18,11 @@ class SignInScreen extends React.Component {
     render() {
       return (
         <View style={styles.container}>
+            <Header
+                leftComponent={{ icon: 'menu', color: '#fff' }}
+                centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
+                rightComponent={{ icon: 'home', color: '#fff' }}
+            />
             <Text style={styles.welcome}>Sign In / Login</Text>
             <TextInput
                 style={{height: 40}}
@@ -35,6 +41,10 @@ class SignInScreen extends React.Component {
             <Button
                 title="Go to Feed Page"
                 onPress={() => this.props.navigation.navigate('Feed')}
+            />
+            <Button
+                title="Go to Profile Page"
+                onPress={() => this.props.navigation.navigate('Profile')}
             />
         </View>
       );

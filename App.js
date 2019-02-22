@@ -17,6 +17,7 @@ import NavBar from './components/NavBar';
 import SignInScreen from './Screens/SignInScreen';
 import HomeScreen from './Screens/HomeScreen';
 import FeedScreen from './Screens/FeedScreen';
+import ProfileScreen from './Screens/ProfileScreen';
 import configureStore from './store/configureStore';
 import { startSetFeed } from './actions/feed';
 import { startSetFriends } from './actions/friends';
@@ -28,7 +29,8 @@ const AppNavigator = createStackNavigator(
   {
     SignIn: SignInScreen,
     Home: HomeScreen,
-    Feed: FeedScreen
+    Feed: FeedScreen,
+    Profile: ProfileScreen
   },
   {
     initialRouteName: 'SignIn'

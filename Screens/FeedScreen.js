@@ -6,11 +6,12 @@ import PostForm from '../components/PostForm';
 import Post from '../components/Post';
 import { startAddTransaction } from '../actions/transactions';
 
+
 class FeedScreen extends React.Component {
     constructor(props){
       super(props);
     }
-
+    
     render() {
       return (
         <View style={styles.container}>
@@ -27,7 +28,7 @@ class FeedScreen extends React.Component {
           />
           {
             this.props.transactions.map(transaction => 
-              <Post transaction={transaction}/>
+              <Post key={transaction._id} transaction={transaction}/>
             )
           }
         </View>
