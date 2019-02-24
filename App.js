@@ -13,6 +13,7 @@ import { Text, View } from 'react-native';
 import { Provider } from 'react-redux'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+import NavBar from './components/NavBar';
 import SignInScreen from './Screens/SignInScreen';
 import HomeScreen from './Screens/HomeScreen';
 import FeedScreen from './Screens/FeedScreen';
@@ -48,7 +49,7 @@ export default class App extends React.Component{
     Promise.all([
       // store.dispatch(startSetFeed),
       // store.dispatch(startSetFriends),
-      store.dispatch(startSetTransactions)
+      store.dispatch(startSetTransactions())
     ])
     .then(() => {
       this.setState({ finishedLoading: true });
@@ -61,6 +62,7 @@ export default class App extends React.Component{
       (
         <Provider store={store}>
           <AppContainer/>
+          {/* <NavBar/> */}
         </Provider>
       )
       : <Text>Loading...</Text>;

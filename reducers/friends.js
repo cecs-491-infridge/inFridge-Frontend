@@ -18,7 +18,7 @@ export default (state=defaultState, action) => {
       break;
 
     case 'SET_FRIENDS':
-      return action.friend;
+      return action.friends;
       break;
 
     default:

@@ -18,7 +18,7 @@ export default (state=defaultState, action) => {
       break;
 
     case 'SET_TRANSACTIONS':
-      return [action.transaction];
+      return action.transactions;
       break;
 
     default:

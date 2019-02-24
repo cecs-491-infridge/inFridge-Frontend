@@ -15,6 +15,9 @@ export const startAddTransaction = (data = {}) => {
     } = data;
     const transaction = { author, body, location, tradeType };
 
+    // Need user id to do this
+    // WAIT FOR VICTORIA TO GET USER ID
+
     // axios.post(`localhost:3000/create-transaction`, {
     //     ...transaction
     // });
@@ -50,15 +53,16 @@ export const startUpdateTransaction = (id, updates) => {
 }
 
 const setTransactions = (transactions) => ({
-  type: 'SET_TRANSACTION',
+  type: 'SET_TRANSACTIONS',
   transactions
 })
 export const startSetTransactions = () => {
   return (dispatch) => {
-
-        return axios.get('localhost:3000/5c5caf54ebc96e80e8c4dd2a/all-posts')
+        return axios.get('http://school.corg.network:3000/all-posts')
             .then(transactions => {
-                dispatch(setTransactions(transactions));
+              console.log('--------------------------------------')
+              console.log(transactions.data.data)
+              dispatch(setTransactions(transactions.data.data));
             })
             .catch(err => {
                 console.log(err);
