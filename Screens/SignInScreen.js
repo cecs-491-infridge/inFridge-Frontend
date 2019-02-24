@@ -1,33 +1,22 @@
 import React from 'react';
 import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import axios from 'axios';
+
+import SignIn from '../components/SignIn';
 
 class SignInScreen extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            id: ''
-        }
     }
 
     onSignIn = () => {
         this.state.id;
     }
-    
+
     render() {
       return (
-        <View style={styles.container}>
-            <Text style={styles.welcome}>Sign In / Login</Text>
-            <TextInput
-                style={{height: 40}}
-                placeholder='Student Id'
-                onChangeText={(id) => this.setState({ id })}
-            ></TextInput>
-            <Button
-                title="Sign In"
-                onPress={() => {this.onSignIn}}
-            />
-
+        <View>
+            <SignIn/>
             <Button
                 title="Go to Home Page"
                 onPress={() => this.props.navigation.navigate('Home')}
