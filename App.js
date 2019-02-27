@@ -23,6 +23,7 @@ import { startSetFeed } from './actions/feed';
 import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
 
+
 const store = configureStore();
 
 const AppNavigator = createStackNavigator(
@@ -55,7 +56,7 @@ export default class App extends React.Component{
     ])
     .then(() => {
       this.setState({ finishedLoading: true });
-    });
+    })
   }
 
   render() {
