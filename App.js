@@ -22,29 +22,33 @@ import configureStore from './store/configureStore';
 import { startSetFeed } from './actions/feed';
 import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 
 const store = configureStore();
 
-const AppNavigator = createStackNavigator(
-  {
-    SignIn: SignInScreen,
-    Home: HomeScreen,
-    Feed: FeedScreen,
-    Profile: ProfileScreen
-  },
-  {
-    initialRouteName: 'SignIn'
-  }
-);
+
+const AppNavigator = createMaterialBottomTabNavigator({
+  //export default createMaterialBottomTabNavigator({
+  //SignIn: { screen: SignInScreen },
+  Feed: { screen: FeedScreen },
+  Home: { screen: HomeScreen },
+  Profile: { screen: ProfileScreen },
+}, {
+  initialRouteName: 'Home',
+  activeColor: '#f0edf6',
+  inactiveColor: '#f0edf6',
+  barStyle: { backgroundColor: '#3498db' }
+});
+
 const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component{
   constructor(props){
     super(props);
-
+    
     this.state = {
-      finishedLoading: false
+      screenState: 0
     };
   }
 
@@ -55,19 +59,19 @@ export default class App extends React.Component{
       store.dispatch(startSetTransactions())
     ])
     .then(() => {
-      this.setState({ finishedLoading: true });
-    })
+      this.setState({ screenState: 2 });
+    });
   }
 
   render() {
-
-    return this.state.finishedLoading ?
-      (
-        <Provider store={store}>
-          <AppContainer/>
-          {/* <NavBar/> */}
-        </Provider>
-      )
-      : <Text>Loading...</Text>;
+    let jsx;
+    if (this.state.screenState === 0) jsx = <Text>Loading...</Text>
+    if (this.state.screenState === 1) jsx = <Text>Loading...</Text>
+    if (this.state.screenState === 2) jsx = <AppContainer/>
+    return(
+      <Provider store={store}>
+        {jsx}
+      </Provider>
+    )
   }
 }

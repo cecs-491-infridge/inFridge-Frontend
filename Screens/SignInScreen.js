@@ -51,11 +51,6 @@ class SignInScreen extends React.Component {
       return (
 <<<<<<< HEAD
         <View style={styles.container}>
-            <Header
-                leftComponent={{ icon: 'menu', color: '#fff' }}
-                centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-                rightComponent={{ icon: 'home', color: '#fff' }}
-            />
             <Text style={styles.welcome}>Sign In / Login</Text>
             <TextInput
                 style={{height: 40}}
