@@ -20,6 +20,7 @@ import FeedScreen from './Screens/FeedScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import configureStore from './store/configureStore';
 import { startSetFeed } from './actions/feed';
+import { startSetFridge } from './actions/fridge';
 import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -55,6 +56,7 @@ export default class App extends React.Component{
   componentDidMount(){
     Promise.all([
       // store.dispatch(startSetFeed),
+      store.dispatch(startSetFridge()),
       // store.dispatch(startSetFriends),
       store.dispatch(startSetTransactions())
     ])

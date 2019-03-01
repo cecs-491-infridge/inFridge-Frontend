@@ -3,11 +3,8 @@ package com.infridge;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-<<<<<<< HEAD
 import com.oblador.vectoricons.VectorIconsPackage;
-=======
 import com.reactnativecommunity.webview.RNCWebViewPackage;
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -29,11 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-<<<<<<< HEAD
             new VectorIconsPackage(),
-=======
             new RNCWebViewPackage(),
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
             new RNGestureHandlerPackage()
       );
     }

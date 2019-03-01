@@ -134,11 +134,8 @@ android {
 }
 
 dependencies {
-<<<<<<< HEAD
     implementation project(':react-native-vector-icons')
-=======
     implementation project(':react-native-webview')
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
     implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"

@@ -1,15 +1,10 @@
 import React from 'react';
-<<<<<<< HEAD
-import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
-import {Header} from 'react-native-elements'
-=======
 import { Button, TextInput, StyleSheet, Text, View, Linking } from 'react-native';
-import axios from 'axios';
+import { Header } from 'react-native-elements'
 import { WebView } from 'react-native-webview';
+import axios from 'axios';
 
 import SignIn from '../components/SignIn';
-
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 
 class SignInScreen extends React.Component {
     constructor(props) {
@@ -49,19 +44,6 @@ class SignInScreen extends React.Component {
 
     render() {
       return (
-<<<<<<< HEAD
-        <View style={styles.container}>
-            <Text style={styles.welcome}>Sign In / Login</Text>
-            <TextInput
-                style={{height: 40}}
-                placeholder='Student Id'
-                onChangeText={(id) => this.setState({ id })}
-            ></TextInput>
-            <Button
-                title="Sign In"
-                onPress={() => {this.onSignIn}}
-            />
-=======
         <View style={{flex:1}}>
             {
               (this.state.signInState === 0) &&
@@ -108,25 +90,7 @@ class SignInScreen extends React.Component {
                 ></TextInput>
               </View>
             }
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 
-{/*
-            <Button
-                title="Go to Home Page"
-                onPress={() => this.props.navigation.navigate('Home')}
-            />
-            <Button
-                title="Go to Feed Page"
-                onPress={() => this.props.navigation.navigate('Feed')}
-            />
-<<<<<<< HEAD
-            <Button
-                title="Go to Profile Page"
-                onPress={() => this.props.navigation.navigate('Profile')}
-            />
-=======
-*/}
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
         </View>
       );
     }
