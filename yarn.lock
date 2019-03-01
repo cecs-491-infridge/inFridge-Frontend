@@ -4632,6 +4632,10 @@ react-native-material-bottom-navigation@^1.0.2:
   dependencies:
     prop-types "^15.6.1"
 
+react-native-multibar@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-multibar/-/react-native-multibar-0.0.5.tgz#6ee274504ef430cf636b53a439633e084d046ffb"
+
 react-native-paper@^2.12.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-2.12.0.tgz#0688ff6530677bbc33442345f57b0278b12231bd"

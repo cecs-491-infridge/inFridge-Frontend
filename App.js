@@ -6,17 +6,15 @@
  * @flow
  * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
-
 import React from 'react';
 import { Text, View } from 'react-native';
 // Used to Provide Redux store to all child components
 import { Provider } from 'react-redux'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-
-import NavBar from './components/NavBar';
 import SignInScreen from './Screens/SignInScreen';
 import HomeScreen from './Screens/HomeScreen';
 import FeedScreen from './Screens/FeedScreen';
+import MessageScreen from './Screens/MessageScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import configureStore from './store/configureStore';
 import { startSetFeed } from './actions/feed';
@@ -26,19 +24,23 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 
 const store = configureStore();
 
-
 const AppNavigator = createMaterialBottomTabNavigator({
   //export default createMaterialBottomTabNavigator({
   //SignIn: { screen: SignInScreen },
   Feed: { screen: FeedScreen },
-  Home: { screen: HomeScreen },
+  Fridge: { screen: HomeScreen },
+  Message: { screen: MessageScreen },
   Profile: { screen: ProfileScreen },
 }, {
-  initialRouteName: 'Home',
-  activeColor: '#f0edf6',
-  inactiveColor: '#f0edf6',
-  barStyle: { backgroundColor: '#3498db' }
+  initialRouteName: 'Feed',
+  activeColor: '#3498db',
+  //inactiveColor: '#f0edf6',
+  //activeTintColor: '#000000',
+	inactiveTintColor: '#34495e',
+  barStyle: { backgroundColor: '#f0edf6' },
+  shifting: false
 });
+
 
 const AppContainer = createAppContainer(AppNavigator);
 
