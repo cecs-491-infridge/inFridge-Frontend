@@ -57,12 +57,13 @@ export const startUpdateFood = (id, updates) => {
 
 const setFood = (food) => ({
   type: 'SET_FOOD',
-  transactions
+  food
 })
 export const startSetFood = () => {
   return (dispatch) => {
         return axios.get('http://school.corg.network:3000/all-food')
             .then(food => {
+              console.log('------------------------------------------------------------------')
               console.log(food.data.data)
               dispatch(setFood(food.data.data));
             })

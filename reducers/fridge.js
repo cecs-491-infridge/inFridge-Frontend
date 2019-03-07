@@ -18,7 +18,7 @@ export default (state=defaultState, action) => {
       break;
 
     case 'SET_FOOD':
-      return action.foodList;
+      return action.food;
       break;
 
     default:

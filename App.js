@@ -17,10 +17,11 @@ import NavBar from './components/NavBar';
 import SignInScreen from './Screens/SignInScreen';
 import HomeScreen from './Screens/HomeScreen';
 import FeedScreen from './Screens/FeedScreen';
+import FridgeScreen from './Screens/FridgeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import configureStore from './store/configureStore';
 import { startSetFeed } from './actions/feed';
-import { startSetFridge } from './actions/fridge';
+import { startSetFood } from './actions/fridge';
 import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -33,6 +34,7 @@ const AppNavigator = createMaterialBottomTabNavigator({
   //export default createMaterialBottomTabNavigator({
   //SignIn: { screen: SignInScreen },
   Feed: { screen: FeedScreen },
+  Fridge: {screen: FridgeScreen},
   Home: { screen: HomeScreen },
   Profile: { screen: ProfileScreen },
 }, {
@@ -56,7 +58,7 @@ export default class App extends React.Component{
   componentDidMount(){
     Promise.all([
       // store.dispatch(startSetFeed),
-      store.dispatch(startSetFridge()),
+      store.dispatch(startSetFood()),
       // store.dispatch(startSetFriends),
       store.dispatch(startSetTransactions())
     ])
