@@ -35,13 +35,14 @@ const AppNavigator = createMaterialBottomTabNavigator({
   //SignIn: { screen: SignInScreen },
   Feed: { screen: FeedScreen },
   Fridge: {screen: FridgeScreen},
-  Home: { screen: HomeScreen },
+  Message: { screen: HomeScreen },
   Profile: { screen: ProfileScreen },
 }, {
-  initialRouteName: 'Home',
-  activeColor: '#f0edf6',
-  inactiveColor: '#f0edf6',
-  barStyle: { backgroundColor: '#3498db' }
+  initialRouteName: 'Feed',
+  activeColor: '#3498db',
+  inactiveColor: '#34495e',
+  barStyle: { backgroundColor: '#f0edf6' },
+  shifting: false
 });
 
 const AppContainer = createAppContainer(AppNavigator);

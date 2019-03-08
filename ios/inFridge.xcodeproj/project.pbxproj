@@ -56,13 +56,6 @@
 		EC0DDD4A10694F83AA9B5BE1 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 307CB7F9FE2443F9B55E879D /* libRNVectorIcons.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
-<<<<<<< HEAD
-		EF3B03F0A19F44A5A092358F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2877694421E480D864B36DA /* Octicons.ttf */; };
-		FC13DF7A4196492D8F587220 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 641E47BC92BA4BFCA2A67596 /* Ionicons.ttf */; };
-=======
-		0FDC43C699C34D3989F04425 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC486FE82BF24B2F9FA166F1 /* libRNGestureHandler.a */; };
-		30D38EEC1AFE4881B7551DF3 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4D7863B2CB4F38AF90F0B1 /* libRNCWebView.a */; };
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,13 +404,6 @@
 		DAE0CAFA531D47448DA7087F /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-<<<<<<< HEAD
-=======
-		025A0934B2914A8AAA924BC7 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		AC486FE82BF24B2F9FA166F1 /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		53352B0C58274FFD9801262D /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; name = "RNCWebView.xcodeproj"; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		7E4D7863B2CB4F38AF90F0B1 /* libRNCWebView.a */ = {isa = PBXFileReference; name = "libRNCWebView.a"; path = "libRNCWebView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -447,11 +433,6 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				0FDC43C699C34D3989F04425 /* libRNGestureHandler.a in Frameworks */,
-<<<<<<< HEAD
-				EC0DDD4A10694F83AA9B5BE1 /* libRNVectorIcons.a in Frameworks */,
-=======
-				30D38EEC1AFE4881B7551DF3 /* libRNCWebView.a in Frameworks */,
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,11 +673,6 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				025A0934B2914A8AAA924BC7 /* RNGestureHandler.xcodeproj */,
-<<<<<<< HEAD
-				015860D3AB3A4C059BE0CEE8 /* RNVectorIcons.xcodeproj */,
-=======
-				53352B0C58274FFD9801262D /* RNCWebView.xcodeproj */,
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1379,19 +1355,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/inFridge.app/inFridge";
-<<<<<<< HEAD
-=======
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-				);
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			};
 			name = Debug;
 		};
@@ -1421,19 +1384,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/inFridge.app/inFridge";
-<<<<<<< HEAD
-=======
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-				);
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			};
 			name = Release;
 		};
@@ -1458,14 +1408,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = inFridge;
 				VERSIONING_SYSTEM = "apple-generic";
-<<<<<<< HEAD
-=======
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-				);
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			};
 			name = Debug;
 		};
@@ -1489,14 +1431,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = inFridge;
 				VERSIONING_SYSTEM = "apple-generic";
-<<<<<<< HEAD
-=======
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-				);
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			};
 			name = Release;
 		};
@@ -1534,19 +1468,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-<<<<<<< HEAD
-=======
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-				);
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			};
 			name = Debug;
 		};
@@ -1584,19 +1505,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-<<<<<<< HEAD
-=======
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-				);
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			};
 			name = Release;
 		};
@@ -1633,19 +1541,6 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/inFridge-tvOS.app/inFridge-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
-<<<<<<< HEAD
-=======
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-				);
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			};
 			name = Debug;
 		};
@@ -1682,19 +1577,6 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/inFridge-tvOS.app/inFridge-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
-<<<<<<< HEAD
-=======
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-				);
->>>>>>> 7f987d188e0db9c75556a82ebb347c21cd275e68
 			};
 			name = Release;
 		};
