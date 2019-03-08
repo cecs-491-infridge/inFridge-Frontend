@@ -1,46 +1,96 @@
 import React from 'react';
-import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
-import {Header} from 'react-native-elements'
+import { Button, TextInput, StyleSheet, Text, View, Linking } from 'react-native';
+import { Header } from 'react-native-elements'
+import { WebView } from 'react-native-webview';
+import axios from 'axios';
+
+import SignIn from '../components/SignIn';
 
 class SignInScreen extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            id: ''
+          username: '',
+          password: '',
+          signInState: 0
+          //0:  WELCOME to INFRIDGE!!! Sign up or login????
+          //1:  SIGN UP PART 1:
+          //      need to authenticate with Microsoft Graph API. Are they a real student?
+          //      open WEBVIEW: call school.corg.network/create-user
+          //      once they login to GRAPH, save the KEY in the DB and create a temporary user
+          //      onNavigationStateChange to get the KEY in the frontend
+          //2:  SIGN UP PART 2
+          //      create a new account with InFridge!
+          //      send new username, password, and key to backend to verify the keys -> FEED SCREEN
+          //3:  Login
+          //      send username, password to backend -> FEED SCREEN
         }
     }
 
-    onSignIn = () => {
-        this.state.id;
+    // onSignIn = () => {
+    //     this.state.id;
+    //     console.log("\t\t\t\t\t\t\t\t\t\t---------------------------WENT INTO THE GOOGLE METHODDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+    //     //Linking.openURL("https://google.com");
+    //     <WebView
+    //       style={{flex:1}}
+    //       source={{uri: 'https://github.com/facebook/react-native'}} //call backend router for school.corg.network/create-user
+    //     />
+    //     //this.state.id;
+    // }
+
+    _onNavigationStateChange(webViewState){
+      console.log(webViewState.url)
     }
-    
+
     render() {
       return (
-        <View style={styles.container}>
-            <Text style={styles.welcome}>Sign In / Login</Text>
-            <TextInput
-                style={{height: 40}}
-                placeholder='Student Id'
-                onChangeText={(id) => this.setState({ id })}
-            ></TextInput>
-            <Button
-                title="Sign In"
-                onPress={() => {this.onSignIn}}
-            />
+        <View style={{flex:1}}>
+            {
+              (this.state.signInState === 0) &&
+              <View>
+                <Button
+                  title="Sign Up"
+                  onPress={() => this.setState({ signInState: 1 })}
+                />
+                <Button
+                  title="Login"
+                  onPress={() => this.setState({ signInState: 3 })}
+                />
+              </View>
+            }
+            {
+              (this.state.signInState === 1) &&
+              <WebView
+                style={{flex: 1}}
+                //source={{uri: 'https://www.google.com'}}
+                source={{uri: 'https://school.corg.network:3000/authenticate-user'}}
 
-            <Button
-                title="Go to Home Page"
-                onPress={() => this.props.navigation.navigate('Home')}
-            />
-            <Button
-                title="Go to Feed Page"
-                onPress={() => this.props.navigation.navigate('Feed')}
-            />
-            <Button
-                title="Go to Profile Page"
-                onPress={() => this.props.navigation.navigate('Profile')}
-            />
+                ref="webview"
+                //source={{uri:this.state.url}}
+                onNavigationStateChange={this._onNavigationStateChange.bind(this)}
+                javaScriptEnabled = {true}
+                domStorageEnabled = {true}
+                injectedJavaScript = {this.state.cookie}
+                startInLoadingState={false}
+              />
+            }
+            {
+              (this.state.signInState === 2) &&
+              <View>
+                <Text style={styles.welcome}>InFridge Sign Up</Text>
+                <TextInput
+                    style={{height: 40}}
+                    placeholder='New Username'
+                    onChangeText={(username) => this.setState({ username })}
+                ></TextInput>
+                <TextInput
+                    style={{height: 40}}
+                    placeholder='New Password'
+                    onChangeText={(password) => this.setState({ password })}
+                ></TextInput>
+              </View>
+            }
+
         </View>
       );
     }
