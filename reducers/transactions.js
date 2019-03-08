@@ -10,7 +10,7 @@ export default (state=defaultState, action) => {
       break;
 
     case 'REMOVE_TRANSACTION':
-      return state.filter(({ id }) => id !== action.id);
+      return state.filter(({ _id }) => _id !== action.id);
       break;
 
     case 'UPDATE_TRANSACTION':

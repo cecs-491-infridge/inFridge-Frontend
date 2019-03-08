@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, ScrollView, View } from 'react-native';
 
 import PostForm from '../components/PostForm';
 import Post from '../components/Post';
-import { startAddTransaction } from '../actions/transactions';
+import { startAddTransaction, startDeleteTransaction } from '../actions/transactions';
 
 
 class FeedScreen extends React.Component {
@@ -29,7 +29,13 @@ class FeedScreen extends React.Component {
             />
             {
               this.props.transactions.map(transaction => 
-                <Post key={transaction._id} transaction={transaction}/>
+                <Post
+                  key={transaction._id}
+                  transaction={transaction}
+                  onDelete={(id) => {
+                    this.props.dispatch(startDeleteTransaction(id));
+                  }}
+                />
               )
             }
           </ScrollView>

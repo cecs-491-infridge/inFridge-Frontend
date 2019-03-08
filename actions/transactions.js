@@ -5,7 +5,6 @@ const addTransaction = (transaction) => ({
   transaction
 });
 export const startAddTransaction = (data = {}) => {
-    console.log('in')
   return (dispatch) => {
     const {
       author,
@@ -13,29 +12,56 @@ export const startAddTransaction = (data = {}) => {
       location,
       tradeType
     } = data;
-    const transaction = { author, body, location, tradeType };
+    const transactionData = { author, body, location, tradeType };
 
     // Need user id to do this
     // WAIT FOR VICTORIA TO GET USER ID
 
-    // axios.post(`localhost:3000/create-transaction`, {
-    //     ...transaction
-    // });
-
-    dispatch(addTransaction(transaction));
+    return axios.post(`http://school.corg.network:3000/create-transaction`, {
+        ...transactionData
+    })
+    .then(res => {
+      console.log('--------------------------------------')
+      console.log(res.data)
+      const newId = res.data.data._id;
+      
+      const newTransaction = {
+        _id: newId,
+        ...transactionData
+      }
+      dispatch(addTransaction(newTransaction));
+    })
+    .catch(err => {
+        console.log(err);
+    });
   }
 }
 
-const removeTransaction = (id) => ({
+const deleteTransaction = (id) => ({
   type: 'REMOVE_TRANSACTION',
   id
 })
-export const startRemoveTransaction = (id) => {
+export const startDeleteTransaction = (id) => {
+  const data = {
+    postId: id
+  }
+  console.log('data---------------------------------------------------');
+
+  console.log(data);
   return (dispatch) => {
-    dbRef.child(id).remove()
-      .then(() => {
-        dispatch(removeTransaction(id))
-      })
+    return axios.delete(`http://school.corg.network:3000/delete-post`, {
+      data
+    })
+    .then(res => {
+      console.log('--------------------------------------')
+      console.log(res.data)
+      dispatch(deleteTransaction(id));
+    })
+    .catch(err => {
+      console.log('--------------------------------------')
+
+        console.log(err);
+    });
   }
 }
 
@@ -66,22 +92,6 @@ export const startSetTransactions = () => {
             })
             .catch(err => {
                 console.log(err);
-            })
-
-    // return dbRef.once('value')
-    //   .then((snapshot) => {
-    //     const transactions = [];
-
-    //     snapshot.forEach((childSnapshot) => {
-    //       transactions.push({
-    //         id: childSnapshot.key,
-    //         ...childSnapshot.val()
-    //       })
-    //     })
-    //     dispatch(setTransactions(transactions))
-    //   })
-    //   .catch((e) => {
-    //     console.log('Error: ', e);
-    //   })
+            });
   }
 }

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 
+import { testUser } from '../testUser';
+
 class PostForm extends React.Component {
     constructor(props){
         super(props);
 
         this.state = {
-            author: '',
             body: '',
             location: '',
             tradeType: '',
@@ -25,11 +26,16 @@ class PostForm extends React.Component {
 
         if(!error) {
             const transaction = {
-                author: 123,
+                author: testUser.userId,
                 body: this.state.body,
                 location: '123',
                 tradeType: this.state.tradeType
             };
+
+            this.setState({
+                body: '',
+                tradeType: ''
+            });
             this.props.onSubmit(transaction);
         }
     }
@@ -52,12 +58,14 @@ class PostForm extends React.Component {
                     style={{height: 40}}
                     placeholder='Post body'
                     onChangeText={(body) => this.setState({ body })}
+                    value={this.state.body}
                 ></TextInput>
 
                 <TextInput
                     style={{height: 60}}
                     placeholder='Trade Type'
                     onChangeText={(tradeType) => this.setState({ tradeType })}
+                    value={this.state.tradeType}
                 ></TextInput>
 
                 <Button

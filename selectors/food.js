@@ -2,7 +2,7 @@ export const selectByName = (foodList, name) => {
     const selectedFood = foodList.filter(food => food.name.includes(name));
 }
 
-export const sort = (arr, sortBy) => {
+export const sortFood = (arr, sortBy) => {
     let copy = arr.slice();
 
     let sortMethod;
@@ -32,7 +32,8 @@ export const sort = (arr, sortBy) => {
     return copy;
 }
 
-export const filter = (arr, searchText) => {
-    const filteredArr = arr.filter(a => a.includes(searchText));
+export const filterFood = (arr, searchText) => {
+    const filteredArr = arr.filter(a => a.name.includes(searchText));
+    
     return filteredArr;
 }
