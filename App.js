@@ -31,15 +31,13 @@ const AppNavigator = createMaterialBottomTabNavigator({
   //export default createMaterialBottomTabNavigator({
   //SignIn: { screen: SignInScreen },
   Feed: { screen: FeedScreen },
-    Fridge: {screen: FridgeScreen},
-  Message: { screen: MessageScreen },
+  Fridge: {screen: FridgeScreen},
+  Message: { screen: HomeScreen },
   Profile: { screen: ProfileScreen },
 }, {
   initialRouteName: 'Feed',
   activeColor: '#3498db',
-  //inactiveColor: '#f0edf6',
-  //activeTintColor: '#000000',
-	inactiveTintColor: '#34495e',
+  inactiveColor: '#34495e',
   barStyle: { backgroundColor: '#f0edf6' },
   shifting: false
 });

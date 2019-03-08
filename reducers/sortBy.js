@@ -1,5 +1,5 @@
 const defaultState = {
-    fridgeSortBy: 'expiration'
+    fridgeSortBy: 'expirationDate'
 };
 export default (state=defaultState, action) => {
   switch(action.type) {
@@ -7,7 +7,7 @@ export default (state=defaultState, action) => {
     case 'SET_FRIDGE_SORT_BY':
         return {
         ...state,
-        fridgeSortBy: action.sortBy
+        fridge: action.sortBy
         }
 
     default:
