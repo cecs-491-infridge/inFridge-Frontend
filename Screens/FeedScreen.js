@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, ScrollView, View } from 'react-native';
 
 import PostForm from '../components/PostForm';
 import Post from '../components/Post';
@@ -15,22 +15,24 @@ class FeedScreen extends React.Component {
     render() {
       return (
         <View style={styles.container}>
+          <ScrollView>
           <Text style={styles.welcome}>Feed</Text>
-          <Button
-            title="Go to Home Page"
-            onPress={() => this.props.navigation.navigate('Home')}
-          />
+            <Button
+              title="Go to Home Page"
+              onPress={() => this.props.navigation.navigate('Home')}
+            />
 
-          <PostForm
-            onSubmit={(transaction) => {
-              this.props.dispatch(startAddTransaction(transaction));
-            }}
-          />
-          {
-            this.props.transactions.map(transaction => 
-              <Post key={transaction._id} transaction={transaction}/>
-            )
-          }
+            <PostForm
+              onSubmit={(transaction) => {
+                this.props.dispatch(startAddTransaction(transaction));
+              }}
+            />
+            {
+              this.props.transactions.map(transaction => 
+                <Post key={transaction._id} transaction={transaction}/>
+              )
+            }
+          </ScrollView>
         </View>
       );
     }
