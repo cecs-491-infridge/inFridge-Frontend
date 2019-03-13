@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { ListItem } from 'react-native-elements'
 
 class HomeScreen extends React.Component {
     render() {

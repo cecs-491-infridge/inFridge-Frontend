@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, TextInput, StyleSheet, Text, View, Linking } from 'react-native';
-import { Header } from 'react-native-elements'
 import { WebView } from 'react-native-webview';
 import axios from 'axios';
 
