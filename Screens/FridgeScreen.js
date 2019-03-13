@@ -5,7 +5,7 @@ import { SearchBar } from 'react-native-elements';
 
 import PostForm from '../components/PostForm';
 import Food from '../components/Food';
-import { startAddFood } from '../actions/fridge';
+import { startAddFood, startDeleteFood } from '../actions/fridge';
 import { filterFood, sortFood } from '../selectors/food'
 
 class FridgeScreen extends React.Component {
@@ -18,14 +18,22 @@ class FridgeScreen extends React.Component {
       }
     }
 
+    // Lifecycle method
+    // Redux state changes, so update fridge
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.fridge !== this.state.fridge) {
+        this.setState({ fridge: nextProps.fridge });
+      }
+    }
+
     updateSearch = search => {
       // Change to use timeout
       let fridge = filterFood(this.props.fridge, search);
 
-      this.setState(prevState => ({
+      this.setState({
         fridge,
         search
-      }));
+      });
     };
     
     render() {
@@ -47,7 +55,11 @@ class FridgeScreen extends React.Component {
             />
             {
               this.state.fridge.map(food => 
-                <Food key={food._id} food={food}/>
+                <Food
+                  key={food._id}
+                  food={food}
+                  onDelete={id => this.props.dispatch(startDeleteFood(id))}
+                />
               )
             }
           </ScrollView>

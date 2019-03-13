@@ -9,7 +9,7 @@ export default (state=defaultState, action) => {
       ];
       break;
 
-    case 'REMOVE_TRANSACTION':
+    case 'DELETE_TRANSACTION':
       return state.filter(({ _id }) => _id !== action.id);
       break;
 

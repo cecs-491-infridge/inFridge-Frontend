@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 
-import { testUser } from '../testUser';
-
 class PostForm extends React.Component {
     constructor(props){
         super(props);
@@ -26,7 +24,6 @@ class PostForm extends React.Component {
 
         if(!error) {
             const transaction = {
-                author: testUser.userId,
                 body: this.state.body,
                 location: '123',
                 tradeType: this.state.tradeType

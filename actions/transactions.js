@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { testUser } from '../testUser';
+const userId = testUser.userId;
 
 const addTransaction = (transaction) => ({
   type: 'ADD_TRANSACTION',
@@ -7,12 +9,11 @@ const addTransaction = (transaction) => ({
 export const startAddTransaction = (data = {}) => {
   return (dispatch) => {
     const {
-      author,
       body,
       location,
       tradeType
     } = data;
-    const transactionData = { author, body, location, tradeType };
+    const transactionData = { author: userId, body, location, tradeType };
 
     // Need user id to do this
     // WAIT FOR VICTORIA TO GET USER ID
@@ -38,7 +39,7 @@ export const startAddTransaction = (data = {}) => {
 }
 
 const deleteTransaction = (id) => ({
-  type: 'REMOVE_TRANSACTION',
+  type: 'DELETE_TRANSACTION',
   id
 })
 export const startDeleteTransaction = (id) => {

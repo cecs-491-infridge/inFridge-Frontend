@@ -8,6 +8,11 @@ class Food extends React.Component {
         super(props);
     }
 
+    deleteFood = (e) => {
+        const id = this.props.food._id;
+
+        this.props.onDelete(id);
+    }
     
     render(){
       // implemented without image with header
@@ -22,6 +27,7 @@ class Food extends React.Component {
                         
                 <Button
                     title='Delete'
+                    onPress={this.deleteFood}
                 />
             </Card>
         </View>
