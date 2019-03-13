@@ -6,8 +6,8 @@ import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base'
 
 import PostForm from '../components/PostForm';
 import Food from '../components/Food';
-import { startAddFood } from '../actions/fridge';
-import { filter, sort } from '../selectors/food'
+import { startAddFood, startDeleteFood } from '../actions/fridge';
+import { filterFood, sortFood } from '../selectors/food'
 
 class FridgeScreen extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class FridgeScreen extends React.Component {
 
   updateSearch = search => {
     // Change to use timeout
-    let fridge = filter(this.props.fridge, search);
+    let fridge = filterFood(this.props.fridge, search);
 
     this.setState(prevState => ({
       fridge,
@@ -36,10 +36,6 @@ class FridgeScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <Text style={styles.welcome}>Fridge</Text>
-          <Button
-            title="Go to Home Page"
-            onPress={() => this.props.navigation.navigate('Home')}
-          />
             <Header searchBar rounded>
               <Item>
                 <Icon name="ios-search" />
@@ -84,7 +80,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  fridge: sort(state.fridge, state.sortBy.fridge)
+  fridge: sortFood(state.fridge, state.sortBy.fridge)
 });
 
 export default connect(mapStateToProps)(FridgeScreen)

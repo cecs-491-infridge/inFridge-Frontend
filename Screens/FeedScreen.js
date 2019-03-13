@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Button, StyleSheet, Text, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
+import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
 
 import PostForm from '../components/PostForm';
 import Post from '../components/Post';
-import { startAddTransaction } from '../actions/transactions';
+import { startAddTransaction, startDeleteTransaction } from '../actions/transactions';
 
 
 class FeedScreen extends React.Component {
@@ -15,12 +16,9 @@ class FeedScreen extends React.Component {
     render() {
       return (
         <View style={styles.container}>
+            <Text style={styles.welcome}>Feed</Text>
           <ScrollView>
-          <Text style={styles.welcome}>Feed</Text>
-            <Button
-              title="Go to Home Page"
-              onPress={() => this.props.navigation.navigate('Home')}
-            />
+          
 
             <PostForm
               onSubmit={(transaction) => {
@@ -29,7 +27,13 @@ class FeedScreen extends React.Component {
             />
             {
               this.props.transactions.map(transaction => 
-                <Post key={transaction._id} transaction={transaction}/>
+                <Post
+                  key={transaction._id}
+                  transaction={transaction}
+                  onDelete={(id) => {
+                    this.props.dispatch(startDeleteTransaction(id));
+                  }}
+                />
               )
             }
           </ScrollView>

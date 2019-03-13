@@ -9,8 +9,13 @@ export default (state=defaultState, action) => {
       ];
       break;
 
-    case 'REMOVE_FOOD':
-      return state.filter(({ id }) => id !== action.id);
+    case 'DELETE_FOOD':
+    console.log("DELTE FOODDDODDODODOO")
+    console.log(state);
+      return state.filter(({ _id }) => {
+        console.log(`${_id} !== ${action.id}`)
+        return _id !== action.id
+      });
       break;
 
     case 'UPDATE_FOOD':
@@ -18,7 +23,9 @@ export default (state=defaultState, action) => {
       break;
 
     case 'SET_FOOD':
-      return action.food;
+    console.log('SET FOOD---------------------------------')
+    console.log(action.food);
+      return action.food ? action.food : defaultState;
       break;
 
     default:

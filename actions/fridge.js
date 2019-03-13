@@ -1,41 +1,76 @@
 import axios from 'axios';
+import { testUser } from '../testUser';
+const userId = testUser.userId;
 
 const addFood = (food) => ({
   type: 'ADD_FOOD',
   food
 });
 export const startAddFood = (data = {}) => {
-  console.log('In food actions')
+  console.log('Start add food')
+  
 
   return async (dispatch) => {
     const {
-      userId,
       name,
       expirationDate
     } = data;
-    const food = { userId, name, expirationDate };
+    const foodData = { userId, name, expirationDate };
 
-    // Need user id to do this
-    // WAIT FOR VICTORIA TO GET USER ID
-
-    // await axios.post(`localhost:3000/add-food`, {
-    //      ...food
-    // });
-
-    dispatch(addFood(food));
+    return (dispatch) => {
+      const {
+        name,
+        purchaseDate,
+        expirationDate
+      } = data;
+      const foodData = { userId, name, purchaseDate, expirationDate };
+  
+      return axios.post(`http://school.corg.network:3000/create-food`, {
+          ...foodData
+      })
+      .then(res => {
+        console.log('--------------------------------------')
+        console.log(res.data)
+        const newId = res.data.data._id;
+        
+        const newFood = {
+          _id: newId,
+          ...foodData
+        }
+        dispatch(addFood(newFood));
+      })
+      .catch(err => {
+          console.log(err);
+      });
+    }
   }
 }
 
-const removeFood = (id) => ({
-  type: 'REMOVE_FOOD',
+const deleteFood = (id) => ({
+  type: 'DELETE_FOOD',
   id
 })
-export const startRemoveFood = (id) => {
-  return async (dispatch) => {
-    // await axios.delete(`localhost:3000/delete-food`, {
-    //      id
-    // });
-    dispatch(removeFood(id));
+export const startDeleteFood = (id) => {
+  const data = {
+    foodId: id
+  }
+  console.log('data---------------------------------------------------');
+  console.log(data);
+  
+  return (dispatch) => {
+    return axios.delete(`http://school.corg.network:3000/delete-food`, {
+      data
+    })
+    .then(res => {
+      console.log('--------------------------------------')
+      console.log(res.data)
+      dispatch(deleteFood(id));
+    })
+    .catch(err => {
+      console.log('--------------------------------------')
+
+        console.log(err);
+    });
   }
 }
 
@@ -61,11 +96,11 @@ const setFood = (food) => ({
 })
 export const startSetFood = () => {
   return (dispatch) => {
-        return axios.get('http://school.corg.network:3000/all-food')
+        return axios.get(`http://school.corg.network:3000/${testUser.userId}/get-food`)
             .then(food => {
               console.log('------------------------------------------------------------------')
               console.log(food.data.data)
-              dispatch(setFood(food.data.data));
+              dispatch(setFood(food.data.data.foodList));
             })
             .catch(err => {
                 console.log(err);
