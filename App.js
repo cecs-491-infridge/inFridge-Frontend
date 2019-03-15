@@ -30,9 +30,11 @@ const store = configureStore();
 const AppNavigator = createMaterialBottomTabNavigator({
   //export default createMaterialBottomTabNavigator({
   //SignIn: { screen: SignInScreen },
-  Feed: { screen: FeedScreen },
+  Feed: { screen: FeedScreen,
+    tabBarIcon: ({ tintColor }) => (<View style={iconContainerStyle}><Icon style={[{color: tintColor}]} size={iconSize} name={'user'}/></View>),
+    gesturesEnabled: false, },
   Fridge: {screen: FridgeScreen},
-  Message: { screen: HomeScreen },
+  Message: { screen: MessageScreen },
   Profile: { screen: ProfileScreen },
 }, {
   initialRouteName: 'Feed',

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { ScrollView, StyleSheet, View } from 'react-native';
 // import { SearchBar } from 'react-native-elements';
-import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
+import { Container, Header, Item, Input, Icon, Button, Text, Title } from 'native-base';
 
 import PostForm from '../components/PostForm';
 import Food from '../components/Food';
@@ -33,9 +33,9 @@ class FridgeScreen extends React.Component {
     const { search } = this.state;
 
     return (
-      <View style={styles.container}>
+      <Container>
         <ScrollView>
-          <Text style={styles.welcome}>Fridge</Text>
+          <Title>Fridge</Title>
             <Header searchBar rounded>
               <Item>
                 <Icon name="ios-search" />
@@ -56,11 +56,15 @@ class FridgeScreen extends React.Component {
           /> */}
           {
             this.state.fridge.map(food =>
-              <Food key={food._id} food={food} />
+              <Food 
+                key={food._id} 
+                food={food} 
+                onDelete={id => this.props.dispatch(startDeleteFood(id))}
+              />
             )
           }
         </ScrollView>
-      </View>
+      </Container>
     );
   }
 }

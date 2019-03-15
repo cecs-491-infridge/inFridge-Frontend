@@ -11,8 +11,7 @@ class Post extends React.Component {
     render() {
         // implemented without image with header
         return (
-            <View>
-                {/* <Card title="Posts">
+                /* <Card title="Posts">
                     <Text>{this.props.transaction.author}</Text>
                     <Text>{this.props.transaction.body}</Text>
                     <Text>{this.props.transaction.location}</Text>
@@ -21,7 +20,7 @@ class Post extends React.Component {
                     <Button
                         title='Complete'
                     />
-                </Card> */}
+                </Card> */
                 <Container>
                     <Header />
                     <Content>
@@ -30,16 +29,16 @@ class Post extends React.Component {
                                 <Left>
                                     <Thumbnail source={{ uri: 'Image URL' }} />
                                     <Body>
-                                        <Text>NativeBase</Text>
+                                        <Text>{this.props.transaction.author}</Text>
                                         <Text note>{this.props.transaction.location}</Text>
                                     </Body>
                                 </Left>
                             </CardItem>
                             <CardItem cardBody>
                                 <Image source={{ uri: 'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiYusL17_3gAhUGrp4KHU3UC1sQjRx6BAgBEAU&url=https%3A%2F%2Fwww.cnn.com%2Ftravel%2Farticle%2Fbest-hong-kong-dim-sum%2Findex.html&psig=AOvVaw1TWp8ttbzG6VgoKuOG_Xzs&ust=1552523779782034'}} style={{ height: 200, width: null, flex: 1 }} />
-                                <Text>{this.props.transaction.author}</Text>
+                                
                                 <Text>{this.props.transaction.body}</Text>
-                                <Text>{this.props.transaction.location}</Text>
+                                
                                 <Text>{this.props.transaction.tradeType}</Text>
                             </CardItem>
                             <CardItem>
@@ -62,7 +61,6 @@ class Post extends React.Component {
                         </Card>
                     </Content>
                 </Container>
-            </View>
         );
     }
 

@@ -15,7 +15,7 @@ class FeedScreen extends React.Component {
     
     render() {
       return (
-        <View style={styles.container}>
+        <Container>
             <Text style={styles.welcome}>Feed</Text>
           <ScrollView>
           
@@ -37,7 +37,7 @@ class FeedScreen extends React.Component {
               )
             }
           </ScrollView>
-        </View>
+        </Container>
       );
     }
 }
