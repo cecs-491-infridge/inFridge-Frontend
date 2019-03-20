@@ -19,6 +19,13 @@ class FridgeScreen extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    // You don't have to do this check first, but it can help prevent an unneeded render
+    if (nextProps.fridge !== this.state.fridge) {
+      this.setState({ fridge: nextProps.fridge });
+    }
+  }
+
   updateSearch = search => {
     // Change to use timeout
     let fridge = filterFood(this.props.fridge, search);

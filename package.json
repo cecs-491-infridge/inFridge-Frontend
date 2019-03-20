@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "install": "^0.12.2",
+    "ionicons": "^4.5.5",
     "lodash.merge": "^4.6.1",
     "native-base": "^2.12.1",
     "react": "16.6.3",
