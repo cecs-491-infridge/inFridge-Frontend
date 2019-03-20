@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { ScrollView, StyleSheet, View } from 'react-native';
 // import { SearchBar } from 'react-native-elements';
-import { Container, Header, Item, Input, Icon, Button, Text, Title } from 'native-base';
+import { Body, Button, Container, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 
 import PostForm from '../components/PostForm';
 import Food from '../components/Food';
@@ -41,21 +41,29 @@ class FridgeScreen extends React.Component {
 
     return (
       <Container>
+
+        <Header>
+          <Left />
+          <Body>
+            <Title>Feed</Title>
+          </Body>
+          <Right />
+        </Header>
+
         <ScrollView>
-          <Title>Fridge</Title>
-            <Header searchBar rounded>
-              <Item>
-                <Icon name="ios-search" />
-                <Input 
-                  placeholder="Search Fridge..."
-                  onChangeText={this.updateSearch}
-                  value={search}/>
-                <Icon name="ios-people" />
-              </Item>
-              <Button transparent>
-                <Text>Search</Text>
-              </Button>
-            </Header>
+          {/* <Header searchBar rounded> */}
+            <Item>
+              <Icon name="ios-search" />
+              <Input
+                placeholder="Search Fridge..."
+                onChangeText={this.updateSearch}
+                value={search} />
+              <Icon name="ios-people" />
+            </Item>
+            <Button transparent>
+              <Text>Search</Text>
+            </Button>
+          {/* </Header> */}
           {/* <SearchBar
             placeholder="Search Fridge..."
             onChangeText={this.updateSearch}
@@ -63,9 +71,9 @@ class FridgeScreen extends React.Component {
           /> */}
           {
             this.state.fridge.map(food =>
-              <Food 
-                key={food._id} 
-                food={food} 
+              <Food
+                key={food._id}
+                food={food}
                 onDelete={id => this.props.dispatch(startDeleteFood(id))}
               />
             )

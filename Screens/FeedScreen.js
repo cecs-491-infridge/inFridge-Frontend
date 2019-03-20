@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { StyleSheet, ScrollView, View } from 'react-native';
-import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
+import { Body, Button, Container, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 
 import PostForm from '../components/PostForm';
 import Post from '../components/Post';
@@ -16,10 +16,17 @@ class FeedScreen extends React.Component {
     render() {
       return (
         <Container>
-            <Text style={styles.welcome}>Feed</Text>
+
+          <Header>
+            <Left/>
+              <Body>
+                <Title>Feed</Title>
+              </Body>
+            <Right />
+          </Header>
+
           <ScrollView>
           
-
             <PostForm
               onSubmit={(transaction) => {
                 this.props.dispatch(startAddTransaction(transaction));
@@ -37,6 +44,7 @@ class FeedScreen extends React.Component {
               )
             }
           </ScrollView>
+
         </Container>
       );
     }

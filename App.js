@@ -24,7 +24,6 @@ import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
-
 const store = configureStore();
 
 const AppNavigator = createMaterialBottomTabNavigator({
@@ -43,7 +42,6 @@ const AppNavigator = createMaterialBottomTabNavigator({
   barStyle: { backgroundColor: '#f0edf6' },
   shifting: false
 });
-
 
 const AppContainer = createAppContainer(AppNavigator);
 
