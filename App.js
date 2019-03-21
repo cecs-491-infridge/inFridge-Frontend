@@ -18,6 +18,7 @@ import MessageScreen from './Screens/MessageScreen';
 import FridgeScreen from './Screens/FridgeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import RecipeScreen from './Screens/RecipeScreen';
+import Message from './Screens/ChatScreen';
 import configureStore from './store/configureStore';
 import { startSetFeed } from './actions/feed';
 import { startSetFood } from './actions/fridge';

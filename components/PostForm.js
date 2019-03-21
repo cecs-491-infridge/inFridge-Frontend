@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
+import { Text, TextInput } from 'react-native';
+import { Button, Container, Content, Header, Item, Textarea, Form } from 'native-base';
 
 class PostForm extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -18,11 +19,11 @@ class PostForm extends React.Component {
 
         const error =
             !this.state.body ? 'Please include a Post body' :
-            !this.validateTradeType() ? 'Please include a valid Trade Type (donate/trade/sell)' : '';
+                !this.validateTradeType() ? 'Please include a valid Trade Type (donate/trade/sell)' : '';
 
         this.setState({ error });
 
-        if(!error) {
+        if (!error) {
             const transaction = {
                 body: this.state.body,
                 location: '123',
@@ -40,7 +41,7 @@ class PostForm extends React.Component {
     validateTradeType = () => {
         const tradeType = this.state.tradeType;
 
-        if(tradeType === 'donate' || tradeType === 'trade' || tradeType === 'sell'){
+        if (tradeType === 'donate' || tradeType === 'trade' || tradeType === 'sell') {
             return true;
         }
         return false;
@@ -48,28 +49,40 @@ class PostForm extends React.Component {
 
     render() {
         return (
-            <View>
-                { !!this.state.error && <Text>{this.state.error}</Text> }
+            <Content padder>
 
-                <TextInput
-                    style={{height: 40}}
-                    placeholder='Post body'
-                    onChangeText={(body) => this.setState({ body })}
-                    value={this.state.body}
-                ></TextInput>
+                {!!this.state.error && <Text>{this.state.error}</Text>}
+                <Form>
+                    <Textarea
+                        bordered placeholder="Trade Type"
+                        onChangeText={(tradeType) => this.setState({ tradeType })}
+                        value={this.state.tradeType}
+                    />
 
-                <TextInput
-                    style={{height: 60}}
-                    placeholder='Trade Type'
-                    onChangeText={(tradeType) => this.setState({ tradeType })}
-                    value={this.state.tradeType}
-                ></TextInput>
 
-                <Button
-                    onPress={this.onSubmit}
-                    title='Create Post'
-                />
-            </View>
+                    <Textarea
+                        rowSpan={5}
+                        bordered placeholder="Post body"
+                        onChangeText={(body) => this.setState({ body })}
+                        value={this.state.body}
+                    />
+
+                    <Button
+                        block
+                        onPress={this.onSubmit}
+                    >
+
+                        <Text>Create Post</Text>
+                    </Button>
+
+                </Form>
+
+
+
+
+
+
+            </Content>
         )
     }
 }

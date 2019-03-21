@@ -49,20 +49,23 @@ class FridgeScreen extends React.Component {
           </Body>
           <Right />
         </Header>
-
-        <ScrollView>
-          {/* <Header searchBar rounded> */}
-            <Item>
-              <Icon name="ios-search" />
-              <Input
-                placeholder="Search Fridge..."
-                onChangeText={this.updateSearch}
-                value={search} />
-              <Icon name="ios-people" />
-            </Item>
-            <Button transparent>
+        <Item>
+          <Icon name="ios-search" />
+          <Input
+            placeholder="Search Fridge..."
+            onChangeText={this.updateSearch}
+            value={search} />
+          <Right>
+            <Button iconLeft light rounded>
               <Text>Search</Text>
             </Button>
+          </Right>
+
+        </Item>
+        <ScrollView>
+          {/* <Header searchBar rounded> */}
+
+
           {/* </Header> */}
           {/* <SearchBar
             placeholder="Search Fridge..."

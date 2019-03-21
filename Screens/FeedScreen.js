@@ -27,7 +27,7 @@ class FeedScreen extends React.Component {
         content={<SideBar navigator={this._navigator} />}
         onClose={() => this.closeDrawer()}>
 
-        <Container>
+        <Container padder>
 
           <Header>
             <Left>
@@ -50,6 +50,7 @@ class FeedScreen extends React.Component {
                 this.props.dispatch(startAddTransaction(transaction));
               }}
             />
+
             {
               this.props.transactions.map(transaction =>
                 <Post
@@ -61,6 +62,7 @@ class FeedScreen extends React.Component {
                 />
               )
             }
+
           </ScrollView>
 
         </Container>
@@ -69,19 +71,19 @@ class FeedScreen extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#3498db',
-  },
-  welcome: {
-    fontSize: 50,
-    textAlign: 'center',
-    margin: 10,
-  }
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#3498db',
+//   },
+//   welcome: {
+//     fontSize: 50,
+//     textAlign: 'center',
+//     margin: 10,
+//   }
+// });
 
 const mapStateToProps = (state) => ({
   transactions: state.transactions
