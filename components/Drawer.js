@@ -10,7 +10,7 @@ import AppHeader from './AppHeader';
 // import AppBody from './appBody';
 // import AppFooter from './appFooter';
 
-import Sidebar from './sidebar';
+import Sidebar from './Sidebar';
 
 export default class Main extends Component {
   closeDrawer = () => {
@@ -23,7 +23,7 @@ export default class Main extends Component {
     return (
               <Drawer
                 ref={(ref) => { this.drawer = ref; }}
-                content={<Sidebar/>}
+                content={<SideBar/>}
                 onClose={() => this.closeDrawer()} >
 
                 <AppHeader
