@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Body, Title, Left, Button, Icon, Content, Tab, Tabs } from 'native-base';
-import Tab1 from './RecommendedRecipeScreen';
-import Tab2 from './SearchRecipeScreen';
+import Tab1 from '../components/RecommendedRecipe';
+import Tab2 from '../components/SearchRecipe';
 export default class RecipeScreen extends Component {
   render() {
     return (

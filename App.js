@@ -17,6 +17,7 @@ import FeedScreen from './Screens/FeedScreen';
 import MessageScreen from './Screens/MessageScreen';
 import FridgeScreen from './Screens/FridgeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
+import RecipeScreen from './Screens/RecipeScreen';
 import configureStore from './store/configureStore';
 import { startSetFeed } from './actions/feed';
 import { startSetFood } from './actions/fridge';

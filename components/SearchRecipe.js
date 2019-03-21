@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Item, Icon, Input, Button, Text } from 'native-base';
-export default class SearchRecipeScreen extends Component {
+export default class SearchRecipe extends Component {
 
 
   // constructor(props) {
