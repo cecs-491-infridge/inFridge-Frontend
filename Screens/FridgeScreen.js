@@ -63,15 +63,6 @@ class FridgeScreen extends React.Component {
 
         </Item>
         <ScrollView>
-          {/* <Header searchBar rounded> */}
-
-
-          {/* </Header> */}
-          {/* <SearchBar
-            placeholder="Search Fridge..."
-            onChangeText={this.updateSearch}
-            value={search}
-          /> */}
           {
             this.state.fridge.map(food =>
               <Food

@@ -15,7 +15,7 @@ class Post extends React.Component {
                 <Card style={{ flex: 0 }}>
                     <CardItem>
                         <Left>
-                            <Thumbnail source={{ uri: 'Image URL' }} />
+                            <Thumbnail source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
                             <Body>
                                 <Text>{this.props.transaction.author}</Text>
                                 <Text note>{this.props.transaction.location}</Text>
@@ -24,7 +24,7 @@ class Post extends React.Component {
                     </CardItem>
                     <CardItem cardBody>
                         <Body>
-                            <Image source={{ uri: 'https://cdn.instructables.com/FNF/7PUG/IRAVYHIC/FNF7PUGIRAVYHIC.LARGE.jpg' }} style={{ height: 200, width: null, flex: 1 }} />
+                            <Image source={{ uri: '' }} style={{ height: 200, width: null, flex: 1 }} />
 
                             <Text>{this.props.transaction.body}</Text>
 

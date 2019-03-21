@@ -7,7 +7,7 @@ export default class ListAvatarExample extends Component {
           <List>
             <ListItem avatar>
               <Left>
-                <Thumbnail source={{ uri: 'Image URL' }} />
+                <Thumbnail source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
               </Left>
               <Body>
                 <Text>Weisheng Wu</Text>
