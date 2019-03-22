@@ -22,9 +22,15 @@ class Post extends React.Component {
                             </Body>
                         </Left>
                     </CardItem>
-                    <CardItem cardBody>
+                    <CardItem>
                         <Body>
-                            <Image source={{ uri: '' }} style={{ height: 200, width: null, flex: 1 }} />
+                            <Image source={{ uri: 'https://media.blueapron.com/recipes/2471/square_newsletter_images/1503688588-7-0035-6602/904_2PF_Salmon-Udon-Noodles_84097_WEB_SQ_hi_res.jpg' }} 
+                            style={{  
+                                alignSelf: 'stretch',
+                                resizeMode: 'contain',
+                                marginRight: 10,
+                                width: 350,
+                                height: 400}} />
 
                             <Text>{this.props.transaction.body}</Text>
 
