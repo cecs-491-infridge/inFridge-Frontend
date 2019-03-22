@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { ScrollView, StyleSheet, View } from 'react-native';
 // import { SearchBar } from 'react-native-elements';
-import { Body, Button, Container, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
+import { Body, Button, Container, Header, Item, Input, Icon, Left, Separator, Right, Text, Title } from 'native-base';
 
 import PostForm from '../components/PostForm';
 import Food from '../components/Food';
@@ -63,8 +63,13 @@ class FridgeScreen extends React.Component {
 
         </Item>
         <ScrollView>
+          <Separator boarderd>
+            <Text>Public</Text>
+
+          </Separator>          
           {
             this.state.fridge.map(food =>
+
               <Food
                 key={food._id}
                 food={food}
@@ -72,6 +77,13 @@ class FridgeScreen extends React.Component {
               />
             )
           }
+          <Separator boarderd>
+            <Text>Partial Public</Text>
+          </Separator>
+          <Separator boarderd>
+            <Text>Private</Text>
+          </Separator>
+
         </ScrollView>
       </Container>
     );
