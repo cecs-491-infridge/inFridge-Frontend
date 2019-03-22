@@ -11,7 +11,7 @@ class Post extends React.Component {
     render() {
         // implemented without image with header
         return (
-            <Content >
+            <Content>
                 <Card style={{ flex: 0 }}>
                     <CardItem>
                         <Left>
@@ -22,21 +22,19 @@ class Post extends React.Component {
                             </Body>
                         </Left>
                     </CardItem>
-                    <CardItem>
-                        <Body>
+                    <CardItem cardBody>
                             <Image source={{ uri: 'https://media.blueapron.com/recipes/2471/square_newsletter_images/1503688588-7-0035-6602/904_2PF_Salmon-Udon-Noodles_84097_WEB_SQ_hi_res.jpg' }} 
                             style={{  
                                 alignSelf: 'stretch',
                                 resizeMode: 'contain',
-                                marginRight: 10,
+                                marginLeft: 10,
                                 width: 350,
                                 height: 400}} />
+                    </CardItem>                            
 
-                            <Text>{this.props.transaction.body}</Text>
-
-                            <Text>{this.props.transaction.tradeType}</Text>
-                        </Body>
-
+                    <CardItem footer>
+                        <Text>{this.props.transaction.body}</Text>
+                        <Text>{this.props.transaction.tradeType}</Text>
                     </CardItem>
                     <CardItem>
                         <Left>
@@ -52,7 +50,7 @@ class Post extends React.Component {
                             </Button>
                         </Body>
                         <Right>
-                            <Text>11h ago</Text>
+                            <Text>11h</Text>
                         </Right>
                     </CardItem>
                 </Card>
