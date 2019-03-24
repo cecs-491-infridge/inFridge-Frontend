@@ -31,14 +31,15 @@ class FeedScreen extends React.Component {
 
           <Header>
             <Left>
-              <Button transparent
+              <Button 
+                transparent
                 onPress={() => this.openDrawer()}
               >
                 <Icon name='menu' />
               </Button>
             </Left>
             <Body>
-              <Title>Feed</Title>
+              <Title>inFridge</Title>
             </Body>
             <Right />
           </Header>

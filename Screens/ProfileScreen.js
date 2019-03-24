@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  Image,
-  TouchableOpacity
-} from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { Body, Button, Container, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 
 

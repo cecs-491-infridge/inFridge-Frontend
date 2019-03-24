@@ -7,7 +7,6 @@
  * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 import React from 'react';
-import { Text, View } from 'react-native';
 // Used to Provide Redux store to all child components
 import { Provider } from 'react-redux'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
@@ -25,55 +24,99 @@ import { startSetFood } from './actions/fridge';
 import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { Text, Icon } from 'native-base';
 
 const store = configureStore();
 
 const AppNavigator = createMaterialBottomTabNavigator({
   //export default createMaterialBottomTabNavigator({
   //SignIn: { screen: SignInScreen },
-  Feed: { screen: FeedScreen,
-    tabBarIcon: ({ tintColor }) => (<View style={iconContainerStyle}><Icon style={[{color: tintColor}]} size={iconSize} name={'user'}/></View>),
-    gesturesEnabled: false, },
-  Fridge: {screen: FridgeScreen},
-  Message: { screen: MessageScreen },
-  Profile: { screen: ProfileScreen },
+  Feed: {
+    navigationOptions: () => ({
+      tabBarIcon: ({ tintColor }) => (
+        <Icon
+          type="MaterialCommunityIcons"
+          name="home"
+          size={24}
+        />
+      )
+    }),
+    screen: FeedScreen,
+    gesturesEnabled: false,
+  },
+  Fridge: {
+    navigationOptions: () => ({
+      tabBarIcon: ({ tintColor }) => (
+        <Icon
+          type="MaterialCommunityIcons"
+          name="fridge"
+          size={24}
+        />
+      )
+    }),
+    screen: FridgeScreen
+  },
+  Message: {
+    navigationOptions: () => ({
+      tabBarIcon: ({ tintColor }) => (
+        <Icon
+          type="MaterialCommunityIcons"
+          name="message"
+          size={24}
+        />
+      )
+    }),
+    screen: MessageScreen
+  },
+  Profile: {
+    navigationOptions: () => ({
+      tabBarIcon: ({ tintColor }) => (
+        <Icon
+          type="MaterialCommunityIcons"
+          name="account"
+          size={24}
+        />
+      )
+    }),
+    screen: ProfileScreen
+  },
 }, {
-  initialRouteName: 'Feed',
-  activeColor: '#3498db',
-  inactiveColor: '#34495e',
-  barStyle: { backgroundColor: '#f0edf6' },
-  shifting: false
-});
+    initialRouteName: 'Feed',
+    activeColor: '#3498db',
+    inactiveColor: '#34495e',
+    barStyle: { backgroundColor: '#f0edf6' },
+    shifting: false
+  });
 
 const AppContainer = createAppContainer(AppNavigator);
 
-export default class App extends React.Component{
-  constructor(props){
+export default class App extends React.Component {
+  constructor(props) {
     super(props);
-    
+
     this.state = {
       screenState: 0
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     Promise.all([
       // store.dispatch(startSetFeed),
       store.dispatch(startSetFood()),
       // store.dispatch(startSetFriends),
       store.dispatch(startSetTransactions())
     ])
-    .then(() => {
-      this.setState({ screenState: 2 });
-    });
+      .then(() => {
+        this.setState({ screenState: 2 });
+      });
   }
 
   render() {
     let jsx;
     if (this.state.screenState === 0) jsx = <Text>Loading...</Text>
     if (this.state.screenState === 1) jsx = <Text>Loading...</Text>
-    if (this.state.screenState === 2) jsx = <AppContainer/>
-    return(
+    if (this.state.screenState === 2) jsx = <AppContainer />
+    return (
       <Provider store={store}>
         {jsx}
       </Provider>

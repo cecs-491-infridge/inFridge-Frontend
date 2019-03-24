@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, TextInput } from 'react-native';
-import { Button, Container, Content, Header, Item, Textarea, Form } from 'native-base';
+import { TextInput, View, StyleSheet } from 'react-native';
+import { Button, Container, Content, Header, Icon, Item, ListItem,Text,  Textarea, Form } from 'native-base';
+import { List } from 'react-native-paper';
 
 class PostForm extends React.Component {
     constructor(props) {
@@ -67,24 +68,44 @@ class PostForm extends React.Component {
                         value={this.state.body}
                     />
 
-                    <Button
-                        block
-                        onPress={this.onSubmit}
-                    >
-
-                        <Text>Create Post</Text>
-                    </Button>
-
                 </Form>
 
 
 
-
-
+                <View style={styles.container}>
+                    <View style={styles.buttonContainer}>
+                <Button
+                    small
+                >
+                    <Icon name='image' />
+                    <Text>Pictures</Text>
+                </Button>
+                </View>
+                    <View style={styles.buttonContainer}>
+                <Button
+                    small
+                    onPress={this.onSubmit}
+                >
+                    <Icon name='md-create' />
+                    <Text>Post</Text>
+                </Button>
+                </View>
+                </View>
 
             </Content>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly'
+    },
+    buttonContainer: {
+    }
+});
 
 export default PostForm;
