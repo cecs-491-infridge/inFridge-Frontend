@@ -55,6 +55,7 @@ class PostForm extends React.Component {
                 {!!this.state.error && <Text>{this.state.error}</Text>}
                 <Form>
                     <Textarea
+                        rowSpan={1}
                         bordered placeholder="Trade Type"
                         onChangeText={(tradeType) => this.setState({ tradeType })}
                         value={this.state.tradeType}
@@ -62,7 +63,7 @@ class PostForm extends React.Component {
 
 
                     <Textarea
-                        rowSpan={5}
+                        rowSpan={2}
                         bordered placeholder="Post body"
                         onChangeText={(body) => this.setState({ body })}
                         value={this.state.body}
