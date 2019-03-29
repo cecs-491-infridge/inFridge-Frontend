@@ -35,7 +35,7 @@ export default class SearchRecipe extends Component {
       //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
       search = "apple pie"
-      let recipeResponse = await axios.get(`http://school.corg.network:3001/search-recipe`, {
+      let recipeResponse = await axios.get(`http://school.corg.network:3000/search-recipe`, {
         params:{
           search
         }
