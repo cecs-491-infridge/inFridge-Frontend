@@ -25,18 +25,31 @@ class SignInScreen extends React.Component {
           //3:  Login
           //      send username, password to backend -> FEED SCREEN
         }
+        this.LINKTOAUTH = "";
     }
 
-    // onSignIn = () => {
-    //     this.state.id;
-    //     console.log("\t\t\t\t\t\t\t\t\t\t---------------------------WENT INTO THE GOOGLE METHODDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-    //     //Linking.openURL("https://google.com");
-    //     <WebView
-    //       style={{flex:1}}
-    //       source={{uri: 'https://github.com/facebook/react-native'}} //call backend router for school.corg.network/create-user
-    //     />
-    //     //this.state.id;
+    // async componentDidMount(){
+    //   try{
+    //     const a = await axios.post("https://school.corg.network:3000/authenticate-user");
+    //     console.log("HEEELLLLLLLOOOOOOOOOOOO_----------------------------------------------------------------------------------------------");
+    //     console.log(a);
+    //   }catch(err){
+    //     console.log(err);
+    //   }
     // }
+
+    onSignIn = async () => {
+        this.state.id;
+        console.log("\t\t\t\t\t\t\t\t\t\t---------------------------WENT INTO THE GOOGLE METHODDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+
+        try{
+          // this.LINKTOAUTH = await axios.post("https://school.corg.network:3000/authenticate-user");
+          this.LINKTOAUTH = await axios.post("https://localhost:3001/authenticate-user");
+          console.log(this.LINKTOAUTH);
+        }catch(err){
+          console.log(err);
+        }
+    }
 
     _onNavigationStateChange(webViewState){
       console.log(webViewState.url)
@@ -46,11 +59,12 @@ class SignInScreen extends React.Component {
       return (
         <View style={{flex:1}}>
             {
+              //0:  WELCOME to INFRIDGE!!! Sign up or login????
               (this.state.signInState === 0) &&
               <View>
                 <Button
                   title="Sign Up"
-                  onPress={() => this.setState({ signInState: 1 })}
+                  onPress={this.onSignIn}
                 />
                 <Button
                   title="Login"
@@ -59,48 +73,24 @@ class SignInScreen extends React.Component {
               </View>
             }
             {
+              //1:  SIGN UP PART 1:
+              //      need to authenticate with Microsoft Graph API. Are they a real student?
+              //      open WEBVIEW: call school.corg.network/create-user
+              //      once they login to GRAPH, save the KEY in the DB and create a temporary user
+              //      onNavigationStateChange to get the KEY in the frontend
               (this.state.signInState === 1) &&
               <WebView
-                style={{flex: 1}}
-                //source={{uri: 'https://www.google.com'}}
-                source={{uri: 'https://school.corg.network:3000/authenticate-user'}}
-
-                ref="webview"
-                //source={{uri:this.state.url}}
-                onNavigationStateChange={this._onNavigationStateChange.bind(this)}
-                javaScriptEnabled = {true}
-                domStorageEnabled = {true}
-                injectedJavaScript = {this.state.cookie}
-                startInLoadingState={false}
+                style={{flex:1}}
+                source={{uri: this.LINKTOAUTH}} //call backend router for school.corg.network/create-user
               />
             }
-            {
+            {/* {
+              //2:  SIGN UP PART 2
+              //      create a new account with InFridge!
+              //      send new username, password, and key to backend to verify the keys -> FEED SCREEN
               (this.state.signInState === 2) &&
-              <View>
-                <Text style={styles.welcome}>InFridge Sign Up</Text>
-                <TextInput
-                    style={{height: 40}}
-                    placeholder='New Username'
-                    onChangeText={(username) => this.setState({ username })}
-                ></TextInput>
-                <TextInput
-                    style={{height: 40}}
-                    placeholder='New Password'
-                    onChangeText={(password) => this.setState({ password })}
-                ></TextInput>
-              </View>
-            }
 
-{/*
-            <Button
-                title="Go to Home Page"
-                onPress={() => this.props.navigation.navigate('Home')}
-            />
-            <Button
-                title="Go to Feed Page"
-                onPress={() => this.props.navigation.navigate('Feed')}
-            />
-*/}
+            } */}
         </View>
       );
     }
