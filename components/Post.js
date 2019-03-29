@@ -18,7 +18,10 @@ class Post extends React.Component {
                             <Thumbnail source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
                             <Body>
                                 <Text>{this.props.transaction.author}</Text>
-                                <Text note>{this.props.transaction.location}</Text>
+                                {!!this.props.transaction.location &&
+                                <Text note>{this.props.transaction.location.latitude}, {this.props.transaction.location.longitude}</Text>
+                                    
+                                }
                             </Body>
                         </Left>
                     </CardItem>

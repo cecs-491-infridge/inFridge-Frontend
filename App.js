@@ -36,7 +36,7 @@ const AppNavigator = createMaterialBottomTabNavigator({
     navigationOptions: () => ({
       tabBarIcon: ({ tintColor }) => (
         <Icon
-          type="MaterialCommunityIcons"
+          // type="MaterialCommunityIcons"
           name="home"
           size={24}
         />
@@ -82,6 +82,13 @@ const AppNavigator = createMaterialBottomTabNavigator({
     screen: ProfileScreen
   },
 }, {
+  tabBarOptions:{
+    activeTintColor: '#F8F8F8', // active icon color
+    inactiveTintColor: '#586589',  // inactive icon color
+    style: {
+        backgroundColor: '#171F33' // TabBar background
+    }
+  },
     initialRouteName: 'Feed',
     activeColor: '#3498db',
     inactiveColor: '#34495e',

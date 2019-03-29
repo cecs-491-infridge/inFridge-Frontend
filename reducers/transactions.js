@@ -1,11 +1,11 @@
 const defaultState = []
-export default (state=defaultState, action) => {
-  switch(action.type) {
+export default (state = defaultState, action) => {
+  switch (action.type) {
 
     case 'ADD_TRANSACTION':
       return [
-        ...state,
-        action.transaction
+        action.transaction,
+        ...state
       ];
       break;
 

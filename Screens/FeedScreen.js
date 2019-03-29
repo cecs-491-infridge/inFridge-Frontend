@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { StyleSheet, ScrollView, View } from 'react-native';
-import { Body, Button, Container, Drawer, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
+import { Body, Button, Content, Container, Drawer, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 
 import PostForm from '../components/PostForm';
 import Post from '../components/Post';
@@ -28,10 +28,9 @@ class FeedScreen extends React.Component {
         onClose={() => this.closeDrawer()}>
 
         <Container padder>
-
           <Header>
             <Left>
-              <Button 
+              <Button
                 transparent
                 onPress={() => this.openDrawer()}
               >
@@ -41,16 +40,25 @@ class FeedScreen extends React.Component {
             <Body>
               <Title>inFridge</Title>
             </Body>
-            <Right />
+            <Right>
+              <Button
+                transparent
+              >
+                <Icon name='add' />
+              </Button>
+            </Right>
           </Header>
-
-          <ScrollView>
-
+          <Item>
             <PostForm
               onSubmit={(transaction) => {
                 this.props.dispatch(startAddTransaction(transaction));
               }}
             />
+          </Item>
+
+          <ScrollView>
+
+
 
             {
               this.props.transactions.map(transaction =>

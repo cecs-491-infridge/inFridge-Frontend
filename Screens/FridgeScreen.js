@@ -45,12 +45,18 @@ class FridgeScreen extends React.Component {
         <Header>
           <Left />
           <Body>
-            <Title>Feed</Title>
+            <Title>My Fridge</Title>
           </Body>
-          <Right />
+          <Right>
+            <Button
+              transparent
+            >
+              <Icon name='add' />
+            </Button>
+          </Right>
         </Header>
         <Item>
-          <Icon name="ios-search" />
+          <Icon small name="ios-search" />
           <Input
             placeholder="Search Fridge..."
             onChangeText={this.updateSearch}
@@ -66,7 +72,7 @@ class FridgeScreen extends React.Component {
           <Separator boarderd>
             <Text>Public</Text>
 
-          </Separator>          
+          </Separator>
           {
             this.state.fridge.map(food =>
 

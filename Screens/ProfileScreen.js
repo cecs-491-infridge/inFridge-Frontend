@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
-import { Body, Button, Container, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
+import { Body, Button, Col, Container, Grid, Header, Item, Input, Icon, Left, Right, Row, Text, Title, Content } from 'native-base';
 
 
 export default class ProfileScreen extends Component {
@@ -10,27 +10,31 @@ export default class ProfileScreen extends Component {
       <Container>
         <Header>
           <Left />
-          <Body>
+          <Content>
             <Title>User Name</Title>
-          </Body>
+          </Content>
           <Right />
         </Header>
         <View style={styles.header}></View>
         <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
-        <View style={styles.body}>
-          <View style={styles.bodyContent}>
-            <Text style={styles.name}>John Doe</Text>
-            <Text style={styles.info}>UX Designer / Mobile developer</Text>
-            <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
 
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Opcion 1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Opcion 2</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <Grid>
+          <Col style={{ backgroundColor: '#635DB7', height: 200 }}>
+            <Text style={{textAlignVertical: "center",textAlign: "center",}} >
+              20 Contributions
+            </Text>
+          </Col>
+          <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
+            <Text style={{textAlignVertical: "center",textAlign: "center",}}>
+              Love cooking Chinese food and baking!
+            </Text>
+          </Col>
+          <Row style={{ backgroundColor: '#3498db', height: 200 }}>
+          </Row>
+          <Row style={{ backgroundColor: '#3498db', height: 200 }}>
+          </Row>
+        </Grid>
+
       </Container>
     );
   }
@@ -38,7 +42,7 @@ export default class ProfileScreen extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#00BFFF",
+    backgroundColor: "#3498db",
     height: 200,
   },
   avatar: {
