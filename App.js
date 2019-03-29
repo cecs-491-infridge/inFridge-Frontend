@@ -25,6 +25,7 @@ import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Text, Icon } from 'native-base';
+import SpecificRecipeScreen from './Screens/SpecificRecipeScreen';
 
 const store = configureStore();
 
@@ -41,7 +42,7 @@ const AppNavigator = createMaterialBottomTabNavigator({
         />
       )
     }),
-    screen: FeedScreen,
+    screen: RecipeScreen,
     gesturesEnabled: false,
   },
   Fridge: {
