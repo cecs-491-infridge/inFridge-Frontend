@@ -5,7 +5,7 @@ import { Body, Button, Content, Container, Drawer, Header, Item, Input, Icon, Le
 
 import PostForm from '../components/PostForm';
 import Post from '../components/Post';
-import { startAddTransaction, startDeleteTransaction } from '../actions/transactions';
+import { startAddTransaction, startDeleteTransaction, startUpdateTransaction } from '../actions/transactions';
 import SideBar from '../components/Sidebar';
 
 class FeedScreen extends React.Component {
@@ -65,6 +65,9 @@ class FeedScreen extends React.Component {
                 <Post
                   key={transaction._id}
                   transaction={transaction}
+                  onLike={(id, updates) => {
+                    this.props.dispatch(startUpdateTransaction(id, updates))
+                  }}
                   onDelete={(id) => {
                     this.props.dispatch(startDeleteTransaction(id));
                   }}
