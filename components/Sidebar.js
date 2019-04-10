@@ -1,6 +1,7 @@
 import React from "react";
 import { AppRegistry, Image, StatusBar } from "react-native";
 import { Button, Text, Container, List, ListItem, Content, Icon } from "native-base";
+import HomeScreenRouter from "./Drawer";
 const routes = ["Friends", "Recipes", "Profile"];
 
 export default class SideBar extends React.Component {
@@ -35,6 +36,7 @@ export default class SideBar extends React.Component {
             }}
           />
           <List
+          
             dataArray={routes}
             contentContainerStyle={{ marginTop: 120 }}
             renderRow={data => {

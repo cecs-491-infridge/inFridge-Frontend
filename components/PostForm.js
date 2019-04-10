@@ -1,7 +1,8 @@
 import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
-import { Button, Container, Content, Header, Icon, Item, ListItem,Text,  Textarea, Form } from 'native-base';
+import { Button, Container, Content, Header, Icon, Item, ListItem, Text, Textarea, Form } from 'native-base';
 import { List } from 'react-native-paper';
+import ImagePicker from 'react-native-image-picker';
 
 class PostForm extends React.Component {
     constructor(props) {
@@ -48,6 +49,43 @@ class PostForm extends React.Component {
         return false;
     }
 
+    uploadImage = () => {
+        // More info on all the options is below in the API Reference... just some common use cases shown here
+        const options = {
+            title: 'Select Avatar',
+            customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
+        };
+
+        /**
+         * The first arg is the options object for customization (it can also be null or omitted for default options),
+         * The second arg is the callback which sends object: response (more info in the API Reference)
+         */
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            } else {
+                const source = { uri: response.uri };
+
+                // You can also display the image using data:
+                // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+                this.setState({
+                    avatarSource: source,
+                });
+            }
+        });
+    }
+
     render() {
         return (
             <Content padder>
@@ -75,22 +113,23 @@ class PostForm extends React.Component {
 
                 <View style={styles.container}>
                     <View style={styles.buttonContainer}>
-                <Button
-                    small
-                >
-                    <Icon name='image' />
-                    <Text>Pictures</Text>
-                </Button>
-                </View>
+                        <Button
+                            small
+                            onPress={this.uploadImage}
+                        >
+                            <Icon name='image' />
+                            <Text>Pictures</Text>
+                        </Button>
+                    </View>
                     <View style={styles.buttonContainer}>
-                <Button
-                    small
-                    onPress={this.onSubmit}
-                >
-                    <Icon name='md-create' />
-                    <Text>Post</Text>
-                </Button>
-                </View>
+                        <Button
+                            small
+                            onPress={this.onSubmit}
+                        >
+                            <Icon name='md-create' />
+                            <Text>Post</Text>
+                        </Button>
+                    </View>
                 </View>
 
             </Content>

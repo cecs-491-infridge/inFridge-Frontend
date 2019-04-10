@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Body, Title, Left, Button, Icon, Content, Tab, Tabs } from 'native-base';
+import { Container, Header, Body, Title, Left, Button, Icon, Content, Right, Tab, Tabs } from 'native-base';
 import Tab1 from '../components/RecommendedRecipe';
 import Tab2 from '../components/SearchRecipe';
 export default class RecipeScreen extends Component {
@@ -7,16 +7,16 @@ export default class RecipeScreen extends Component {
     return (
       <Container>
 
-        <Header hasTabs>
-
-        <Left>
+        <Header>
+          <Left>
             <Button transparent>
-              <Icon name="arrow-back" />
+              <Icon name='arrow-back' />
             </Button>
           </Left>
-        <Body>
-          <Title >Recipe</Title>
-        </Body>
+          <Body>
+            <Title>Recipes</Title>
+          </Body>
+          <Right/>
         </Header>
 
         <Tabs>

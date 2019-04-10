@@ -42,7 +42,7 @@ const AppNavigator = createMaterialBottomTabNavigator({
         />
       )
     }),
-    screen: RecipeScreen,
+    screen: FeedScreen,
     gesturesEnabled: false,
   },
   Fridge: {
