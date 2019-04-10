@@ -6,26 +6,18 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
-
   },
   "dependencies": {
     "axios": "^0.18.0",
-<<<<<<< 3845307302a6149c4c70323135b9f59c8079a8c7
-    "expo": "^32.0.6",
-=======
     "install": "^0.12.2",
     "ionicons": "^4.5.5",
     "lodash.merge": "^4.6.1",
     "native-base": "^2.12.1",
->>>>>>> Merge master into branch
     "react": "16.6.3",
     "react-native": "0.58.3",
     "react-native-cli": "^2.0.1",
     "react-native-elements": "^1.0.0",
     "react-native-gesture-handler": "^1.0.15",
-<<<<<<< 3845307302a6149c4c70323135b9f59c8079a8c7
-    "react-native-gifted-chat": "^0.7.2",
-=======
     "react-native-material-bottom-navigation": "^1.0.2",
     "react-native-multibar": "^0.0.5",
     "react-native-paper": "^2.12.0",
@@ -33,7 +25,6 @@
     "react-native-webview": "^5.2.1",
     "react-navigation": "^3.3.0",
     "react-navigation-material-bottom-tabs": "^1.0.0",
->>>>>>> Merge master into branch
     "react-navigator": "^0.0.0-0",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
@@ -49,6 +40,4 @@
   "jest": {
     "preset": "react-native"
   }
-  
 }
-
