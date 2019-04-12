@@ -1,10 +1,11 @@
 import React from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
-import { Button, Container, Content, Header, Icon, Item, ListItem, Text, Textarea, Form } from 'native-base';
+import { TextInput, StyleSheet } from 'react-native';
+import { Button, Container, Content, Header, Icon, Image, Item, ListItem, Text, Textarea, Form, View } from 'native-base';
 import { List } from 'react-native-paper';
 import ImagePicker from 'react-native-image-picker';
 
 class PostForm extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -12,7 +13,7 @@ class PostForm extends React.Component {
             body: '',
             location: '',
             tradeType: '',
-            error: ''
+            error: '',
         };
     }
 
@@ -52,46 +53,54 @@ class PostForm extends React.Component {
     uploadImage = () => {
         // More info on all the options is below in the API Reference... just some common use cases shown here
         const options = {
-            title: 'Select Avatar',
-            customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
-            storageOptions: {
-                skipBackup: true,
-                path: 'images',
-            },
+            title: 'Select a Photo',
+            // customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+            // storageOptions: {
+            //     skipBackup: true,
+            //     path: 'images',
+            // },
+            noData: true
         };
 
         /**
          * The first arg is the options object for customization (it can also be null or omitted for default options),
          * The second arg is the callback which sends object: response (more info in the API Reference)
          */
-        ImagePicker.showImagePicker(options, (response) => {
+        ImagePicker.showImagePicker(options, response => {
             console.log('Response = ', response);
 
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-            } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            } else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
-            } else {
-                const source = { uri: response.uri };
-
-                // You can also display the image using data:
-                // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-                this.setState({
-                    avatarSource: source,
-                });
+            if (response.uri) {
+                this.setState({ photo: response })
             }
+            console.log("####################################################" + this.state.photo)
+            // if (response.didCancel) {
+            //     console.log('User cancelled image picker');
+            // } else if (response.error) {
+            //     console.log('ImagePicker Error: ', response.error);
+            // } else if (response.customButton) {
+            //     console.log('User tapped custom button: ', response.customButton);
+            // } else {
+            //      const source = { uri: response.uri };
+
+            //     // You can also display the image using data:
+            //     // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+            //     this.setState({
+            //         photo: source,
+            //     });
+            // }
         });
     }
 
     render() {
+        const { photo } = this.state;
         return (
             <Content padder>
 
                 {!!this.state.error && <Text>{this.state.error}</Text>}
-                <Form>
+                <Form
+                    bordered
+                >
                     <Textarea
                         rowSpan={1}
                         bordered placeholder="Trade Type"
@@ -107,11 +116,20 @@ class PostForm extends React.Component {
                         value={this.state.body}
                     />
 
+                    {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+                        <Button title="Choose Photo" onPress={this.handleChoosePhoto} />
+                    </View> */}
                 </Form>
 
-
-
                 <View style={styles.container}>
+                {photo && (
+                        <Image
+                            source={{ uri: photo.uri }}
+                            style={{ width: 300, height: 300, margin: 10 }}
+                        />
+                    )
+                }
                     <View style={styles.buttonContainer}>
                         <Button
                             small

@@ -69,7 +69,7 @@ class Post extends React.Component {
                                 onPress={this.onLike}
                             >
                                 <Icon active name="thumbs-up" />
-                                <Text>{this.props.transaction.likes.length} Likes</Text>
+                                {/* <Text>{this.props.transaction.likes.length} Likes</Text> */}
                             </Button>
                         </Left>
                         <Body>
