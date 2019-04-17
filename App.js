@@ -7,9 +7,14 @@
  * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 import React from 'react';
+import { Text, Icon } from 'native-base';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 // Used to Provide Redux store to all child components
 import { Provider } from 'react-redux'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import configureStore from './store/configureStore';
+// Screens
+import SignUpScreen from './Screens/SignUpScreen';
 import SignInScreen from './Screens/SignInScreen';
 import HomeScreen from './Screens/HomeScreen';
 import FeedScreen from './Screens/FeedScreen';
@@ -17,16 +22,13 @@ import MessageScreen from './Screens/MessageScreen';
 import FridgeScreen from './Screens/FridgeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import RecipeScreen from './Screens/RecipeScreen';
-import Message from './Screens/ChatScreen';
-import SignUpScreen from './Screens/SignUpScreen';
-import configureStore from './store/configureStore';
+import ChatScreen from './Screens/ChatScreen';
+import SpecificRecipeScreen from './Screens/SpecificRecipeScreen';
+// Actions
 import { startSetFeed } from './actions/feed';
 import { startSetFood } from './actions/fridge';
 import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { Text, Icon } from 'native-base';
-import SpecificRecipeScreen from './Screens/SpecificRecipeScreen';
 
 const store = configureStore();
 

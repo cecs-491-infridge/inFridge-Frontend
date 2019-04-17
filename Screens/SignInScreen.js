@@ -4,23 +4,7 @@ import { WebView } from "react-native-webview";
 import axios from "axios";
 
 import SignIn from "../components/SignIn";
-import {
-  Body,
-  Button,
-  Container,
-  Form,
-  Icon,
-  Input,
-  Item,
-  Header,
-  Label,
-  Left,
-  Right,
-  Text,
-  Title,
-  View,
-  Content
-} from "native-base";
+import { Body, Button, Container, Form, Icon, Input, Item, Header, Label, Left, Right, Text, Title, View, Content } from "native-base";
 
 class SignInScreen extends React.Component {
   constructor(props) {
