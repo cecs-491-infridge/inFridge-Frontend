@@ -13,7 +13,7 @@
     "lodash.merge": "^4.6.1",
     "native-base": "^2.12.1",
     "react": "16.6.3",
-    "react-native": "^0.59.2",
+    "react-native": "^0.59.6",
     "react-native-elements": "^1.0.0",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-image-picker": "^0.28.1",

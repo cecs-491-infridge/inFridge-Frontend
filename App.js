@@ -24,6 +24,7 @@ import ProfileScreen from './Screens/ProfileScreen';
 import RecipeScreen from './Screens/RecipeScreen';
 import ChatScreen from './Screens/ChatScreen';
 import SpecificRecipeScreen from './Screens/SpecificRecipeScreen';
+import TestScreen from './Screens/TestScreen';
 // Actions
 import { startSetFeed } from './actions/feed';
 import { startSetFood } from './actions/fridge';
