@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class SearchRecipe extends Component {
+export default class SearchRecipeTab extends Component {
   
   
   constructor(props) {
@@ -21,7 +21,7 @@ export default class SearchRecipe extends Component {
     //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     //this.getRecipe();
 
-    console.log('reloaded-------------------');
+    //console.log('reloaded-------------------');
     this.state = {
      // dataSource: ds.cloneWithRows(['me', 'you']),
       search: '',

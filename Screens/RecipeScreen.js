@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Body, Title, Left, Button, Icon, Content, Tab, Tabs } from 'native-base';
-import Tab1 from '../components/RecommendedRecipe';
-import Tab2 from '../components/SearchRecipe';
+import RecRecipeTab from '../components/RecRecipeTab';
+import SearchRecipeTab from '../components/SearchRecipeTab';
 export default class RecipeScreen extends Component {
   render() {
     return (
@@ -22,11 +22,11 @@ export default class RecipeScreen extends Component {
         <Tabs>
 
           <Tab heading="Recommended">
-            <Tab1 />
+            <RecRecipeTab />
           </Tab>
 
           <Tab heading="Explore">
-            <Tab2 />
+            <SearchRecipeTab />
           </Tab>
 
         </Tabs>
