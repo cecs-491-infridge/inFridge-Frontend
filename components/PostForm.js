@@ -144,7 +144,7 @@ class PostForm extends React.Component {
               <Image
                 boardered
                 source={{ uri: photo.uri }}
-                style={{ width: 100, height: 100, alignItems: "center", }}
+                style={{ width: 133, height: 100, alignItems: "center", }}
               />
             )}
           </View>
