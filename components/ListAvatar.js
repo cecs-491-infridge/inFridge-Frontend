@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 export default class ListAvatarExample extends Component {
+
   render() {
     return (
 
-          <List>
-            <ListItem avatar>
+          <Content>
               <Left>
                 <Thumbnail source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
               </Left>
@@ -16,8 +16,7 @@ export default class ListAvatarExample extends Component {
               <Right>
                 <Text note>3:43 pm</Text>
               </Right>
-            </ListItem>
-          </List>
+        </Content>
     );
   }
 }

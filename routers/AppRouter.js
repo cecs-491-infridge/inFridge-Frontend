@@ -17,6 +17,7 @@ import SpecificRecipeScreen from '../Screens/SpecificRecipeScreen';
 import TestScreen from '../Screens/TestScreen';
 
 import FeedRouter from '../routers/FeedRouter';
+import ChatRouter from '../routers/ChatRouter';
 
 const AppNavigator = createMaterialBottomTabNavigator({
     //export default createMaterialBottomTabNavigator({
@@ -56,7 +57,7 @@ const AppNavigator = createMaterialBottomTabNavigator({
           />
         )
       }),
-      screen: MessageScreen
+      screen: ChatRouter
     },
     Profile: {
       navigationOptions: () => ({

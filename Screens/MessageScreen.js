@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { TouchableOpacity } from 'react-native';
 import { Body, Button, Container, Header, Content, List, ListItem, Left, Right, Thumbnail, Text, Title } from 'native-base';
 
-import ListAvartar from '../components/ListAvatar';
+import ListAvatar from '../components/ListAvatar';
 
-export default class ListAvatarExample extends Component {
+export default class MessageScreen extends Component {
   render() {
     return (
       <Container>
@@ -16,8 +17,17 @@ export default class ListAvatarExample extends Component {
         </Header>
         <Content>
           <List>
-            <ListAvartar></ListAvartar>
-            <ListAvartar></ListAvartar>
+            <TouchableOpacity
+              onPress={
+                () => {
+                console.log(this.props)
+                this.props.navigation.navigate('ChatMessage')
+                }
+              }
+            >
+              <ListAvatar/>
+            </TouchableOpacity>
+            <ListAvatar/>
           </List>
         </Content>
       </Container>
