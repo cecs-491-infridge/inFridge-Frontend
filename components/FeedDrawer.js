@@ -1,6 +1,6 @@
 import React from 'react';
 import { Body, Button, Content, Container, Drawer, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
-import SideBar from '../components/SideBar';
+import SideBar from './SideBar';
 
 export default class FeedDrawer extends React.Component {
     constructor(props) {

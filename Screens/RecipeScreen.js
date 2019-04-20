@@ -26,9 +26,7 @@ export default class RecipeScreen extends Component {
             <Right/>
           </Header> */}
 
-          <Text>Recipe Screen</Text>
-
-          {/* <Tabs>
+          <Tabs>
 
             <Tab heading="Recommended">
               <Tab1 />
@@ -38,7 +36,7 @@ export default class RecipeScreen extends Component {
               <Tab2 />
             </Tab>
 
-          </Tabs> */}
+          </Tabs>
           
         </Container>
       </FeedDrawer>
