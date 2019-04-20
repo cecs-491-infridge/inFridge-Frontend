@@ -7,24 +7,11 @@
  * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 import React from 'react';
-import { Text, Icon } from 'native-base';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { Text } from 'native-base';
+import AppRouter from './routers/AppRouter';
 // Used to Provide Redux store to all child components
 import { Provider } from 'react-redux'
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 import configureStore from './store/configureStore';
-// Screens
-import SignUpScreen from './Screens/SignUpScreen';
-import SignInScreen from './Screens/SignInScreen';
-import HomeScreen from './Screens/HomeScreen';
-import FeedScreen from './Screens/FeedScreen';
-import MessageScreen from './Screens/MessageScreen';
-import FridgeScreen from './Screens/FridgeScreen';
-import ProfileScreen from './Screens/ProfileScreen';
-import RecipeScreen from './Screens/RecipeScreen';
-import ChatScreen from './Screens/ChatScreen';
-import SpecificRecipeScreen from './Screens/SpecificRecipeScreen';
-import TestScreen from './Screens/TestScreen';
 // Actions
 import { startSetFeed } from './actions/feed';
 import { startSetFood } from './actions/fridge';
@@ -32,75 +19,6 @@ import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
 
 const store = configureStore();
-
-const AppNavigator = createMaterialBottomTabNavigator({
-  //export default createMaterialBottomTabNavigator({
-  //SignIn: { screen: SignInScreen },
-  Feed: {
-    navigationOptions: () => ({
-      tabBarIcon: ({ tintColor }) => (
-        <Icon
-          // type="MaterialCommunityIcons"
-          name="home"
-          size={24}
-        />
-      )
-    }),
-    screen: FeedScreen,
-    gesturesEnabled: false,
-  },
-  Fridge: {
-    navigationOptions: () => ({
-      tabBarIcon: ({ tintColor }) => (
-        <Icon
-          type="MaterialCommunityIcons"
-          name="fridge"
-          size={24}
-        />
-      )
-    }),
-    screen: FridgeScreen
-  },
-  Message: {
-    navigationOptions: () => ({
-      tabBarIcon: ({ tintColor }) => (
-        <Icon
-          type="MaterialCommunityIcons"
-          name="message"
-          size={24}
-        />
-      )
-    }),
-    screen: MessageScreen
-  },
-  Profile: {
-    navigationOptions: () => ({
-      tabBarIcon: ({ tintColor }) => (
-        <Icon
-          type="MaterialCommunityIcons"
-          name="account"
-          size={24}
-        />
-      )
-    }),
-    screen: ProfileScreen
-  },
-}, {
-  tabBarOptions:{
-    activeTintColor: '#F8F8F8', // active icon color
-    inactiveTintColor: '#586589',  // inactive icon color
-    style: {
-        backgroundColor: '#171F33' // TabBar background
-    }
-  },
-    initialRouteName: 'Feed',
-    activeColor: '#3498db',
-    inactiveColor: '#34495e',
-    barStyle: { backgroundColor: '#f0edf6' },
-    shifting: false
-  });
-
-const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
   constructor(props) {
@@ -123,11 +41,29 @@ export default class App extends React.Component {
       });
   }
 
+  getApp(screenState) {
+    console.log('-----------------------------')
+    console.log(screenState)
+    switch(screenState) {
+      case 0:
+        return <Text>Loading...</Text>
+
+      case 1:
+        return <Text>Loading...</Text>
+
+      case 2:
+        console.log(AppRouter)
+        return <AppRouter/>
+
+      default:
+        console.log('Invalid screenState value')
+        return <Text>Loading...</Text>
+    }
+  }
+
   render() {
-    let jsx;
-    if (this.state.screenState === 0) jsx = <Text>Loading...</Text>
-    if (this.state.screenState === 1) jsx = <Text>Loading...</Text>
-    if (this.state.screenState === 2) jsx = <AppContainer />
+    let jsx = this.getApp(this.state.screenState);
+    console.log('About to render')
     return (
       <Provider store={store}>
         {jsx}

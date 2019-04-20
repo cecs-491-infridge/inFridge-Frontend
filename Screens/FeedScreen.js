@@ -6,7 +6,7 @@ import { Body, Button, Content, Container, Drawer, Header, Item, Input, Icon, Le
 import PostForm from '../components/PostForm';
 import Post from '../components/Post';
 import { startAddTransaction, startDeleteTransaction, startUpdateTransaction } from '../actions/transactions';
-import SideBar from '../components/Sidebar';
+import FeedDrawer from '../components/FeedDrawer';
 
 class FeedScreen extends React.Component {
   constructor(props) {
@@ -22,31 +22,8 @@ class FeedScreen extends React.Component {
 
   render() {
     return (
-      <Drawer
-        ref={(ref) => { this._drawer = ref }}
-        content={<SideBar navigator={this._navigator} />}
-        onClose={() => this.closeDrawer()}>
-        <Container padder>
-          <Header>
-            <Left>
-              <Button
-                transparent
-                onPress={() => this.openDrawer()}
-              >
-                <Icon name='menu' />
-              </Button>
-            </Left>
-            <Body>
-              <Title>inFridge</Title>
-            </Body>
-            <Right>
-              <Button
-                transparent
-              >
-                <Icon name='add' />
-              </Button>
-            </Right>
-          </Header>
+      <FeedDrawer navigation={this.props.navigation}>
+          <ScrollView>
           <Item>
             <PostForm
               onSubmit={(transaction) => {
@@ -54,7 +31,6 @@ class FeedScreen extends React.Component {
               }}
             />
           </Item>
-          <ScrollView>
             {
               this.props.transactions.map(transaction =>
                 <Post
@@ -71,8 +47,7 @@ class FeedScreen extends React.Component {
             }
 
           </ScrollView>
-        </Container>
-      </Drawer>
+      </FeedDrawer>
     );
   }
 }
@@ -82,3 +57,90 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(FeedScreen)
+
+// import React from 'react';
+// import { connect } from 'react-redux'
+// import { StyleSheet, ScrollView, View } from 'react-native';
+// import { Body, Button, Content, Container, Drawer, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
+
+// import PostForm from '../components/PostForm';
+// import Post from '../components/Post';
+// import { startAddTransaction, startDeleteTransaction, startUpdateTransaction } from '../actions/transactions';
+// import SideBar from '../components/SideBar';
+
+// class FeedScreen extends React.Component {
+//   constructor(props) {
+//     super(props);
+//   }
+
+//   closeDrawer() {
+//     this._drawer._root.close()
+//   };
+//   openDrawer() {
+//     this._drawer._root.open()
+//   };
+
+//   render() {
+//     return (
+
+//       <Container padder>
+//         <Drawer
+//           ref={(ref) => { this._drawer = ref }}
+//           content={<SideBar navigation={this.props.navigation} />}
+//           onClose={() => this.closeDrawer()}>
+//             <Header>
+//               <Left>
+//                 <Button
+//                   transparent
+//                   onPress={() => this.openDrawer()}
+//                 >
+//                   <Icon name='menu' />
+//                 </Button>
+//               </Left>
+//               <Body>
+//                 <Title>inFridge</Title>
+//               </Body>
+//               <Right>
+//                 <Button
+//                   transparent
+//                 >
+//                   <Icon name='add' />
+//                 </Button>
+//               </Right>
+//             </Header>
+//         </Drawer>
+
+//           <ScrollView>
+//             <Item>
+//               <PostForm
+//                 onSubmit={(transaction) => {
+//                   this.props.dispatch(startAddTransaction(transaction));
+//                 }}
+//               />
+//             </Item>
+//             {
+//               this.props.transactions.map(transaction =>
+//                 <Post
+//                   key={transaction._id}
+//                   transaction={transaction}
+//                   onLike={(id, updates) => {
+//                     this.props.dispatch(startUpdateTransaction(id, updates))
+//                   }}
+//                   onDelete={(id) => {
+//                     this.props.dispatch(startDeleteTransaction(id));
+//                   }}
+//                 />
+//               )
+//             }
+
+//           </ScrollView>
+//         </Container>
+//     );
+//   }
+// }
+
+// const mapStateToProps = (state) => ({
+//   transactions: state.transactions
+// });
+
+// export default connect(mapStateToProps)(FeedScreen)

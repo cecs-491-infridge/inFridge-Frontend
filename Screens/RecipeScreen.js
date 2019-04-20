@@ -1,39 +1,47 @@
 import React, { Component } from 'react';
-import { Container, Header, Body, Title, Left, Button, Icon, Content, Right, Tab, Tabs } from 'native-base';
+import { Container, Drawer, Header, Body, Text, Title, Left, Button, Icon, Content, Right, Tab, Tabs } from 'native-base';
+import FeedDrawer from '../components/FeedDrawer';
 import Tab1 from '../components/RecommendedRecipe';
 import Tab2 from '../components/SearchRecipe';
+
 export default class RecipeScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <Container>
+      <FeedDrawer navigation={this.props.navigation}>
+        <Container padder>
 
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Recipes</Title>
-          </Body>
-          <Right/>
-        </Header>
+          {/* <Header>
+            <Left>
+              <Button transparent>
+                <Icon name='arrow-back' />
+              </Button>
+            </Left>
+            <Body>
+              <Title>Recipes</Title>
+            </Body>
+            <Right/>
+          </Header> */}
 
-        <Tabs>
+          <Text>Recipe Screen</Text>
 
-          <Tab heading="Recommended">
-            <Tab1 />
-          </Tab>
+          {/* <Tabs>
 
-          <Tab heading="Explore">
-            <Tab2 />
-          </Tab>
+            <Tab heading="Recommended">
+              <Tab1 />
+            </Tab>
 
-        </Tabs>
+            <Tab heading="Explore">
+              <Tab2 />
+            </Tab>
 
-
-
-      </Container>
+          </Tabs> */}
+          
+        </Container>
+      </FeedDrawer>
     );
   }
 }
