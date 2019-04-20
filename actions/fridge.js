@@ -100,7 +100,7 @@ export const startSetFood = () => {
             .then(food => {
               console.log('------------------------------------------------------------------')
               console.log(food.data.data)
-              dispatch(setFood(food.data.data.foodList));
+              dispatch(setFood(food.data.data));
             })
             .catch(err => {
                 console.log(err);

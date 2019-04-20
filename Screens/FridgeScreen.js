@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, Modal, View } from 'react-native';
 // import { SearchBar } from 'react-native-elements';
 import { Body, Button, Container, Header, Item, Input, Icon, Left, Separator, Right, Text, Title } from 'native-base';
 
-import PostForm from '../components/PostForm';
+import FoodForm from '../components/FoodForm';
 import Food from '../components/Food';
 import { startAddFood, startDeleteFood } from '../actions/fridge';
 import { filterFood, sortFood } from '../selectors/food'
@@ -15,7 +15,8 @@ class FridgeScreen extends React.Component {
 
     this.state = {
       fridge: this.props.fridge,
-      search: ''
+      search: '',
+      addingFood: false
     }
   }
 
@@ -36,12 +37,45 @@ class FridgeScreen extends React.Component {
     }));
   };
 
+  onAddFood = () => {
+      this.setState({addingFood: true});
+  }
+
   render() {
     const { search } = this.state;
 
     return (
       <Container>
 
+        <Modal
+          animationType='fade'
+          transparent={true}
+          visible={this.state.addingFood}
+          onRequestClose={() => {
+            this.setState({ addingFood: false });
+          }}
+        >
+          <View
+            style={{
+              height: 250,
+              marginTop: 70,
+              borderColor: '#ccc',
+              borderWidth: 1,
+              borderStyle: 'solid',
+              backgroundColor: 'white',
+              elevation: 20,
+              padding: 10,
+              borderRadius: 4,
+            }}
+          >
+            <FoodForm
+                onSubmit={(food) => {
+                  this.props.dispatch(startAddFood(food));
+                }}
+            /> 
+          </View>
+        </Modal>
+        
         <Header>
           <Left />
           <Body>
@@ -50,6 +84,7 @@ class FridgeScreen extends React.Component {
           <Right>
             <Button
               transparent
+              onPress={this.onAddFood}
             >
               <Icon name='add' />
             </Button>
