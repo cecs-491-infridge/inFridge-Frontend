@@ -4,19 +4,11 @@ import { TouchableOpacity } from "react-native";
 export default class ListAvatar extends Component {
     render() {
         return (
-            //   <TouchableOpacity
-            //   onPress={
-            //     () => {
-            //     console.log(this.props)
-            //     // this.props.navigation.navigate('../Screens/ChatMessage')
-            //     navigation.navigate('ChatMessage')
-            //     }
-            //   }
-            // >
             <List>
                 <ListItem
                     avatar
                     button
+                    noBorder
                     onPress={this.props.onOpenChatMessage}
                 >
                     <Left>
@@ -45,6 +37,7 @@ export default class ListAvatar extends Component {
                 </ListItem>
                 <ListItem
                     avatar
+                    noBorder
                     button
                     onPress={this.props.onOpenChatMessage}
                 >
@@ -73,8 +66,6 @@ export default class ListAvatar extends Component {
                     </Right>
                 </ListItem>
             </List>
-
-            // </TouchableOpacity>
         );
     }
 }

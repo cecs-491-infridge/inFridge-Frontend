@@ -23,8 +23,8 @@ class FoodForm extends React.Component {
 
     const error = !this.state.name
       ? "Please include the name of the food"
-    //   : !this.validateTradeType()
-    //   ? "Please include a valid Trade Type (donate/trade/sell)"
+      //   : !this.validateTradeType()
+      //   ? "Please include a valid Trade Type (donate/trade/sell)"
       : "";
 
     this.setState({ error });
@@ -51,15 +51,32 @@ class FoodForm extends React.Component {
       <Content padder>
         {!!this.state.error && <Text>{this.state.error}</Text>}
         <View>
-            
+          <Button
+            transparent
+            onPress={() => this.props.onClose()}
+          >
+            <Icon name='arrow-back' />
+          </Button>
         </View>
-        <Form 
-            bordered
+        <Form
+          bordered
         >
           <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
             placeholder="Food name..."
             onChangeText={name => this.setState({ name })}
+            value={this.state.name}
+          />
+          <TextInput
+            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            placeholder="Purchase date..."
+            onChangeText={name => this.setState({ purchaseDate })}
+            value={this.state.name}
+          />
+          <TextInput
+            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            placeholder="Expiration date..."
+            onChangeText={name => this.setState({ expirationDate })}
             value={this.state.name}
           />
         </Form>

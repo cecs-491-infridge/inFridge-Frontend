@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { ScrollView, StyleSheet, Modal, View } from 'react-native';
-// import { SearchBar } from 'react-native-elements';
 import { Body, Button, Container, Header, Item, Input, Icon, Left, Separator, Right, Text, Title } from 'native-base';
 
 import FoodForm from '../components/FoodForm';
@@ -19,6 +18,8 @@ class FridgeScreen extends React.Component {
       addingFood: false
     }
   }
+
+  closeFoodForm = () => this.setState({addingFood:false})
 
   componentWillReceiveProps(nextProps) {
     // You don't have to do this check first, but it can help prevent an unneeded render
@@ -72,8 +73,10 @@ class FridgeScreen extends React.Component {
                 onSubmit={(food) => {
                   this.props.dispatch(startAddFood(food));
                 }}
+                onClose={this.closeFoodForm}
             /> 
           </View>
+
         </Modal>
         
         <Header>
