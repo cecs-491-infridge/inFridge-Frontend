@@ -15,7 +15,7 @@ export default class SideBar extends React.Component {
           <Image
             source={{
               uri:
-                "https://raw.githubusercontent.com/GeekyAnts/NativeBase-KitchenSink/master/assets/drawer-cover.png"
+                "https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4160780%2Fimages%2Fn-HEALTHY-FOOD-628x314.jpg"
             }}
             style={{
               height: 120,
@@ -24,7 +24,7 @@ export default class SideBar extends React.Component {
               position: "absolute"
             }}
           />
-          <Image
+          {/* <Image
             square
             style={{
               height: 80,
@@ -37,7 +37,7 @@ export default class SideBar extends React.Component {
               uri:
                 "https://raw.githubusercontent.com/GeekyAnts/NativeBase-KitchenSink/master/assets/logo.png"
             }}
-          />
+          /> */}
           <List
             dataArray={routes}
             contentContainerStyle={{ marginTop: 120 }}
