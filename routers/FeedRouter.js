@@ -9,9 +9,9 @@ import ProfileScreen from "../Screens/ProfileScreen";
 const FeedNavigator = createStackNavigator(
     {
         Feed: FeedScreen,
+        Recipes: RecipeScreen,
         Friends: FriendScreen,
         Profile: ProfileScreen,
-        Recipes: RecipeScreen,
     },
     {
         intitialRouteName: 'Feed',

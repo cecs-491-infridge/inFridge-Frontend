@@ -11,6 +11,7 @@ import FeedScreen from '../Screens/FeedScreen';
 import MessageScreen from '../Screens/MessageScreen';
 import FridgeScreen from '../Screens/FridgeScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
+import NotificationScreen from '../Screens/NotificationScreen';
 import RecipeScreen from '../Screens/RecipeScreen';
 import ChatScreen from '../Screens/ChatScreen';
 import SpecificRecipeScreen from '../Screens/SpecificRecipeScreen';
@@ -35,18 +36,6 @@ const AppNavigator = createMaterialBottomTabNavigator({
       screen: FeedRouter,
       gesturesEnabled: false,
     },
-    Fridge: {
-      navigationOptions: () => ({
-        tabBarIcon: ({ tintColor }) => (
-          <Icon
-            type="MaterialCommunityIcons"
-            name="fridge"
-            size={24}
-          />
-        )
-      }),
-      screen: FridgeScreen
-    },
     Message: {
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
@@ -59,18 +48,43 @@ const AppNavigator = createMaterialBottomTabNavigator({
       }),
       screen: ChatRouter
     },
-    Profile: {
+    Notification:{
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
           <Icon
-            type="MaterialCommunityIcons"
-            name="account"
+            type="MaterialIcons"
+            name="notifications"
             size={24}
           />
         )
       }),
-      screen: ProfileScreen
+      screen: NotificationScreen
     },
+    Fridge: {
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor }) => (
+          <Icon
+            type="MaterialCommunityIcons"
+            name="fridge"
+            size={24}
+          />
+        )
+      }),
+      screen: FridgeScreen
+    },
+
+    // Profile: {
+    //   navigationOptions: () => ({
+    //     tabBarIcon: ({ tintColor }) => (
+    //       <Icon
+    //         type="MaterialCommunityIcons"
+    //         name="account"
+    //         size={24}
+    //       />
+    //     )
+    //   }),
+    //   screen: ProfileScreen
+    // },
   }, {
     tabBarOptions:{
       activeTintColor: '#F8F8F8', // active icon color

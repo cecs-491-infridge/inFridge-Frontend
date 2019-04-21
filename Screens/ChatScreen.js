@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Image,
-  Alert,
-  ScrollView,
-  TextInput,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image, Alert, ScrollView, TextInput, FlatList } from 'react-native';
 
 import { Body, Button, Container, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 
