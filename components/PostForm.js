@@ -1,18 +1,6 @@
 import React from "react";
 import { TextInput, StyleSheet, Image } from "react-native";
-import {
-  Button,
-  Container,
-  Content,
-  Header,
-  Icon,
-  Item,
-  ListItem,
-  Text,
-  Textarea,
-  Form,
-  View
-} from "native-base";
+import { Button, Container, Content, Header, Icon, Item, ListItem, Text, Textarea, Form, View } from "native-base";
 import { List } from "react-native-paper";
 import ImagePicker from "react-native-image-picker";
 

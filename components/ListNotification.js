@@ -14,8 +14,6 @@ export default class ListAvatar extends Component {
             //   }
             // >
             <List>
-
-
                 <ListItem
                     avatar
                     button
