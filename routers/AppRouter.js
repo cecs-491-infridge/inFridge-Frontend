@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'native-base';
+import { Badge, Icon, Text } from 'native-base';
 
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -56,6 +56,8 @@ const AppNavigator = createMaterialBottomTabNavigator({
             name="notifications"
             size={24}
           />
+          // <Badge ><Text>51</Text></Badge>
+          
         )
       }),
       screen: NotificationScreen

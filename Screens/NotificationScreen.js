@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { TouchableOpacity } from "react-native";
+import ListNotification from "../components/ListNotification";
 import {
   Body,
   Button,
@@ -28,7 +29,23 @@ export default class NotificationScreen extends Component {
           <Right />
         </Header>
         <Content>
-          <Text>notification screen</Text>
+        <Content>
+          <List>
+            {/* <TouchableOpacity
+              onPress={
+                () => {
+                  console.log(this.props)
+                  this.props.navigation.navigate('ChatMessage')
+                }
+              }
+            > */}
+              {/* <ListAvatar onOpenChatMessage={this.onOpenChatMessage}/> */}
+            {/* </TouchableOpacity> */}
+            {/* <ListAvatar onOpenChatMessage={this.onOpenChatMessage}/> */}
+            <ListNotification/>
+            <ListNotification/>
+          </List>
+        </Content>
         </Content>
       </Container>
     );

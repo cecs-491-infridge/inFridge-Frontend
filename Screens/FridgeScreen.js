@@ -101,7 +101,6 @@ class FridgeScreen extends React.Component {
               <Text>Search</Text>
             </Button>
           </Right>
-
         </Item>
         <ScrollView>
           <Separator boarderd>
