@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { StyleSheet, ScrollView, View } from 'react-native';
-import { Body, Button, Content, Container, Drawer, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
+import { Body, Button, Content, Container, Drawer, Header, Item, Input, InputGroup, Icon, Left, Right, Text, Title } from 'native-base';
 
 import FeedDrawer from '../components/FeedDrawer';
 import PostForm from '../components/PostForm';
 import Post from '../components/Post';
+import FriendDivider from '../components/FriendDivider';
 import { startAddTransaction, startDeleteTransaction, startUpdateTransaction } from '../actions/transactions';
 
 class FriendScreen extends React.Component {
@@ -15,11 +16,21 @@ class FriendScreen extends React.Component {
 
   render() {
     return (
-        <FeedDrawer navigation={this.props.navigation}>
-          <ScrollView>
-            <Text>Friend Screen</Text>
-          </ScrollView>
-        </FeedDrawer>
+      <FeedDrawer navigation={this.props.navigation}>
+        <ScrollView>
+        <Header searchBar rounded>
+          <Item>
+            <Icon name="ios-search" />
+            <Input placeholder="Search Friends" />
+            <Icon name="ios-people" />
+          </Item>
+          <Button transparent>
+            <Text>Search</Text>
+          </Button>
+        </Header>
+          <FriendDivider></FriendDivider>
+        </ScrollView>
+      </FeedDrawer>
     );
   }
 }

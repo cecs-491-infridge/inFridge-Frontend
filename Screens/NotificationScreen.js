@@ -19,6 +19,7 @@ export default class NotificationScreen extends Component {
   render() {
     return (
       <Container>
+          
         <Header>
           <Left />
           <Body>
