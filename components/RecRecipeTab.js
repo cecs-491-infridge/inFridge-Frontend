@@ -18,7 +18,7 @@ export default class RecRecipeTab extends Component {
               <Item>
                 <Icon name="ios-search" />
                 <Input 
-                  placeholder="Search Fridge..."
+                  placeholder="Search Recipes..."
                   //onChangeText={this.updateSearch}
                   //value={search}
                   />

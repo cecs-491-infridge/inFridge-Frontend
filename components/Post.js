@@ -2,11 +2,34 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 
+import { testUser } from '../testUser';
+const userId = testUser.userId;
+
 class Post extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    onLike = () => {
+        console.log('###########################!@#!@#!@')
+        let likeList = this.props.transaction.likes;
+        for(let i = 0; i < likeList.length; i++){
+            const id = likeList[i];
+
+            // User has liked post already
+            // Unlike
+            if(id === userId){
+                console.log('-------------------------------')
+                this.props.transaction.likes.splice(i);
+                this.props.onLike(this.props.transaction._id, this.props.transaction);
+                return;
+            }
+        }
+
+        console.log('-------------------------------')
+        this.props.transaction.likes.push(userId);
+        this.props.onLike(this.props.transaction._id, this.props.transaction);
+    }
 
     render() {
         // implemented without image with header
@@ -41,9 +64,12 @@ class Post extends React.Component {
                     </CardItem>
                     <CardItem>
                         <Left>
-                            <Button transparent>
+                            <Button 
+                                transparent
+                                onPress={this.onLike}
+                            >
                                 <Icon active name="thumbs-up" />
-                                <Text>12 Likes</Text>
+                                {/* <Text>{this.props.transaction.likes.length} Likes</Text> */}
                             </Button>
                         </Left>
                         <Body>

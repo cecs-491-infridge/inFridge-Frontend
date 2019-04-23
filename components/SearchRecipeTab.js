@@ -78,16 +78,12 @@ export default class SearchRecipeTab extends Component {
       <Header searchBar rounded>
               <Item>
                 <Icon name="ios-search" />
-                <Input
-                placeholder="Search Fridge..."
-                onChangeText={this.updateSearch}
-                value={this.state.search} />
-                {/* <Icon name="ios-people" /> */}
-                <Right>
-            <Button transparent onPress={this.getRecipe}>
-              <Text>Search</Text>
-            </Button>
-          </Right>
+                <Input 
+                  placeholder="Search Recipes..."
+                  //onChangeText={this.updateSearch}
+                  //value={search}
+                  />
+                <Icon name="ios-people" />
               </Item>
 
             </Header>

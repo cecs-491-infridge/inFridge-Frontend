@@ -15,13 +15,18 @@ export default class IngredientTab extends React.Component {
     render() {
         return(
             <Content>
-                <ListItem title="Recipe">
-                    <Left>
-                        <Text>{this.props.recipe.title}{"\n"}
-                        </Text>
-                    </Left>
-                </ListItem>
-            </Content>
+
+        
+        {
+          this.state.recipeList.map(item => <Recipe key={item.id} recipe={item}/>)
+        }
+
+        {/* <ListView
+        style={styles.container}
+        dataSource={this.state.dataSource}
+        renderRow={(data) => <View><Text>{data}</Text></View>}
+      /> */}
+        </Content>
         );
         }
     }
