@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
 import { Button, Container, Content, Header, Icon, Item, ListItem, Text, Form, View } from "native-base";
-import { List } from "react-native-paper";
 
 import { testUser } from '../testUser';
 const userId = testUser.userId;

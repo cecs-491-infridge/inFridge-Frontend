@@ -7,6 +7,10 @@ export default class FeedDrawer extends React.Component {
         super(props);
     }
 
+    onAdd = (cb) => {
+        cb()
+    }
+
     closeDrawer() {
         this._drawer._root.close()
     };
@@ -26,9 +30,12 @@ export default class FeedDrawer extends React.Component {
             }
             onClose={() => this.closeDrawer()}>
                 <Container padder>
-                    <Header>
+                    <Header
+                    style={{}}
+                    >
                     <Left>
                         <Button
+                        // style={{position: 'absolute', top: 50, left: 0}}
                         transparent
                         onPress={() => this.openDrawer()}
                         >
@@ -38,13 +45,17 @@ export default class FeedDrawer extends React.Component {
                     <Body>
                         <Title>inFridge</Title>
                     </Body>
-                    <Right>
-                        <Button
-                        transparent
-                        >
-                        <Icon name='add' />
-                        </Button>
-                    </Right>
+
+                    { !!this.props.onAdd &&
+                        <Right>
+                            <Button
+                                transparent
+                                onPress={this.props.onAdd}
+                            >
+                            <Icon name='add' />
+                            </Button>
+                        </Right>
+                    }
                     </Header>
                     
                     {
