@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, ListView, StyleSheet,} from 'react-native';
-import { Container, Header, Content, List, ListItem, Item, Icon, Input, Button, Text } from 'native-base';
+import { Container, Header, Content, List, ListItem, Item, Icon, Input, Button, Text, Right } from 'native-base';
 import axios from 'axios';
 
 import Recipe from './Recipe';
@@ -12,29 +12,43 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class SearchRecipe extends Component {
+export default class SearchRecipeTab extends Component {
   
   
   constructor(props) {
     super(props);
     
     //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.getRecipe();
+    //this.getRecipe();
 
-    console.log('reloaded-------------------');
+    //console.log('reloaded-------------------');
     this.state = {
      // dataSource: ds.cloneWithRows(['me', 'you']),
-      recipeList:[]
+      search: '',
+      recipeList:[],
+      isFetching: false
     };
   }
 
 
 
-  getRecipe = async(search) => {    
+
+  updateSearch = search => {
+    // Change to use timeout
+
+    this.setState({ search });
+  };
+
+
+
+  getRecipe = async() => {    
     try{
       //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-      search = "apple pie"
+      const search = this.state.search;
+
+      this.setState({ isFetching: true })
+
       let recipeResponse = await axios.get(`http://school.corg.network:3000/search-recipe`, {
         params:{
           search
@@ -44,16 +58,20 @@ export default class SearchRecipe extends Component {
       this.setState({
         //dataSource: ds.cloneWithRows([recipeResponse.results[1].title, recipeResponse.results[0].title]),
         recipeList: recipeResponse.results})
-      console.log(recipeResponse);
+      //console.log(recipeResponse);
     }
     catch(err){
       console.error(err);
     }
+
+    this.setState({ isFetching: false })
     
   }
   
+  
 
   render() {
+    //const { search } = this.state;
     return (
       <Container>
 
@@ -67,14 +85,17 @@ export default class SearchRecipe extends Component {
                   />
                 <Icon name="ios-people" />
               </Item>
-              <Button transparent>
-                <Text>Search</Text>
-              </Button>
+
             </Header>
         
         <Content>
 
         {
+          this.state.isFetching &&
+          <Text>Loading...</Text>
+        }
+        {
+          !this.state.isFetching &&
           !!this.state.recipeList &&
           this.state.recipeList.map(item => <Recipe key={item.id} recipe={item}/>)
         }

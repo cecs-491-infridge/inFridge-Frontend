@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Drawer, Header, Body, Text, Title, Left, Button, Icon, Content, Right, Tab, Tabs } from 'native-base';
 import FeedDrawer from '../components/FeedDrawer';
-import Tab1 from '../components/RecommendedRecipe';
-import Tab2 from '../components/SearchRecipe';
+import Tab1 from '../components/RecRecipeTab';
+import Tab2 from '../components/SearchRecipeTab';
 
 export default class RecipeScreen extends Component {
   constructor(props) {
