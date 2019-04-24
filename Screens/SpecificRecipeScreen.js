@@ -22,6 +22,7 @@ export default class SpecificRecipeScreen extends Component {
 
     this.getRecipeData();
 
+
     this.state = {
       title: null,
       image: null,
@@ -40,7 +41,8 @@ export default class SpecificRecipeScreen extends Component {
     try {
 
       //const search = this.state.search;
-      const id = 479101;
+      //const id = 479101;
+      const id = this.props.navigation.state.params.id;
 
       //this.setState({ isFetching: true })
 
@@ -59,7 +61,10 @@ export default class SpecificRecipeScreen extends Component {
       })
       //recipeResponse = JSON.parse(recipeResponse.request._response);
 
-      console.log(this.state);
+      console.log(this.state.instructionList)
+      console.log(this.state.nutritionList)
+
+     
     }
     catch (err) {
       console.error(err);
@@ -69,6 +74,10 @@ export default class SpecificRecipeScreen extends Component {
 
   }
 
+  onNavigateBack = () => {
+    this.props.navigation.navigate('RecipeHome');
+  }
+
   render() {
     return (
       <Container>
@@ -76,7 +85,10 @@ export default class SpecificRecipeScreen extends Component {
         <Header hasTabs>
 
           <Left>
-            <Button transparent>
+            <Button
+              transparent
+              onPress={this.onNavigateBack}
+            >
               <Icon name="arrow-back" />
             </Button>
           </Left>
@@ -112,19 +124,20 @@ export default class SpecificRecipeScreen extends Component {
           <Tabs>
 
             <Tab heading="Ingredients">
-              <IngredientTab />
+              <IngredientTab ingredientList={this.state.ingredientList}/>
             </Tab>
 
             <Tab heading="Recipe">
-              <InstructionTab />
+              <InstructionTab instructionList={this.state.instructionList}/>
             </Tab>
 
             <Tab heading="Nutrition">
-              <NutritionTab />
+              <NutritionTab nutritionList={this.state.nutritionList}/>
             </Tab>
 
           </Tabs>
 
+          
 
 
         </ScrollView>

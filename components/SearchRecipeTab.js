@@ -17,13 +17,12 @@ export default class SearchRecipeTab extends Component {
   
   constructor(props) {
     super(props);
-    
-    //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    //this.getRecipe();
 
-    //console.log('reloaded-------------------');
+    console.log("hello")
+    console.log(this.props)
+    
+
     this.state = {
-     // dataSource: ds.cloneWithRows(['me', 'you']),
       search: '',
       recipeList:[],
       isFetching: false
@@ -34,7 +33,6 @@ export default class SearchRecipeTab extends Component {
 
 
   updateSearch = search => {
-    // Change to use timeout
 
     this.setState({ search });
   };
@@ -43,7 +41,6 @@ export default class SearchRecipeTab extends Component {
 
   getRecipe = async() => {    
     try{
-      //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
       const search = this.state.search;
 
@@ -56,7 +53,6 @@ export default class SearchRecipeTab extends Component {
       });
       recipeResponse = JSON.parse(recipeResponse.request._response);
       this.setState({
-        //dataSource: ds.cloneWithRows([recipeResponse.results[1].title, recipeResponse.results[0].title]),
         recipeList: recipeResponse.results})
       //console.log(recipeResponse);
     }
@@ -68,6 +64,10 @@ export default class SearchRecipeTab extends Component {
     
   }
   
+  onClickRecipe = (id) => {
+      this.props.navigation.navigate('SpecificRecipe',
+      { id });
+  }
   
 
   render() {
@@ -78,12 +78,16 @@ export default class SearchRecipeTab extends Component {
       <Header searchBar rounded>
               <Item>
                 <Icon name="ios-search" />
-                <Input 
-                  placeholder="Search Recipes..."
-                  //onChangeText={this.updateSearch}
-                  //value={search}
-                  />
-                <Icon name="ios-people" />
+                <Input
+                placeholder="Search Fridge..."
+                onChangeText={this.updateSearch}
+                value={this.state.search} />
+                {/* <Icon name="ios-people" /> */}
+                <Right>
+            <Button transparent onPress={this.getRecipe}>
+              <Text>Search</Text>
+            </Button>
+          </Right>
               </Item>
 
             </Header>
@@ -97,7 +101,7 @@ export default class SearchRecipeTab extends Component {
         {
           !this.state.isFetching &&
           !!this.state.recipeList &&
-          this.state.recipeList.map(item => <Recipe key={item.id} recipe={item}/>)
+          this.state.recipeList.map(item => <Recipe key={item.id} recipe={item} onClick={this.onClickRecipe}/>)
         }
 
         {/* <ListView

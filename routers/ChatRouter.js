@@ -10,7 +10,7 @@ const ChatNavigator = createStackNavigator(
         ChatMessage: ChatMessageScreen
     },
     {
-        intitialRouteName: 'ChatHome',
+        initialRouteName: 'ChatHome',
         headerMode: 'none'
     }
 );

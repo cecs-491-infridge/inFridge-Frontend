@@ -4,29 +4,36 @@ import { Body, Button, Card, Container, Header, Icon, Content, Left, List, ListI
 
 
 export default class IngredientTab extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
-    onComponentDidMount() {
-        console.log(this.props.recipe)
-    }
-    
+
     render() {
-        return(
+        return (
             <Content>
 
-        
-        {
-          this.state.recipeList.map(item => <Recipe key={item.id} recipe={item}/>)
-        }
 
-        {/* <ListView
-        style={styles.container}
-        dataSource={this.state.dataSource}
-        renderRow={(data) => <View><Text>{data}</Text></View>}
-      /> */}
-        </Content>
+                {
+                    !this.props.ingredientList &&
+                    <Text>Sorry no ingredients~~</Text>
+                }
+                {
+                    !!this.props.ingredientList &&
+                    this.props.ingredientList.map(
+                        ingredient => (
+                            <ListItem title="Ingredients">
+                                <Left>
+                                    <Text>{ingredient.name}{" "}</Text>
+                                </Left>
+                                <Body>
+                                <Text>{ingredient.amount}{" "}{ingredient.unit}</Text>
+                                </Body>
+                                <Right>
+                                    
+                                </Right>
+                            </ListItem>
+                        )
+                    )
+                }
+            </Content>
         );
-        }
     }
+}
