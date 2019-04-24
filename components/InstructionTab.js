@@ -4,24 +4,32 @@ import { Body, Button, Card, Container, Header, Icon, Content, Left, List, ListI
 
 
 export default class InstructionTab extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
-    onComponentDidMount() {
-        console.log(this.props.recipe)
-    }
-    
+
     render() {
-        return(
+        return (
             <Content>
-                <ListItem title="Recipe">
-                    <Left>
-                        <Text>{this.props.recipe.title}{"\n"}
-                        </Text>
-                    </Left>
-                </ListItem>
+
+
+                {
+                    !this.props.instructionList &&
+                    <Text>Sorry no instructions~~</Text>
+                }
+                {
+                    !!this.props.instructionList &&
+                    this.props.instructionList.map(
+                        instruction => (
+                            <ListItem title="Instruction">
+                                
+                                <Body>
+                                    <Text>{instruction.number}{"."}{instruction.step}</Text>
+                                </Body>
+
+                            </ListItem>
+                        )
+                    )
+                }
             </Content>
         );
-        }
     }
+}

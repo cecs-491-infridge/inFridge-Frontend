@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Body, Button, Card, Container, Header, Icon, Content, Left, List, ListItem, Right, Text, Separator } from 'native-base'
 
 
-class Recipe extends React.Component {
+class RecipeList extends React.Component {
     constructor(props) {
         super(props);
         //console.log("trying to print console")
@@ -12,29 +12,27 @@ class Recipe extends React.Component {
 
     onComponentDidMount() {
         console.log(this.props.recipe)
-        
+
     }
 
-    onOpenSpecificRecipe = () => {
-        this.props.onClick(this.props.recipe.id);
-        // this.props.navigation.navigate('SpecificRecipe', {
-        //     id: this.props.recipe.id})
-      };
-    
+
+
     render() {
-        return(
-            
-            
+        return (
+
+
             <Content>
-                <ListItem button onPress={this.onOpenSpecificRecipe} title="Recipe">
+                <ListItem title="List">
                     <Left>
-                        <Text>{this.props.recipe.title}{"\n"}
-                        </Text>
-                        
+                        <Text>{ingredient.name}</Text>
+
                     </Left>
+                    <Right>
+                        <Text>{ingredient.amount}{" "}{ingredient.unit}</Text>
+                    </Right>
                 </ListItem>
             </Content>
         );
-        }
     }
-export default Recipe;
+}
+export default RecipeList;
