@@ -114,13 +114,13 @@ export default class App extends React.Component {
       store.dispatch(startSetTransactions())
     ])
       .then(() => {
-        this.setState({ screenState: 2 });
+        this.setState({ screenState: 0 });
       });
   }
 
   render() {
     let jsx;
-    if (this.state.screenState === 0) jsx = <Text>Loading...</Text>
+    if (this.state.screenState === 0) jsx = <SignInScreen />
     if (this.state.screenState === 1) jsx = <Text>Loading...</Text>
     if (this.state.screenState === 2) jsx = <AppContainer />
     return (

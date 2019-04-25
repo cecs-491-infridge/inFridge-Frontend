@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { testUser } from '../testUser';
+import axios from 'axios';
 const userId = testUser.userId;
 
 const addFood = (food) => ({
@@ -25,7 +25,7 @@ export const startAddFood = (data = {}) => {
       } = data;
       const foodData = { userId, name, purchaseDate, expirationDate };
   
-      return axios.post(`http://school.corg.network:3000/create-food`, {
+      return axios.post(`https://school.corg.network:3000/create-food`, {
           ...foodData
       })
       .then(res => {
@@ -58,7 +58,7 @@ export const startDeleteFood = (id) => {
   console.log(data);
   
   return (dispatch) => {
-    return axios.delete(`http://school.corg.network:3000/delete-food`, {
+    return axios.delete(`https://school.corg.network:3000/delete-food`, {
       data
     })
     .then(res => {
@@ -96,7 +96,7 @@ const setFood = (food) => ({
 })
 export const startSetFood = () => {
   return (dispatch) => {
-        return axios.get(`http://school.corg.network:3000/${testUser.userId}/get-food`)
+        return axios.get(`https://school.corg.network:3000/${testUser.userId}/get-food`)
             .then(food => {
               console.log('------------------------------------------------------------------')
               console.log(food.data.data)

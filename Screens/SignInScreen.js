@@ -25,6 +25,8 @@ class SignInScreen extends React.Component {
           //      send username, password to backend -> FEED SCREEN
         }
         this.LINKTOAUTH = "";
+        this.gotToken = false;
+        this.count = 0;
     }
 
     // async componentDidMount(){
@@ -38,20 +40,58 @@ class SignInScreen extends React.Component {
     // }
 
     onSignIn = async () => {
-        this.state.id;
+        
         console.log("\t\t\t\t\t\t\t\t\t\t---------------------------WENT INTO THE GOOGLE METHODDDDDDDDDDDDDDDDDDDDDDDDDDDD");
 
         try{
-          // this.LINKTOAUTH = await axios.post("https://school.corg.network:3000/authenticate-user");
-          this.LINKTOAUTH = await axios.post("https://localhost:3001/authenticate-user");
+          const res = await axios.post("https://school.corg.network:3002/authenticate-user");
+          //this.LINKTOAUTH = await axios.post("http://localhost:3000/authenticate-user");
+          
+          console.log(res)
+          console.log("printing authURL:")
+          console.log(res.data.authURL)
+          this.LINKTOAUTH = res.data.authURL;
+          
+          this.setState({ signInState: 1 })
           console.log(this.LINKTOAUTH);
         }catch(err){
+          console.log("HIIIIIIIIIIIIIIIIIIIIIIIII THEREEEEEEEEEEEEEEEE");
           console.log(err);
         }
+
     }
 
-    _onNavigationStateChange(webViewState){
-      console.log(webViewState.url)
+    _onNavigationStateChange = async function(webViewState){
+      this.count++;
+      console.log("here is the url:");
+      console.log(webViewState.url);
+      let url = webViewState.url;
+      if (url.contains("https://school.corg.network:3002/graph-response?")){
+        let code = url.match(/code=[a-zA-Z0-9-_]+/gi)[0].substring(5);
+        try{
+          if (!this.gotToken)
+          {
+            this.gotToken = true;
+            console.log("COUNT=");
+            console.log(this.count);
+            let res = await axios.post("https://school.corg.network:3002/verify-token",{
+              code
+            })
+            console.log("RES!!!!!!");
+            console.log(res);
+            if (res.status == 200)
+            {
+              this.signInState = 2;
+            }
+            else
+            {
+              this.onSignIn();
+            }
+          }
+        }catch(err){
+          console.error(err);
+        }
+      }
     }
 
     render() {
@@ -64,6 +104,7 @@ class SignInScreen extends React.Component {
                 <Button
                   title="Sign Up"
                   onPress={this.onSignIn}
+                  /*onPress={() => this.setState({ signInState: 1 })}*/
                 />
                 <Button
                   title="Login"
@@ -80,7 +121,9 @@ class SignInScreen extends React.Component {
               (this.state.signInState === 1) &&
               <WebView
                 style={{flex:1}}
-                source={{uri: this.LINKTOAUTH}} //call backend router for school.corg.network/create-user
+                source={{uri: this.LINKTOAUTH}}
+                /*source={{uri: "https://google.com"}}*/
+                onNavigationStateChange={this._onNavigationStateChange.bind(this)}
               />
             }
             {/* {
@@ -89,6 +132,8 @@ class SignInScreen extends React.Component {
               //      send new username, password, and key to backend to verify the keys -> FEED SCREEN
               (this.state.signInState === 2) &&
               */
+              //(this.state.signInState === 2) &&
+
             }
         </View>
       );
