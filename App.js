@@ -37,7 +37,7 @@ export default class App extends React.Component {
       store.dispatch(startSetTransactions())
     ])
       .then(() => {
-        this.setState({ screenState: 0 });
+        this.setState({ screenState: 2 });
       });
   }
 
