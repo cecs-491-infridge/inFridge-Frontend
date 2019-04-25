@@ -62,15 +62,8 @@ export default class App extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-    let jsx;
-    if (this.state.screenState === 0) jsx = <SignInScreen />
-    if (this.state.screenState === 1) jsx = <Text>Loading...</Text>
-    if (this.state.screenState === 2) jsx = <AppContainer />
-=======
     let jsx = this.getApp(this.state.screenState);
     console.log('About to render')
->>>>>>> master
     return (
       <Provider store={store}>
         {jsx}
