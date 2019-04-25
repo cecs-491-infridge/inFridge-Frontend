@@ -133,8 +133,23 @@ class SignInScreen extends React.Component {
               //      send new username, password, and key to backend to verify the keys -> FEED SCREEN
               (this.state.signInState === 2) &&
               */
-              //(this.state.signInState === 2) &&
-
+                (this.state.signInState === 2) &&
+                this.onSignIn()
+            }
+            {
+              //3:  Login
+              //      send username, password to backend -> FEED SCREEN
+              (this.state.signInState === 3) &&
+              <Form>
+                <Item stackedLabel>
+                  <Label>Username</Label>
+                  <Input />
+                </Item>
+                <Item stackedLabel last>
+                  <Label>Password</Label>
+                  <Input />
+                </Item>
+              </Form>
             }
         </View>
       );
