@@ -102,6 +102,16 @@ class PostForm extends React.Component {
     return (
       <Content padder>
         {!!this.state.error && <Text>{this.state.error}</Text>}
+
+        <View>
+          <Button
+            transparent
+            onPress={() => this.props.onClose()}
+          >
+            <Icon name='arrow-back' />
+          </Button>
+        </View>
+        
         <Form 
             bordered
         >

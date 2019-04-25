@@ -3,18 +3,20 @@ import { createStackNavigator } from "react-navigation";
 
 import FeedScreen from "../Screens/FeedScreen";
 import FriendScreen from '../Screens/FriendScreen';
-import RecipeScreen from '../Screens/RecipeScreen';
+//import RecipeScreen from '../Screens/RecipeScreen';
+import RecipeRouter from './RecipeRouter';
+
 import ProfileScreen from "../Screens/ProfileScreen";
 
 const FeedNavigator = createStackNavigator(
     {
         Feed: FeedScreen,
-        Recipes: RecipeScreen,
+        Recipes: RecipeRouter,
         Friends: FriendScreen,
         Profile: ProfileScreen,
     },
     {
-        intitialRouteName: 'Feed',
+        initialRouteName: 'Feed',
         headerMode: 'none'
     }
 );

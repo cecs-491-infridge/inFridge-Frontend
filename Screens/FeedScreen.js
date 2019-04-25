@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { Modal, StyleSheet, ScrollView, View } from 'react-native';
 import { Body, Button, Content, Container, Drawer, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 
 import PostForm from '../components/PostForm';
@@ -11,6 +11,11 @@ import FeedDrawer from '../components/FeedDrawer';
 class FeedScreen extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      addingPost: false
+    }
+    
   }
 
   closeDrawer() {
@@ -20,17 +25,57 @@ class FeedScreen extends React.Component {
     this._drawer._root.open()
   };
 
+  onAddPost = () => {
+    this.setState({ addingPost: true });
+  }
+  onClosePostForm = () => {
+    this.setState({ addingPost: false });
+  }
+
   render() {
     return (
-      <FeedDrawer navigation={this.props.navigation}>
+      <FeedDrawer
+        navigation={this.props.navigation}
+        onAdd={this.onAddPost}
+      >
           <ScrollView>
-          <Item>
+          <Modal
+          animationType='fade'
+          transparent={true}
+          visible={this.state.addingPost}
+          onRequestClose={() => {
+            this.setState({ addingPost: false });
+          }}
+        >
+          <View
+            style={{
+              height: 250,
+              marginTop: 70,
+              borderColor: '#ccc',
+              borderWidth: 1,
+              borderStyle: 'solid',
+              backgroundColor: 'white',
+              elevation: 20,
+              padding: 10,
+              borderRadius: 4,
+            }}
+          >
+            <PostForm
+              onClose={this.onClosePostForm}
+              onSubmit={(transaction) => {
+                this.props.dispatch(startAddTransaction(transaction));
+              }}
+            />
+          </View>
+
+        </Modal>
+          {/* <Item>
             <PostForm
               onSubmit={(transaction) => {
                 this.props.dispatch(startAddTransaction(transaction));
               }}
             />
-          </Item>
+          </Item> */}
             {
               this.props.transactions.map(transaction =>
                 <Post
