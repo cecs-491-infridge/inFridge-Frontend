@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Item, Icon, Input, Button, Text } from 'native-base';
-export default class SearchRecipe extends Component {
+export default class RecRecipeTab extends Component {
 
 
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     search: ''
-  //   }
   
-  // }
 
+
+  
   render() {
     return (
+
+
+
       <Container>
 
-      <Header searchBar rounded>
+            <Header searchBar rounded>
               <Item>
                 <Icon name="ios-search" />
                 <Input 
-                  placeholder="Search Fridge..."
+                  placeholder="Search Recipes..."
                   //onChangeText={this.updateSearch}
                   //value={search}
                   />

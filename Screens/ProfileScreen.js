@@ -1,41 +1,46 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
-import { Body, Button, Col, Container, Grid, Header, Item, Input, Icon, Left, Right, Row, Text, Title, Content } from 'native-base';
-
+import { Body, Button, Col, Container, Drawer, Grid, Header, Item, Input, Icon, Left, Right, Row, Text, Title, Content } from 'native-base';
+import FeedDrawer from '../components/FeedDrawer';
 
 export default class ProfileScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return (
-      <Container>
-        <Header>
-          <Left />
-          <Content>
-            <Title>User Name</Title>
-          </Content>
-          <Right />
-        </Header>
-        <View style={styles.header}></View>
-        <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
+      <FeedDrawer navigation={this.props.navigation}>
+        <Container padder>
+          <Header>
+            <Left />
+            <Content>
+              <Title>User Name</Title>
+            </Content>
+            <Right />
+          </Header>
+          <View style={styles.header}></View>
+          <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
 
-        <Grid>
-          <Col style={{ backgroundColor: '#635DB7', height: 200 }}>
-            <Text style={{textAlignVertical: "center",textAlign: "center",}} >
-              20 Contributions
-            </Text>
-          </Col>
-          <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
-            <Text style={{textAlignVertical: "center",textAlign: "center",}}>
-              Love cooking Chinese food and baking!
-            </Text>
-          </Col>
-          <Row style={{ backgroundColor: '#3498db', height: 200 }}>
-          </Row>
-          <Row style={{ backgroundColor: '#3498db', height: 200 }}>
-          </Row>
-        </Grid>
+          <Grid>
+            <Col style={{ backgroundColor: '#635DB7', height: 200 }}>
+              <Text style={{textAlignVertical: "center",textAlign: "center",}} >
+                20 Contributions
+              </Text>
+            </Col>
+            <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
+              <Text style={{textAlignVertical: "center",textAlign: "center",}}>
+                Love cooking Chinese food and baking!
+              </Text>
+            </Col>
+            <Row style={{ backgroundColor: '#3498db', height: 200 }}>
+            </Row>
+            <Row style={{ backgroundColor: '#3498db', height: 200 }}>
+            </Row>
+          </Grid>
 
-      </Container>
+        </Container>
+      </FeedDrawer>
     );
   }
 }

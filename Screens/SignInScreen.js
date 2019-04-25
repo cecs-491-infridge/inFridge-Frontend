@@ -1,9 +1,10 @@
-import React from 'react';
-import { Button, TextInput, StyleSheet, Text, View, Linking } from 'react-native';
-import { WebView } from 'react-native-webview';
-import axios from 'axios';
+import React from "react";
+import { TextInput, StyleSheet, Linking } from "react-native";
+import { WebView } from "react-native-webview";
+import axios from "axios";
 
-import SignIn from '../components/SignIn';
+import SignIn from "../components/SignIn";
+import { Body, Button, Container, Form, Icon, Input, Item, Header, Label, Left, Right, Text, Title, View, Content } from "native-base";
 
 class SignInScreen extends React.Component {
     constructor(props) {
@@ -29,15 +30,15 @@ class SignInScreen extends React.Component {
         this.count = 0;
     }
 
-    // async componentDidMount(){
-    //   try{
-    //     const a = await axios.post("https://school.corg.network:3000/authenticate-user");
-    //     console.log("HEEELLLLLLLOOOOOOOOOOOO_----------------------------------------------------------------------------------------------");
-    //     console.log(a);
-    //   }catch(err){
-    //     console.log(err);
-    //   }
-    // }
+  // async componentDidMount(){
+  //   try{
+  //     const a = await axios.post("https://school.corg.network:3000/authenticate-user");
+  //     console.log("HEEELLLLLLLOOOOOOOOOOOO_----------------------------------------------------------------------------------------------");
+  //     console.log(a);
+  //   }catch(err){
+  //     console.log(err);
+  //   }
+  // }
 
     onSignIn = async () => {
         
@@ -141,22 +142,22 @@ class SignInScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#3498db',
-    },
-    welcome: {
-      fontSize: 50,
-      textAlign: 'center',
-      margin: 10,
-    },
-    instructions: {
-      textAlign: 'center',
-      color: '#333333',
-      marginBottom: 5,
-    },
-  });
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#3498db"
+  },
+  welcome: {
+    fontSize: 50,
+    textAlign: "center",
+    margin: 10
+  },
+  instructions: {
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5
+  }
+});
 
 export default SignInScreen;

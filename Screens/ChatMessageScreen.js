@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Image, Alert, ScrollView, TextInput
 
 import { Body, Button, Container, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 
-export default class Chat extends Component {
+export default class ChatMessages extends Component {
 
   constructor(props) {
     super(props);
@@ -35,11 +35,18 @@ export default class Chat extends Component {
     return (
       <Container>
         <Header>
-          <Left />
-          <Body>
-            <Title>Message</Title>
-          </Body>
-          <Right />
+            <Left>
+                <Button
+                    transparent
+                    onPress={() => this.props.navigation.navigate('ChatHome')}
+                >
+                    <Icon name='arrow-back' />
+                </Button>
+            </Left>
+
+            <Body>
+                <Title>Chat Message Screen</Title>
+            </Body>
         </Header>
         <FlatList style={styles.list}
           data={this.state.data}

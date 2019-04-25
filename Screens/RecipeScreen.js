@@ -1,39 +1,46 @@
 import React, { Component } from 'react';
-import { Container, Header, Body, Title, Left, Button, Icon, Content, Tab, Tabs } from 'native-base';
-import Tab1 from '../components/RecommendedRecipe';
-import Tab2 from '../components/SearchRecipe';
+import { Container, Drawer, Header, Body, Text, Title, Left, Button, Icon, Content, Right, Tab, Tabs } from 'native-base';
+import FeedDrawer from '../components/FeedDrawer';
+import Tab1 from '../components/RecRecipeTab';
+import Tab2 from '../components/SearchRecipeTab';
+
 export default class RecipeScreen extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props)
+  }
+
   render() {
     return (
-      <Container>
+      <FeedDrawer navigation={this.props.navigation}>
+        <Container padder>
 
-        <Header hasTabs>
+          {/* <Header>
+            <Left>
+              <Button transparent>
+                <Icon name='arrow-back' />
+              </Button>
+            </Left>
+            <Body>
+              <Title>Recipes</Title>
+            </Body>
+            <Right/>
+          </Header> */}
 
-        <Left>
-            <Button transparent>
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
-        <Body>
-          <Title >Recipe</Title>
-        </Body>
-        </Header>
+          <Tabs>
 
-        <Tabs>
+            <Tab heading="Recommended" >
+              <Tab1 navigation={this.props.navigation}/>
+            </Tab>
 
-          <Tab heading="Recommended">
-            <Tab1 />
-          </Tab>
+            <Tab heading="Explore">
+              <Tab2 navigation={this.props.navigation}/>
+            </Tab>
 
-          <Tab heading="Explore">
-            <Tab2 />
-          </Tab>
-
-        </Tabs>
-
-
-
-      </Container>
+          </Tabs>
+          
+        </Container>
+      </FeedDrawer>
     );
   }
 }

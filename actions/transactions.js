@@ -18,23 +18,28 @@ export const startAddTransaction = (data = {}) => {
     // Need user id to do this
     // WAIT FOR VICTORIA TO GET USER ID
 
+<<<<<<< HEAD
     return axios.post(`https://school.corg.network:3002/create-transaction`, {
         ...transactionData
+=======
+    return axios.post(`http://school.corg.network:3000/create-transaction`, {
+      ...transactionData
+>>>>>>> master
     })
-    .then(res => {
-      console.log('--------------------------------------')
-      console.log(res.data)
-      const newId = res.data.data._id;
-      
-      const newTransaction = {
-        _id: newId,
-        ...transactionData
-      }
-      dispatch(addTransaction(newTransaction));
-    })
-    .catch(err => {
+      .then(res => {
+        console.log('--------------------------------------')
+        console.log(res.data)
+        const newId = res.data.data._id;
+
+        const newTransaction = {
+          _id: newId,
+          ...transactionData
+        }
+        dispatch(addTransaction(newTransaction));
+      })
+      .catch(err => {
         console.log(err);
-    });
+      });
   }
 }
 
@@ -53,16 +58,16 @@ export const startDeleteTransaction = (id) => {
     return axios.delete(`https://school.corg.network:3002/delete-post`, {
       data
     })
-    .then(res => {
-      console.log('--------------------------------------')
-      console.log(res.data)
-      dispatch(deleteTransaction(id));
-    })
-    .catch(err => {
-      console.log('--------------------------------------')
+      .then(res => {
+        console.log('--------------------------------------')
+        console.log(res.data)
+        dispatch(deleteTransaction(id));
+      })
+      .catch(err => {
+        console.log('--------------------------------------')
 
         console.log(err);
-    });
+      });
   }
 }
 
@@ -73,9 +78,13 @@ const updateTransaction = (id, updates) => ({
 })
 
 export const startUpdateTransaction = (id, updates) => {
-  return (dispatch) => {
-    dbRef.child(id).update(updates)
-      .then(dispatch(updateTransaction(id, updates)))
+  return async (dispatch) => {
+    // await axios.post(`http://school.corg.network:3000/delete-post`, {
+    //      id,
+    //      ...updates
+    // });
+
+    dispatch(updateTransaction(id, updates));
   }
 }
 
@@ -85,6 +94,7 @@ const setTransactions = (transactions) => ({
 })
 export const startSetTransactions = () => {
   return (dispatch) => {
+<<<<<<< HEAD
         return axios.get('https://school.corg.network:3002/all-posts')
             .then(transactions => {
               console.log('--------------------------------------')
@@ -94,5 +104,15 @@ export const startSetTransactions = () => {
             .catch(err => {
                 console.log(err);
             });
+=======
+    return axios.get('http://school.corg.network:3000/all-posts')
+      .then(res => {
+        const transactions = res.data.data
+        dispatch(setTransactions(transactions));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+>>>>>>> master
   }
 }
