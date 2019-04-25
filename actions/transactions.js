@@ -18,13 +18,8 @@ export const startAddTransaction = (data = {}) => {
     // Need user id to do this
     // WAIT FOR VICTORIA TO GET USER ID
 
-<<<<<<< HEAD
     return axios.post(`https://school.corg.network:3002/create-transaction`, {
         ...transactionData
-=======
-    return axios.post(`http://school.corg.network:3000/create-transaction`, {
-      ...transactionData
->>>>>>> master
     })
       .then(res => {
         console.log('--------------------------------------')
@@ -94,7 +89,6 @@ const setTransactions = (transactions) => ({
 })
 export const startSetTransactions = () => {
   return (dispatch) => {
-<<<<<<< HEAD
         return axios.get('https://school.corg.network:3002/all-posts')
             .then(transactions => {
               console.log('--------------------------------------')
@@ -104,15 +98,5 @@ export const startSetTransactions = () => {
             .catch(err => {
                 console.log(err);
             });
-=======
-    return axios.get('http://school.corg.network:3000/all-posts')
-      .then(res => {
-        const transactions = res.data.data
-        dispatch(setTransactions(transactions));
-      })
-      .catch(err => {
-        console.log(err);
-      });
->>>>>>> master
   }
 }
