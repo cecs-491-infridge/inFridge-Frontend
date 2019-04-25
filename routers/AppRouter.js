@@ -16,6 +16,7 @@ import RecipeScreen from '../Screens/RecipeScreen';
 import ChatScreen from '../Screens/ChatScreen';
 import SpecificRecipeScreen from '../Screens/SpecificRecipeScreen';
 import TestScreen from '../Screens/TestScreen';
+import FriendProfileScreen from '../Screens/FriendProfileScreen';
 
 import FeedRouter from '../routers/FeedRouter';
 import ChatRouter from '../routers/ChatRouter';

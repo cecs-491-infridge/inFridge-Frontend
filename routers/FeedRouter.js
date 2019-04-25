@@ -3,6 +3,7 @@ import { createStackNavigator } from "react-navigation";
 
 import FeedScreen from "../Screens/FeedScreen";
 import FriendScreen from '../Screens/FriendScreen';
+import FriendProfileScreen from '../Screens/FriendProfileScreen'
 //import RecipeScreen from '../Screens/RecipeScreen';
 import RecipeRouter from './RecipeRouter';
 
