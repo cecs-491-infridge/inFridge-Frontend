@@ -13,7 +13,7 @@ export default class ChatMessages extends Component {
 		super(props);
 
 		// TODO this id should be parsed from props
-		let friendId = userId;
+		let friendId = this.props.navigation.getParam('id','NOID');;
 		chatSocket.bind(this,friendId);
 
 		this.state = {
@@ -25,7 +25,7 @@ export default class ChatMessages extends Component {
 
 	async componentDidMount(){
 
-		let ret = await axios.get(`http://school.corg.network:3000/get-chat`, {
+		let ret = await axios.get(`http://school.corg.network:3000/get-msgs`, {
 			params:{
 				from:userId,
 				to:this.state.friendId
