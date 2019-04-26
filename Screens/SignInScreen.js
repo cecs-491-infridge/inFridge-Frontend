@@ -83,6 +83,7 @@ class SignInScreen extends React.Component {
           if (res.status == 200) {
             //GO TO SIGN UP SCREEN
             this.props.navigation.navigate('SignUp');
+            this.completeLogin();
           }
           else {
             //add "wrong password or something and go back to completelogin"
@@ -100,6 +101,42 @@ class SignInScreen extends React.Component {
   }
   completeLogin = () => {
     this.setState({ loggingIn: false });
+  }
+
+  loginInFridge = async () => {
+    console.log("BUTTON PRESSED!!!!!!!!!!");
+    if (this.validateCred())
+    {
+      try{
+        console.log("RESSSSSSSSSSSSSS!!!!!");
+        let res = await axios.post("https://school.corg.network:3002/login-user", {
+            username: this.state.username,
+            password: this.state.password
+          });
+        console.log(res);
+        if (res.status == 201)
+        {
+          //LOGIN WORKS
+          console.log("LOGGGGGEEEEDDDDDD INNNNNNNNNNNNNNNNNNN");
+          this.props.navigation.navigate('AppRouter');
+          
+        }
+      } catch(err)
+      {
+        console.log(err);
+      }
+    }
+  }
+
+  validateCred = () => {
+    if (this.state.username.length > 0)
+    {
+      if (this.state.password.length > 0)
+      {
+        return true;
+      }
+    }
+    return false;
   }
 
   render() {
@@ -123,17 +160,30 @@ class SignInScreen extends React.Component {
             <Form>
               <Item stackedLabel>
                 <Label>Username</Label>
-                <Input />
+                <Input 
+                  rowSpan={1}
+                  bordered
+                  placeholder=""
+                  onChangeText={username => this.setState({ username })}
+                  value={this.state.username}
+                />
               </Item>
               <Item stackedLabel last>
                 <Label>Password</Label>
-                <Input />
+                <Input 
+                  secureTextEntry={true} 
+                  rowSpan={1}
+                  bordered
+                  placeholder=""
+                  onChangeText={password => this.setState({ password })}
+                  value={this.state.password}
+                />
               </Item>
             </Form>
 
             <View>
               <Button
-                onPress={this.startLogin}
+                onPress={this.loginInFridge}
               >
                 <Text>Login</Text>
               </Button>

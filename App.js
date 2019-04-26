@@ -18,6 +18,7 @@ import { startSetFeed } from './actions/feed';
 import { startSetFood } from './actions/fridge';
 import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
+import StartUpRouter from './routers/StartUpRouter';
 
 const store = configureStore();
 
@@ -54,8 +55,9 @@ export default class App extends React.Component {
 
       case 2:
         console.log(AppRouter)
-        return <AppRouter/>
+        //return <AppRouter/>
         // return <SignInRouter/>
+        return <StartUpRouter/>
 
       default:
         console.log('Invalid screenState value')

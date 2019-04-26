@@ -23,7 +23,7 @@ import SignInRouter from '../routers/SignInRouter';
 
 const AppNavigator = createMaterialBottomTabNavigator({
     //export default createMaterialBottomTabNavigator({
-    SignIn: { screen: SignInRouter },
+    //SignIn: { screen: SignInRouter },
     // SignUp: { screen: SignUpScreen },
     Feed: {
       navigationOptions: () => ({
@@ -97,11 +97,11 @@ const AppNavigator = createMaterialBottomTabNavigator({
           backgroundColor: '#171F33' // TabBar background
       }
     },
-      initialRouteName: 'SignIn',
+      initialRouteName: 'Feed',
       activeColor: '#3498db',
       inactiveColor: '#34495e',
       barStyle: { backgroundColor: '#f0edf6' },
       shifting: false
     });
   
-export default createAppContainer(AppNavigator);
+export default AppNavigator;
