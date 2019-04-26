@@ -1,4 +1,4 @@
-const defaultState = {};
+const defaultState = { userId: '' };
 
 export default (state=defaultState, action) => {
 
@@ -7,7 +7,7 @@ export default (state=defaultState, action) => {
      case 'ADD_USERID':
        return {
          ...state,
-         action.userId
+         userId: action.userId
        };
        break;
 
