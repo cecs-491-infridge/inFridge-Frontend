@@ -1,26 +1,91 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Image, Alert, ScrollView, TextInput, FlatList } from 'react-native';
+import chatSocket from '../utils/chatSocket';
+import axios from 'axios';
+import { testUser } from '../testUser';
+const userId = testUser.userId;
 
 import { Body, Button, Container, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 
 export default class ChatMessages extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [
-        { id: 1, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit amet" },
-        { id: 2, date: "9:50 am", type: 'out', message: "Lorem ipsum dolor sit amet" },
-        { id: 3, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-        { id: 4, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-        { id: 5, date: "9:50 am", type: 'out', message: "Lorem ipsum dolor sit a met" },
-        { id: 6, date: "9:50 am", type: 'out', message: "Lorem ipsum dolor sit a met" },
-        { id: 7, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-        { id: 8, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-        { id: 9, date: "9:50 am", type: 'in', message: "Lorem ipsum dolor sit a met" },
-      ]
-    };
-  }
+	constructor(props) {
+		super(props);
+
+		// TODO this id should be parsed from props
+		let friendId = this.props.navigation.getParam('id','NOID');;
+		chatSocket.bind(this,friendId);
+
+		this.state = {
+			friendId,
+			text:"",
+			data: [] 
+		};
+	}
+
+	async componentDidMount(){
+
+		let ret = await axios.get(`http://school.corg.network:3000/get-msgs`, {
+			params:{
+				from:userId,
+				to:this.state.friendId
+			}
+		});
+		
+		if(ret&&ret.status==200){
+			console.log(ret.data);
+			let data = [];
+			for(let i in ret.data){
+				let msg = ret.data[i];
+				data.push({
+					id:data.length+1,
+					date:new Date(msg.time).toLocaleTimeString(),
+					type: userId===msg.from?'out':'in',
+					message:msg.msg
+				});
+			}
+			this.setState({
+				data:data
+			});
+		}
+
+	}
+
+	received = (data) => {
+		this.setState({
+			data: this.state.data.concat([{
+				id:this.state.data.length+1,
+				date:new Date(data.time).toLocaleTimeString(),
+				type:'in',
+				message:data.msg
+			}])
+		});
+	}
+
+
+	onSend = async () => {
+		let text = this.state.text;
+		let time = new Date();
+		if(!text||text==""){
+			return;
+		}
+      		let ret = await axios.post(`http://school.corg.network:3000/send-msg`, {
+			msg:text,
+			time:time,
+			from:userId,
+			to:userId
+		})
+		if(ret.status==200){
+			this.setState({
+				data: this.state.data.concat([{
+					id:this.state.data.length+1,
+					date:time.toLocaleTimeString(),
+					type:'out',
+					message:text
+				}])
+			});
+		}
+	}
 
   renderDate = (date) => {
     return (
@@ -73,10 +138,10 @@ export default class ChatMessages extends Component {
             <TextInput style={styles.inputs}
               placeholder="Write a message..."
               underlineColorAndroid='transparent'
-              onChangeText={(name_address) => this.setState({ name_address })} />
+              onChangeText={(text) => this.setState({text})} />
           </View>
 
-          <TouchableOpacity style={styles.btnSend}>
+          <TouchableOpacity style={styles.btnSend} onPress={this.onSend}>
             <Image source={{ uri: "https://png.icons8.com/small/75/ffffff/filled-sent.png" }} style={styles.iconSend} />
           </TouchableOpacity>
         </View>

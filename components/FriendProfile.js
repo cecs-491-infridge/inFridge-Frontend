@@ -11,34 +11,51 @@ export default class FriendProfile extends Component {
     render() {
         return (
             <Content>
-
-
                 <Header>
                     <Left />
                     <Content>
-                        <Title>User Name</Title>
+                        <Title>Profile</Title>
                     </Content>
                     <Right />
                 </Header>
+
                 <View style={styles.header}></View>
+
                 <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
 
                 <Grid>
-                    <Col style={{ backgroundColor: '#635DB7', height: 200 }}>
-                        <Text style={{ textAlignVertical: "center", textAlign: "center", }} >
-                            20 Contributions
-              </Text>
+                    {/* <Col style={{ backgroundColor: '#635DB7', height: 200 }}> */}
+                    <Col>
+                        {/* <Text style={{ textAlignVertical: "center", textAlign: "center", }} >
+                            Love cooking Chinese food and baking!d
+                        </Text> */}
+                        <Button
+                            small
+                            dark
+                            onPress={this.uploadImage}>
+                            {/* <Icon name="image" /> */}
+                            <Text>Follow</Text>
+                        </Button>
                     </Col>
-                    <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
-                        <Text style={{ textAlignVertical: "center", textAlign: "center", }}>
-                            Love cooking Chinese food and baking!
-              </Text>
+                    {/* <Col style={{ backgroundColor: '#00CE9F', height: 200 }}> */}
+                    <Col>
+                        {/* <Text style={{ textAlignVertical: "center", textAlign: "center", }}>
+                            Food Food Food
+                        </Text> */}
+                        <Button
+                            small
+                            dark
+                            onPress={this.onSubmit}>
+                            {/* <Icon name="md-create" /> */}
+                            <Text>Message</Text>
+                        </Button>
                     </Col>
-                    <Row style={{ backgroundColor: '#3498db', height: 200 }}>
+                    {/* <Row style={{ backgroundColor: '#3498db', height: 200 }}>
                     </Row>
                     <Row style={{ backgroundColor: '#3498db', height: 200 }}>
-                    </Row>
+                    </Row> */}
                 </Grid>
+
             </Content>
         );
     }

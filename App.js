@@ -70,6 +70,7 @@ export default class App extends React.Component {
     console.log('About to render')
     return (
       <Provider store={store}>
+		{store.userInfo.userId}
         {jsx}
       </Provider>
     )
