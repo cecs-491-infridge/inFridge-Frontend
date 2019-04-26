@@ -17,8 +17,13 @@ export default (state=defaultState, action) => {
       return state.map((transaction) => transaction.id === action.id ? { ...transaction, ...action.updates } : transaction);
       break;
 
+    case 'LIKE_TRANSACTION':
+      return state.map((transaction) => transaction.id === action.postId ? { ...transaction, ...action.updates } : transaction);
+
     case 'SET_TRANSACTIONS':
-      return action.transactions;
+      console.log('TRANSACTION REDUCER SET TRANSACTIONS---------------------------------')
+      console.log(action.transactions);
+      return action.transactions ? action.transactions : defaultState;
       break;
 
     default:

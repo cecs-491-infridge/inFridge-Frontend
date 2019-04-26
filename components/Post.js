@@ -16,19 +16,24 @@ class Post extends React.Component {
         for(let i = 0; i < likeList.length; i++){
             const id = likeList[i];
 
-            // User has liked post already
-            // Unlike
+            // User has liked post already,
+            // So unlike
             if(id === userId){
                 console.log('-------------------------------')
+                console.log('Unlike');
                 this.props.transaction.likes.splice(i);
                 this.props.onLike(this.props.transaction._id, this.props.transaction);
                 return;
             }
-        }
 
-        console.log('-------------------------------')
-        this.props.transaction.likes.push(userId);
-        this.props.onLike(this.props.transaction._id, this.props.transaction);
+            if(i === likeList.length-1){
+                // Else like
+                console.log('-------------------------------')
+                console.log('Like');
+                this.props.transaction.likes.push(userId);
+                this.props.onLike(this.props.transaction._id, this.props.transaction);
+            }
+        }
     }
 
     render() {
@@ -69,7 +74,7 @@ class Post extends React.Component {
                                 onPress={this.onLike}
                             >
                                 <Icon active name="thumbs-up" />
-                                {/* <Text>{this.props.transaction.likes.length} Likes</Text> */}
+                                <Text>{this.props.transaction.likes.length} Likes</Text>
                             </Button>
                         </Left>
                         <Body>

@@ -11,14 +11,17 @@ import { Text } from 'native-base';
 import AppRouter from './routers/AppRouter';
 // Used to Provide Redux store to all child components
 import { Provider } from 'react-redux'
-import configureStore from './store/configureStore';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+
+import { persistor, store } from './store/configureStore';
+
 // Actions
 import { startSetFeed } from './actions/feed';
 import { startSetFood } from './actions/fridge';
 import { startSetFriends } from './actions/friends';
 import { startSetTransactions } from './actions/transactions';
 
-const store = configureStore();
+// const store = configureStore();
 
 export default class App extends React.Component {
   constructor(props) {
@@ -32,18 +35,17 @@ export default class App extends React.Component {
   componentDidMount() {
     Promise.all([
       // store.dispatch(startSetFeed),
+      store.dispatch(startSetTransactions()),
       store.dispatch(startSetFood()),
       // store.dispatch(startSetFriends),
-      store.dispatch(startSetTransactions())
     ])
       .then(() => {
         this.setState({ screenState: 2 });
+        console.log(store);
       });
   }
 
   getApp(screenState) {
-    console.log('-----------------------------')
-    console.log(screenState)
     switch(screenState) {
       case 0:
         return <Text>Loading...</Text>
@@ -52,8 +54,8 @@ export default class App extends React.Component {
         return <Text>Loading...</Text>
 
       case 2:
-        console.log(AppRouter)
-        return <AppRouter/>
+      console.log(store)
+      return <AppRouter/>
 
       default:
         console.log('Invalid screenState value')
@@ -66,8 +68,14 @@ export default class App extends React.Component {
     console.log('About to render')
     return (
       <Provider store={store}>
+<<<<<<< HEAD
 		{store.userInfo.userId}
         {jsx}
+=======
+        <PersistGate loading={this.getApp(0)} persistor={persistor}>
+          {jsx}
+        </PersistGate>
+>>>>>>> daniel
       </Provider>
     )
   }

@@ -19,7 +19,7 @@ export const startAddTransaction = (data = {}) => {
     // WAIT FOR VICTORIA TO GET USER ID
 
     return axios.post(`https://school.corg.network:3002/create-transaction`, {
-        ...transactionData
+      ...transactionData
     })
       .then(res => {
         console.log('--------------------------------------')
@@ -74,26 +74,48 @@ const updateTransaction = (id, updates) => ({
 
 export const startUpdateTransaction = (id, updates) => {
   return async (dispatch) => {
-    // await axios.post(`http://school.corg.network:3000/delete-post`, {
+    // const likeRes = await axios.post(`https://school.corg.network:3002/like-post`, {
     //      id,
     //      ...updates
     // });
 
+    // console.log(likeRes);
+
     dispatch(updateTransaction(id, updates));
+  }
+}
+
+const likeTransaction = (id, updates) => ({
+  type: 'UPDATE_TRANSACTION',
+  id,
+  updates
+})
+
+export const startLikeTransaction = (userId, postId, updates) => {
+  return async (dispatch) => {
+    const likeRes = await axios.post(`https://school.corg.network:3002/like-post`, {
+         userId,
+         postId
+    });
+
+    console.log(likeRes);
+
+    dispatch(likeTransaction(id, updates));
   }
 }
 
 const setTransactions = (transactions) => ({
   type: 'SET_TRANSACTIONS',
   transactions
-})
+});
+
 export const startSetTransactions = () => {
   return (dispatch) => {
-        return axios.get('https://school.corg.network:3002/all-posts')
-            .then(transactions => {
-              console.log('--------------------------------------')
-              console.log(transactions.data.data)
-              dispatch(setTransactions(transactions.data.data));
+    return axios.get('https://school.corg.network:3002/all-posts')
+            .then(res => {
+              console.log('START SET TRANSACTIONS ------------------------------')
+              console.log(res.data.data)
+              dispatch(setTransactions(res.data.data));
             })
             .catch(err => {
                 console.log(err);

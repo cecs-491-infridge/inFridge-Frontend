@@ -6,21 +6,16 @@ import friendsReducer from '../reducers/friends'
 import sortByReducer from '../reducers/sortBy'
 import transactionsReducer from '../reducers/transactions'
 import userReducer from '../reducers/userInfo'
+import { persistStore } from 'redux-persist';
+import thunk from 'redux-thunk';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose
+import persistedReducer from '../reducers';
 
-export default () => {
-  const store = createStore(
-    combineReducers({
-      feed: feedReducer,
-      fridge: fridgeReducer,
-      friends: friendsReducer,
-      sortBy: sortByReducer,
-      transactions: transactionsReducer,
-	  userInfo: userReducer
-    }),
-    composeEnhancers(applyMiddleware(thunk))
-  )
-
-  return store;
-}
+export const store = createStore(
+    persistedReducer,
+    {},
+    compose(
+      applyMiddleware(thunk)
+    )
+);
+export const persistor = persistStore(store);

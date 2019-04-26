@@ -10,7 +10,7 @@ const getRecipe = (recipe) => ({
 })
 export const startGetRecipe = () => {
   return (dispatch) => {
-        return axios.get(`http://school.corg.network:3000/${testUser.userId}/get-recipe`)
+        return axios.get(`https://school.corg.network:3002/${testUser.userId}/get-recipe`)
             .then(ret => {
               console.log('------------------------------------------------------------------')
               console.log(ret.data)

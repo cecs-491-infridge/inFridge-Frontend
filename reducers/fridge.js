@@ -23,8 +23,8 @@ export default (state=defaultState, action) => {
       break;
 
     case 'SET_FOOD':
-    console.log('SET FOOD---------------------------------')
-    console.log(action.food);
+      console.log('FRIDGE REDUCER SET FOOD---------------------------------')
+      console.log(action.food);
       return action.food ? action.food : defaultState;
       break;
 

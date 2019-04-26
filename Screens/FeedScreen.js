@@ -5,8 +5,11 @@ import { Body, Button, Content, Container, Drawer, Header, Item, Input, Icon, Le
 
 import PostForm from '../components/PostForm';
 import Post from '../components/Post';
-import { startAddTransaction, startDeleteTransaction, startUpdateTransaction } from '../actions/transactions';
+import { addTransaction, startDeleteTransaction, startLikeTransaction } from '../actions/transactions';
 import FeedDrawer from '../components/FeedDrawer';
+
+import { testUser } from '../testUser';
+const userId = testUser.userId;
 
 class FeedScreen extends React.Component {
   constructor(props) {
@@ -33,6 +36,7 @@ class FeedScreen extends React.Component {
   }
 
   render() {
+    console.log(this.props.transactions)
     return (
       <FeedDrawer
         navigation={this.props.navigation}
@@ -72,17 +76,18 @@ class FeedScreen extends React.Component {
           {/* <Item>
             <PostForm
               onSubmit={(transaction) => {
-                this.props.dispatch(startAddTransaction(transaction));
+                this.props.dispatch(addTransaction(transaction));
               }}
             />
           </Item> */}
             {
+              this.props.transactions && 
               this.props.transactions.map(transaction =>
                 <Post
                   key={transaction._id}
                   transaction={transaction}
-                  onLike={(id, updates) => {
-                    this.props.dispatch(startUpdateTransaction(id, updates))
+                  onLike={(postId, updates) => {
+                    this.props.dispatch(startLikeTransaction(userId, postId, updates))
                   }}
                   onDelete={(id) => {
                     this.props.dispatch(startDeleteTransaction(id));
@@ -97,9 +102,10 @@ class FeedScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  transactions: state.transactions
-});
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {transactions: state.transactions}
+};
 
 export default connect(mapStateToProps)(FeedScreen)
 
