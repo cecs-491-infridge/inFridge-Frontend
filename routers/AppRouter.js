@@ -19,10 +19,12 @@ import TestScreen from '../Screens/TestScreen';
 
 import FeedRouter from '../routers/FeedRouter';
 import ChatRouter from '../routers/ChatRouter';
+import SignInRouter from '../routers/SignInRouter';
 
 const AppNavigator = createMaterialBottomTabNavigator({
     //export default createMaterialBottomTabNavigator({
-    //SignIn: { screen: SignInScreen },
+    SignIn: { screen: SignInRouter },
+    // SignUp: { screen: SignUpScreen },
     Feed: {
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
@@ -95,7 +97,7 @@ const AppNavigator = createMaterialBottomTabNavigator({
           backgroundColor: '#171F33' // TabBar background
       }
     },
-      initialRouteName: 'Feed',
+      initialRouteName: 'SignIn',
       activeColor: '#3498db',
       inactiveColor: '#34495e',
       barStyle: { backgroundColor: '#f0edf6' },

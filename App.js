@@ -9,8 +9,9 @@
 import React from 'react';
 import { Text } from 'native-base';
 import AppRouter from './routers/AppRouter';
+import SignInRouter from './routers/SignInRouter';
 // Used to Provide Redux store to all child components
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 // Actions
 import { startSetFeed } from './actions/feed';
@@ -54,6 +55,7 @@ export default class App extends React.Component {
       case 2:
         console.log(AppRouter)
         return <AppRouter/>
+        // return <SignInRouter/>
 
       default:
         console.log('Invalid screenState value')
