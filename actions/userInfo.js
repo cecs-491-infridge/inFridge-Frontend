@@ -2,7 +2,12 @@ import axios from 'axios';
 import { testUser } from '../testUser';
 const userId = testUser.userId;
 
-exports.addUserId = function(userId) => ({
-	type: 'ADD_USERID',
+export default updateUserId = (userId) => ({
+	type: 'UPDATE_USERID',
 	userId
-})
+});
+
+export default updateToken = (token) => ({
+	type: 'UPDATE_TOKEN',
+	token
+});

@@ -4,15 +4,19 @@ export default (state=defaultState, action) => {
 
   switch(action.type) {
 
-     case 'ADD_USERID':
+      case 'UPDATE_USERID':
        return {
          ...state,
-         action.userId
+         userId: action.userId
        };
-       break;
+
+      case 'UPDATE_TOKEN':
+       return {
+         ...state,
+         token: action.token
+       };
 
     default:
       return state;
-      break;
   }
 }
