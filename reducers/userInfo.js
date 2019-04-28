@@ -1,4 +1,4 @@
-const defaultState = {};
+const defaultState = { userId: '', token: '' };
 
 export default (state=defaultState, action) => {
 
@@ -15,6 +15,9 @@ export default (state=defaultState, action) => {
          ...state,
          token: action.token
        };
+
+       case 'RESET_USER':
+       return defaultState;
 
     default:
       return state;

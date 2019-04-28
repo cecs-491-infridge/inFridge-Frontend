@@ -20,10 +20,12 @@ import FriendProfileScreen from '../Screens/FriendProfileScreen';
 
 import FeedRouter from '../routers/FeedRouter';
 import ChatRouter from '../routers/ChatRouter';
+import SignInRouter from '../routers/SignInRouter';
 
 const AppNavigator = createMaterialBottomTabNavigator({
     //export default createMaterialBottomTabNavigator({
-    //SignIn: { screen: SignInScreen },
+    //SignIn: { screen: SignInRouter },
+    // SignUp: { screen: SignUpScreen },
     Feed: {
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
@@ -103,4 +105,4 @@ const AppNavigator = createMaterialBottomTabNavigator({
       shifting: false
     });
   
-export default createAppContainer(AppNavigator);
+export default AppNavigator;
