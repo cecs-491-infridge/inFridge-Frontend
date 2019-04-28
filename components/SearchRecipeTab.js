@@ -42,16 +42,11 @@ export default class SearchRecipeTab extends Component {
   getRecipe = async() => {    
     try{
 
-<<<<<<< HEAD:components/SearchRecipeTab.js
       const search = this.state.search;
 
       this.setState({ isFetching: true })
 
-      let recipeResponse = await axios.get(`http://school.corg.network:3000/search-recipe`, {
-=======
-      search = "apple pie"
       let recipeResponse = await axios.get(`https://school.corg.network:3002/search-recipe`, {
->>>>>>> daniel:components/SearchRecipe.js
         params:{
           search
         }

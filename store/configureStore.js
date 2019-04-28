@@ -7,7 +7,6 @@ import sortByReducer from '../reducers/sortBy'
 import transactionsReducer from '../reducers/transactions'
 import userReducer from '../reducers/userInfo'
 import { persistStore } from 'redux-persist';
-import thunk from 'redux-thunk';
 
 import persistedReducer from '../reducers';
 

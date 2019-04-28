@@ -68,14 +68,9 @@ export default class App extends React.Component {
     console.log('About to render')
     return (
       <Provider store={store}>
-<<<<<<< HEAD
-		{store.userInfo.userId}
-        {jsx}
-=======
         <PersistGate loading={this.getApp(0)} persistor={persistor}>
           {jsx}
         </PersistGate>
->>>>>>> daniel
       </Provider>
     )
   }
