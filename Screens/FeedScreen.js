@@ -53,12 +53,12 @@ class FeedScreen extends React.Component {
         >
           <View
             style={{
-              height: 250,
+              height: 350,
               marginTop: 70,
               borderColor: '#ccc',
               borderWidth: 1,
               borderStyle: 'solid',
-              backgroundColor: 'white',
+              backgroundColor: 'grey',
               elevation: 20,
               padding: 10,
               borderRadius: 4,

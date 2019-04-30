@@ -11,7 +11,6 @@ class Post extends React.Component {
     }
 
     onLike = () => {
-        console.log('###########################!@#!@#!@')
         let likeList = this.props.transaction.likes;
         for(let i = 0; i < likeList.length; i++){
             const id = likeList[i];
@@ -19,8 +18,6 @@ class Post extends React.Component {
             // User has liked post already,
             // So unlike
             if(id === userId){
-                console.log('-------------------------------')
-                console.log('Unlike');
                 this.props.transaction.likes.splice(i);
                 this.props.onLike(this.props.transaction._id, this.props.transaction);
                 return;
@@ -54,6 +51,7 @@ class Post extends React.Component {
                         </Left>
                     </CardItem>
                     <CardItem cardBody>
+                            {/* 'https://media.blueapron.com/recipes/2471/square_newsletter_images/1503688588-7-0035-6602/904_2PF_Salmon-Udon-Noodles_84097_WEB_SQ_hi_res.jpg' */}
                             <Image source={{ uri: 'https://media.blueapron.com/recipes/2471/square_newsletter_images/1503688588-7-0035-6602/904_2PF_Salmon-Udon-Noodles_84097_WEB_SQ_hi_res.jpg' }} 
                             style={{  
                                 alignSelf: 'stretch',

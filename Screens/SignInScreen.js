@@ -151,7 +151,7 @@ class SignInScreen extends React.Component {
 
   render() {
     return (
-      <View style={{flex:1}}>
+      <Container>
         {
           this.state.loggingIn &&
           <View style={{flex:1}}>
@@ -212,7 +212,7 @@ class SignInScreen extends React.Component {
 
 
 
-      </View>
+      </Container>
     );
   }
 }
