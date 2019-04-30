@@ -2,6 +2,9 @@ import React from 'react';
 import { Body, Button, Content, Container, Drawer, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 import SideBar from './SideBar';
 
+import { connect } from 'react-redux';
+import { resetUser } from '../actions/userInfo';
+
 export default class FeedDrawer extends React.Component {
     constructor(props) {
         super(props);

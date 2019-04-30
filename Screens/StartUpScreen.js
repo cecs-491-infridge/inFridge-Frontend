@@ -11,8 +11,6 @@ class StartUpScreen extends React.Component {
   }
 
   async componentDidMount() {
-    // Already logged in
-    console.log(this.props.user)
     if(this.props.user.token) {
         await initStore(this.props.dispatch);
         this.props.navigation.navigate('AppRouter');

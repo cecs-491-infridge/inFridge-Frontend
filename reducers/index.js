@@ -32,12 +32,29 @@ const friendsPersistConfig = createConfig('friends', []);
 const sortByPersistConfig = createConfig('sortBy', []);
 
 // COMBINE REDUCERS
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
     user: persistReducer(userPersistConfig, user),
     transactions: persistReducer(transactionsPersistConfig, transactions),
     fridge: persistReducer(fridgePersistConfig, fridge),
     friends: persistReducer(friendsPersistConfig, friends),
     sortBy: persistReducer(sortByPersistConfig, sortBy)
 });
+
+
+// RESET ROOT REDUCER
+const rootReducer = (state, action) => {
+    if (action.type === 'USER_LOGOUT') {
+        storage.removeItem('persist:root');
+        storage.removeItem('persist:user');
+        storage.removeItem('persist:transaction');
+        storage.removeItem('persist:fridge');
+        storage.removeItem('persist:friends');
+        storage.removeItem('persist:sortBy');
+
+        state = undefined;
+    }
+  
+    return appReducer(state, action)
+}
 
 export default persistReducer(rootPersistConfig, rootReducer);

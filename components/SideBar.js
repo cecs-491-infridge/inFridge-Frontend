@@ -1,6 +1,8 @@
 import React from "react";
 import { AppRegistry, Image, StatusBar } from "react-native";
 import { Button, Text, Container, List, ListItem, Content, Icon } from "native-base";
+import Logout from './Logout';
+
 const routes = ["Profile", "Friends", "Find Friends", "Recipes", "Setting"];
 
 export default class SideBar extends React.Component {
@@ -57,12 +59,10 @@ export default class SideBar extends React.Component {
               );
             }}
           />
-          <Button
-            full
-            danger
-          >
-            <Text>Logout</Text>
-          </Button>
+          <Logout
+            navigation={this.props.navigation}
+          />
+
         </Content>
       </Container>
     );
