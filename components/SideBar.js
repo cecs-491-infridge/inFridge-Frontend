@@ -58,8 +58,8 @@ export default class SideBar extends React.Component {
             }}
           />
           <Button
-            rounded
-            light
+            full
+            danger
           >
             <Text>Logout</Text>
           </Button>
