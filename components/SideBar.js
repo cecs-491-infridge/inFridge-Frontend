@@ -57,6 +57,12 @@ export default class SideBar extends React.Component {
               );
             }}
           />
+          <Button
+            rounded
+            light
+          >
+            <Text>Logout</Text>
+          </Button>
         </Content>
       </Container>
     );
