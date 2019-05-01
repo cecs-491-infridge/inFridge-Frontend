@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Body, Button, Container, Header, Content, Form, Icon, Item, Input, Label, Left, Right, Text, Title, View, Textarea } from "native-base";
+import { TextInput, StyleSheet, Linking, View } from "react-native";
+import { Body, Button, Container, Header, Content, Form, Icon, Item, Input, Label, Left, Right, Text, Title, Textarea } from "native-base";
 import axios from "axios";
 
 export default class StackedLabelExample extends Component {
@@ -15,8 +16,7 @@ export default class StackedLabelExample extends Component {
 
   //must have 1 char
   verifyUsernameLength = () => {
-    if (this.state.username.length > 0)
-    {
+    if (this.state.username.length > 0) {
       return true;
     }
     return false;
@@ -25,60 +25,54 @@ export default class StackedLabelExample extends Component {
   //must be less 20 char
   //must be greater than 1
   verifyValidPassword = () => {
-    if (this.state.password.length > 0)
-    {
+    if (this.state.password.length > 0) {
       return true;
     }
     return false;
   }
 
   verifyMatchedPassword = () => {
-    if (this.state.confirmedPass == this.state.password)
-    {
+    if (this.state.confirmedPass == this.state.password) {
       return true;
     }
     return false;
   }
 
   onSubmit = async () => {
-    if (this.verifyUsernameLength() && this.verifyValidPassword() && this.verifyMatchedPassword())
-    {
-      try{
+    if (this.verifyUsernameLength() && this.verifyValidPassword() && this.verifyMatchedPassword()) {
+      try {
         let res = await axios.post("https://school.corg.network:3002/create-user", {
-            username: this.state.username,
-            password: this.state.password
+          username: this.state.username,
+          password: this.state.password
         });
-        if (res.status == 403)
-        {
+        if (res.status == 403) {
           //USERNAME ALREADY EXISTS
         }
-        else if (res.status == 201)
-        {
+        else if (res.status == 201) {
           //SUCCESS
           this.props.navigation.navigate('SignIn');
         }
-        else
-        {
+        else {
           //ERROR
         }
-      } catch(err) {
-          console.log(err);
+      } catch (err) {
+        console.log(err);
       }
     }
-    else{
+    else {
       //DISPLAY ERR AND CLEAR INPUT FIELDS
     }
   }
-  
+
 
   render() {
     return (
-      <Container>
-        <Header>
+      <Container style={styles.container}>
+        <Header style={styles.header}>
           <Left>
           </Left>
           <Body>
-            <Title>inFridge</Title>
+            <Title>Sign Up</Title>
           </Body>
           <Right>
           </Right>
@@ -97,8 +91,8 @@ export default class StackedLabelExample extends Component {
             </Item>
             <Item stackedLabel last>
               <Label>Password</Label>
-              <Input 
-                secureTextEntry={true} 
+              <Input
+                secureTextEntry={true}
                 rowSpan={1}
                 bordered
                 placeholder=""
@@ -108,7 +102,7 @@ export default class StackedLabelExample extends Component {
             </Item>
             <Item stackedLabel last>
               <Label>Confirm Password</Label>
-              <Input 
+              <Input
                 secureTextEntry={true}
                 rowSpan={1}
                 bordered
@@ -119,7 +113,11 @@ export default class StackedLabelExample extends Component {
             </Item>
           </Form>
           <View>
-            <Button block onPress={this.onSubmit}>
+            <Button 
+              block 
+              onPress={this.onSubmit}
+              style={{ backgroundColor: '#34495e' }}
+            >
               {/* <Icon name="image" /> */}
               <Text>Sign Up</Text>
             </Button>
@@ -129,3 +127,44 @@ export default class StackedLabelExample extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  header:{
+    backgroundColor: '#3498db',
+  },
+  container: {
+
+    backgroundColor: '#3498db',
+    padding: 50
+  },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    marginBottom: 10,
+    color: '#FFF',
+    paddingHorizontal: 10
+  },
+  button: {
+    backgroundColor: '#3498db',
+    padding: 5
+  },
+  buttonContainer: {
+    backgroundColor: '#16a085',
+    paddingVertical: 10,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontWeight: '700'
+  },
+  welcome: {
+    fontSize: 50,
+    textAlign: "center",
+    margin: 10
+  },
+  instructions: {
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5
+  }
+});

@@ -150,14 +150,14 @@ class SignInScreen extends React.Component {
         
         {
           this.state.loggingIn &&
-          <View style={{ flex: 1 }}>
+          <Content style={styles.container}>
             <WebView
               style={{ flex: 1 }}
               source={{ uri: this.LINKTOAUTH }}
               /*source={{uri: "https://google.com"}}*/
               onNavigationStateChange={this._onNavigationStateChange.bind(this)}
             />
-          </View>
+          </Content>
         }
 
         {
