@@ -6,20 +6,14 @@ const addTransaction = (transaction) => ({
   type: 'ADD_TRANSACTION',
   transaction
 });
-export const startAddTransaction = (data = {}) => {
+export const startAddTransaction = (token, post) => {
   return (dispatch) => {
-    const {
-      body,
-      location,
-      tradeType
-    } = data;
-    const transactionData = { author: userId, body, location, tradeType };
-
     // Need user id to do this
     // WAIT FOR VICTORIA TO GET USER ID
 
     return axios.post(`https://school.corg.network:3002/create-transaction`, {
-      ...transactionData
+      token,
+      ...post
     })
       .then(res => {
         console.log('--------------------------------------')
@@ -28,8 +22,10 @@ export const startAddTransaction = (data = {}) => {
 
         const newTransaction = {
           _id: newId,
-          ...transactionData
+          likes: [],
+          ...post
         }
+        console.log(newTransaction)
         dispatch(addTransaction(newTransaction));
       })
       .catch(err => {
@@ -66,13 +62,13 @@ export const startDeleteTransaction = (id) => {
   }
 }
 
-const updateTransaction = (id, updates) => ({
+const updatePost = (id, updates) => ({
   type: 'UPDATE_TRANSACTION',
   id,
   updates
 })
 
-export const startUpdateTransaction = (id, updates) => {
+export const startUpdatePost = (id, updates) => {
   return async (dispatch) => {
     // const likeRes = await axios.post(`https://school.corg.network:3002/like-post`, {
     //      id,
@@ -81,28 +77,42 @@ export const startUpdateTransaction = (id, updates) => {
 
     // console.log(likeRes);
 
-    dispatch(updateTransaction(id, updates));
+    dispatch(updatePost(id, updates));
   }
 }
 
-const likeTransaction = (id, updates) => ({
-  type: 'UPDATE_TRANSACTION',
-  id,
-  updates
-})
-
-export const startLikeTransaction = (userId, postId, updates) => {
+export const startLikePost = (token, postId, updates) => {
   return async (dispatch) => {
-    const likeRes = await axios.post(`https://school.corg.network:3002/like-post`, {
-         userId,
-         postId
-    });
+    console.log('Trying to like')
+    try {
+      const likeRes = await axios.post(`https://school.corg.network:3002/like-post`, {
+          token,
+          postId
+      });
 
-    console.log(likeRes);
-
-    dispatch(likeTransaction(id, updates));
+      dispatch(updatePost(postId, updates));
+    }catch(err) {
+      console.log(err);
+    }
   }
-}
+};
+
+export const startCommentPost = (token, postId, body, updates) => {
+  return async (dispatch) => {
+    console.log('Trying to like')
+    try {
+      const likeRes = await axios.post(`https://school.corg.network:3002/create-comment`, {
+          token,
+          postId,
+          body
+      });
+
+      dispatch(updatePost(postId, updates));
+    }catch(err) {
+      console.log(err);
+    }
+  }
+};
 
 const setTransactions = (transactions) => ({
   type: 'SET_TRANSACTIONS',

@@ -30,8 +30,10 @@ class PostForm extends React.Component {
     if (!error) {
       const transaction = {
         body: this.state.body,
-        location: "123",
-        tradeType: this.state.tradeType
+        longitude: "123",
+        latitude: "123",
+        tradeType: this.state.tradeType,
+        comments: []
       };
 
       this.setState({

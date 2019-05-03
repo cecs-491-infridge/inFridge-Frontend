@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  fridge: sortFood(state.fridge, state.sortBy.fridge)
+  fridge: sortFood(state.fridge.list, state.sortBy.fridge)
 });
 
 export default connect(mapStateToProps)(FridgeScreen)

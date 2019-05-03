@@ -1,12 +1,19 @@
-const defaultState = []
+// Bug with Redux-Persist
+// Requires Map as initial State
+const defaultState = {
+  list: []
+}
 export default (state=defaultState, action) => {
   switch(action.type) {
 
     case 'ADD_FOOD':
-      return [
+      return {
         ...state,
-        action.food
-      ];
+        list: [
+          action.food,
+          ...state.list
+        ]
+      };
       break;
 
     case 'DELETE_FOOD':
@@ -19,14 +26,19 @@ export default (state=defaultState, action) => {
       break;
 
     case 'UPDATE_FOOD':
-      return state.map((food) => food.id === action.id ? { ...food, ...action.updates } : food);
-      break;
+      const list = state.list.map((item) => item._id === action.id ? { ...item, ...action.updates } : item);
+      return {
+        ...state,
+        list
+      }
 
     case 'SET_FOOD':
       console.log('FRIDGE REDUCER SET FOOD---------------------------------')
       console.log(action.food);
-      return action.food ? action.food : defaultState;
-      break;
+      return {
+        ...state,
+        list: action.food ? action.food : []
+      }
 
     default:
       return state;

@@ -7,7 +7,7 @@ import axios from "axios";
 import SignIn from "../components/SignIn";
 import { Body, Button, Content, Container, Form, Icon, Input, Item, Header, Label, Left, Right, Text, Title} from "native-base";
 
-import { updateUserId, updateToken } from '../actions/userInfo';
+import { updateUser, updateToken } from '../actions/userInfo';
 import initStore from '../store/initStore';
 
 class SignInScreen extends React.Component {
@@ -121,9 +121,9 @@ class SignInScreen extends React.Component {
         {
           //LOGIN WORKS
 
-          const { userId, token } = res.data;
+          const { userId, username, token } = res.data;
           console.log("LOGGGGGEEEEDDDDDD INNNNNNNNNNNNNNNNNNN");
-          this.props.dispatch(updateUserId(userId));
+          this.props.dispatch(updateUser(userId, username));
           this.props.dispatch(updateToken(token));
           
           await initStore(this.props.dispatch);

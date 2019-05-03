@@ -60,6 +60,7 @@ export default class SideBar extends React.Component {
             }}
           />
           <Logout
+            onNavigate={this.props.onNavigate}
             navigation={this.props.navigation}
           />
 

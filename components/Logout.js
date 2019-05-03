@@ -5,6 +5,7 @@ import { Button, Text } from "native-base";
 
 const onLogout = (props) => {
     props.navigation.navigate('SignInRouter');
+    props.onNavigate();
     props.onLogout();
 }
 
