@@ -9,6 +9,7 @@ import { Body, Button, Content, Container, Form, Icon, Input, Item, Header, Labe
 
 import { updateUserId, updateToken } from '../actions/userInfo';
 import initStore from '../store/initStore';
+import { Alert } from "react-native";
 
 class SignInScreen extends React.Component {
   constructor(props) {
@@ -125,13 +126,31 @@ class SignInScreen extends React.Component {
           this.props.dispatch(updateToken(token));
 
           await initStore(this.props.dispatch);
-          console.log('in')
+          console.log('in');
           this.props.navigation.navigate('AppRouter');
-          console.log('out')
+          console.log('out');
         }
       } catch (err) {
         console.log(err);
+        Alert.alert(
+          'Incorrect Username or Password',
+          'Username or password is incorrect',
+          [
+            {text: 'Dismiss', onPress: () => console.log('Dismiss login Pressed')},
+          ],
+          {cancelable: false},
+        );
       }
+    }
+    else{
+      Alert.alert(
+        'Incorrect Username or Password',
+        'Username or password is incorrect',
+        [
+          {text: 'Dismiss', onPress: () => console.log('Dismiss login Pressed')},
+        ],
+        {cancelable: false},
+      );
     }
   }
 
