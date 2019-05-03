@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Body, Button, Container, Header, Content, Form, Icon, Item, Input, Label, Left, Right, Text, Title, View, Textarea } from "native-base";
 import axios from "axios";
+import { Alert } from "react-native";
 
 export default class StackedLabelExample extends Component {
   constructor(props) {
@@ -14,18 +15,26 @@ export default class StackedLabelExample extends Component {
   }
 
   //must have 1 char
+  //upper and lowercase, numbers allowed
+  //no symbols
   verifyUsernameLength = () => {
-    if (this.state.username.length > 0)
+    //let user = this.state.username;
+    //let userMatch = user.match(/^[a-zA-Z0-9]+$/);
+    //console.log("USSSSSSSSSSSERRRRRRRRRRR:")
+    //console.log(userMatch);
+    if (/^[a-zA-Z0-9]+$/.test(this.state.username))
     {
       return true;
     }
+    console.log("FAILLLLLLLLLLLLLLLLLLL");
     return false;
   }
 
   //must be less 20 char
-  //must be greater than 1
+  //must be greater than 10
+  //contain upper case, lower case, symbol, number
   verifyValidPassword = () => {
-    if (this.state.password.length > 0)
+    if (this.state.password.length >= 10 && this.state.password.length <= 20 && /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{10,20}$/.test(this.state.password))
     {
       return true;
     }
@@ -41,32 +50,78 @@ export default class StackedLabelExample extends Component {
   }
 
   onSubmit = async () => {
-    if (this.verifyUsernameLength() && this.verifyValidPassword() && this.verifyMatchedPassword())
+    if (!this.verifyUsernameLength())
     {
-      try{
-        let res = await axios.post("https://school.corg.network:3002/create-user", {
-            username: this.state.username,
-            password: this.state.password
-        });
-        if (res.status == 403)
+      //DISPLAY ERR AND CLEAR INPUT FIELDS
+      Alert.alert(
+        'Invalid Username',
+        'Username must contain:\n-At least one character & no symbols\n-Upper/lowercase & numbers ok',
+        [
+          {text: 'Dismiss', onPress: () => console.log('Dismiss Username Pressed')},
+        ],
+        {cancelable: false},
+      );
+    }
+    else
+    {
+      if (!this.verifyValidPassword())
+      {
+        Alert.alert(
+          'Invalid Password',
+          'Password must contain:\n-Between 10-20 characters\n-1 uppercase & 1 lowercase\n-1 symbol & 1 number',
+          [
+            {text: 'Dismiss', onPress: () => console.log('Dismiss Password Pressed')},
+          ],
+          {cancelable: false},
+        );
+      }
+      else
+      {
+        if (!this.verifyMatchedPassword())
         {
-          //USERNAME ALREADY EXISTS
-        }
-        else if (res.status == 201)
-        {
-          //SUCCESS
-          this.props.navigation.navigate('SignIn');
+          Alert.alert(
+            'Passwords do not match',
+            'Password and the Confirm Password fields must match',
+            [
+              {text: 'Dismiss', onPress: () => console.log('Dismiss Confirm Password Pressed')},
+            ],
+            {cancelable: false},
+          );
         }
         else
         {
-          //ERROR
+          try{
+            let res = await axios.post("https://school.corg.network:3002/create-user", {
+                username: this.state.username,
+                password: this.state.password
+            });
+            if (res.status == 201)
+            {
+              //SUCCESS
+              this.props.navigation.navigate('SignIn');
+            }
+          } catch(err) {
+              console.log(err);
+              if (err.response.status == 403)
+              {
+                console.log("USERRRRRRRRRRRNAMEEEEEEEEE ALREADY EXISTS!!!!")
+                //USERNAME ALREADY EXISTS
+                Alert.alert(
+                  'Username already exists',
+                  'Choose a different username',
+                  [
+                    {text: 'Dismiss', onPress: () => console.log('Dismiss Existing Username Pressed')},
+                  ],
+                  {cancelable: false},
+                );
+              }
+              else
+              {
+                //ERROR
+              }
+          }
         }
-      } catch(err) {
-          console.log(err);
       }
-    }
-    else{
-      //DISPLAY ERR AND CLEAR INPUT FIELDS
     }
   }
   

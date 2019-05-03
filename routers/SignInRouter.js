@@ -13,7 +13,7 @@ const SignInNavigator = createStackNavigator(
         
     },
     {
-        initialRouteName: 'SignIn',
+        initialRouteName: 'SignUp',
         headerMode: 'none'
     }
 );
