@@ -114,6 +114,7 @@ class Post extends React.Component {
 
                                 iconLeft
                                 rounded
+                                onPress={this.onComment}
                             >
                                 <Text>Post</Text>
                             </Button>
