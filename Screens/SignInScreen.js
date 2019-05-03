@@ -5,10 +5,11 @@ import { WebView } from "react-native-webview";
 import axios from "axios";
 
 import SignIn from "../components/SignIn";
-import { Body, Button, Content, Container, Form, Icon, Input, Item, Header, Label, Left, Right, Text, Title} from "native-base";
+import { Body, Button, Content, Container, Form, Icon, Input, Item, Header, Label, Left, Right, Text, Title } from "native-base";
 
 import { updateUser, updateToken } from '../actions/userInfo';
 import initStore from '../store/initStore';
+import { Alert } from "react-native";
 
 class SignInScreen extends React.Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class SignInScreen extends React.Component {
   // }
 
   onSignIn = async () => {
-    
+
     console.log("\t\t\t\t\t\t\t\t\t\t---------------------------WENT INTO THE GOOGLE METHODDDDDDDDDDDDDDDDDDDDDDDDDDDD");
 
     try {
@@ -71,7 +72,7 @@ class SignInScreen extends React.Component {
     console.log(webViewState.url);
     console.log(typeof webViewState.url);
     let url = webViewState.url;
-    if (typeof url == "string" && url.indexOf("https://school.corg.network:3002/graph-response?")>-1) {
+    if (typeof url == "string" && url.indexOf("https://school.corg.network:3002/graph-response?") > -1) {
       let code = url.match(/code=[a-zA-Z0-9-_]+/gi)[0].substring(5);
       console.log("HEEEEEEEEEEEEELLLLLLLLLLLLLLLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
       try {
@@ -109,40 +110,53 @@ class SignInScreen extends React.Component {
 
   loginInFridge = async () => {
     console.log("BUTTON PRESSED!!!!!!!!!!");
-    if (this.validateCred())
-    {
-      try{
+    if (this.validateCred()) {
+      try {
         console.log("RESSSSSSSSSSSSSS!!!!!");
         let res = await axios.post("https://school.corg.network:3002/login-user", {
-            username: this.state.username,
-            password: this.state.password
-          });
-        if (res.status == 201)
-        {
+          username: this.state.username,
+          password: this.state.password
+        });
+        if (res.status == 201) {
           //LOGIN WORKS
 
           const { userId, username, token } = res.data;
           console.log("LOGGGGGEEEEDDDDDD INNNNNNNNNNNNNNNNNNN");
           this.props.dispatch(updateUser(userId, username));
           this.props.dispatch(updateToken(token));
-          
+
           await initStore(this.props.dispatch);
-          console.log('in')
+          console.log('in');
           this.props.navigation.navigate('AppRouter');
-          console.log('out')
+          console.log('out');
         }
-      } catch(err)
-      {
+      } catch (err) {
         console.log(err);
+        Alert.alert(
+          'Incorrect Username or Password',
+          'Username or password is incorrect',
+          [
+            {text: 'Dismiss', onPress: () => console.log('Dismiss login Pressed')},
+          ],
+          {cancelable: false},
+        );
       }
+    }
+    else{
+      Alert.alert(
+        'Incorrect Username or Password',
+        'Username or password is incorrect',
+        [
+          {text: 'Dismiss', onPress: () => console.log('Dismiss login Pressed')},
+        ],
+        {cancelable: false},
+      );
     }
   }
 
   validateCred = () => {
-    if (this.state.username.length > 0)
-    {
-      if (this.state.password.length > 0)
-      {
+    if (this.state.username.length > 0) {
+      if (this.state.password.length > 0) {
         return true;
       }
     }
@@ -151,26 +165,26 @@ class SignInScreen extends React.Component {
 
   render() {
     return (
-      <Container>
+      <View style={{flex:1}}>
+        
         {
           this.state.loggingIn &&
-          <View style={{flex:1}}>
             <WebView
               style={{ flex: 1 }}
               source={{ uri: this.LINKTOAUTH }}
               /*source={{uri: "https://google.com"}}*/
               onNavigationStateChange={this._onNavigationStateChange.bind(this)}
             />
-          </View>
         }
 
         {
           !this.state.loggingIn &&
-          <View>
+          
+          <Content style={styles.container}>
             <Form>
               <Item stackedLabel>
-                <Label>Username</Label>
-                <Input 
+                <Label>username</Label>
+                <Input
                   rowSpan={1}
                   bordered
                   placeholder=""
@@ -179,9 +193,9 @@ class SignInScreen extends React.Component {
                 />
               </Item>
               <Item stackedLabel last>
-                <Label>Password</Label>
-                <Input 
-                  secureTextEntry={true} 
+                <Label>password</Label>
+                <Input
+                  secureTextEntry={true}
                   rowSpan={1}
                   bordered
                   placeholder=""
@@ -191,38 +205,58 @@ class SignInScreen extends React.Component {
               </Item>
             </Form>
 
-            <View>
+            <View style={styles.button}>
               <Button
+                block
                 onPress={this.loginInFridge}
+                style={{ backgroundColor: '#34495e' }}
               >
-                <Text>Login</Text>
+                <Text style={styles.buttonText}>LOGIN</Text>
               </Button>
             </View>
 
-            <View>
+            <View style={styles.button}>
               <Button
+                block
                 onPress={this.onSignIn}
+                style={{ backgroundColor: '#34495e' }}
               /*onPress={() => this.setState({ signInState: 1 })}*/
               >
-                <Text>Don't have an account yet? Sign Up</Text>
+                <Text style={styles.buttonText}>SIGN UP</Text>
               </Button>
             </View>
-          </View>
+          </Content>
         }
-
-
-
-      </Container>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#3498db"
+
+    backgroundColor: '#3498db',
+    padding: 50
+  },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    marginBottom: 10,
+    color: '#FFF',
+    paddingHorizontal: 10
+  },
+  button: {
+    backgroundColor: '#3498db',
+    padding: 5
+  },
+  buttonContainer: {
+    backgroundColor: '#16a085',
+    paddingVertical: 10,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontWeight: '700'
   },
   welcome: {
     fontSize: 50,
@@ -237,7 +271,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  user: state.user 
+  user: state.user
 });
 
 export default connect(mapStateToProps)(SignInScreen);

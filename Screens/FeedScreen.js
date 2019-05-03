@@ -92,7 +92,7 @@ class FeedScreen extends React.Component {
               borderColor: '#ccc',
               borderWidth: 1,
               borderStyle: 'solid',
-              backgroundColor: 'grey',
+              backgroundColor: 'white',
               elevation: 20,
               padding: 10,
               borderRadius: 4,

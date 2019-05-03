@@ -48,9 +48,9 @@ class PostForm extends React.Component {
     const tradeType = this.state.tradeType;
 
     if (
-      tradeType === "donate" ||
-      tradeType === "trade" ||
-      tradeType === "sell"
+      tradeType === "Donate" ||
+      tradeType === "Trade" ||
+      tradeType === "Sell"
     ) {
       return true;
     }
