@@ -63,7 +63,7 @@ const AppNavigator = createMaterialBottomTabNavigator({
           
         )
       }),
-      screen: FriendProfileScreen
+      screen: NotificationScreen
     },
     Fridge: {
       navigationOptions: () => ({
