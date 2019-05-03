@@ -14,7 +14,7 @@ export default class FriendProfile extends Component {
                 <Header>
                     <Left />
                     <Content>
-                        <Title>Profile</Title>
+                        <Title>name</Title>
                     </Content>
                     <Right />
                 </Header>
@@ -30,11 +30,12 @@ export default class FriendProfile extends Component {
                             Love cooking Chinese food and baking!d
                         </Text> */}
                         <Button
-                            small
+                            
                             dark
-                            onPress={this.uploadImage}>
+                            // onPress={this.uploadImage}
+                        >
                             {/* <Icon name="image" /> */}
-                            <Text>Follow</Text>
+                            <Text>Add Friend</Text>
                         </Button>
                     </Col>
                     {/* <Col style={{ backgroundColor: '#00CE9F', height: 200 }}> */}
@@ -43,7 +44,7 @@ export default class FriendProfile extends Component {
                             Food Food Food
                         </Text> */}
                         <Button
-                            small
+                            
                             dark
                             onPress={this.onSubmit}>
                             {/* <Icon name="md-create" /> */}
