@@ -12,6 +12,7 @@ class PostForm extends React.Component {
       body: "",
       location: "",
       tradeType: "",
+      photo: "",
       error: ""
     };
   }
@@ -36,11 +37,14 @@ class PostForm extends React.Component {
         comments: []
       };
 
+      this.props.onSubmit(transaction, this.state.photo);
+
       this.setState({
         body: "",
-        tradeType: ""
+        tradeType: "",
+        photo: ""
       });
-      this.props.onSubmit(transaction);
+      
     }
   };
 
@@ -140,7 +144,7 @@ class PostForm extends React.Component {
           <View
                 style={{ alignItems: "center", }}
           >
-            {photo && (
+            {!!photo && (
               <Image
                 boardered
                 source={{ uri: photo.uri }}
