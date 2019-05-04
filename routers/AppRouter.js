@@ -21,6 +21,7 @@ import FriendProfileScreen from '../Screens/FriendProfileScreen';
 import FeedRouter from '../routers/FeedRouter';
 import ChatRouter from '../routers/ChatRouter';
 import SignInRouter from '../routers/SignInRouter';
+//import FriendProfileRouter from '../routers/FriendProfileRouter';
 
 const AppNavigator = createMaterialBottomTabNavigator({
     //export default createMaterialBottomTabNavigator({

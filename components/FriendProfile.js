@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { Body, Button, Col, Container, Drawer, Grid, Header, Item, Input, Icon, Left, Right, Row, Text, Title, Content } from 'native-base';
+import { withNavigation } from 'react-navigation';
 
 
-export default class FriendProfile extends Component {
+class FriendProfile extends Component {
     constructor(props) {
         super(props);
     }
+
+	onMessage = () =>{
+		this.props.navigation.navigate('ChatMessage',{id:this.props.id})
+	}
 
     render() {
         return (
@@ -14,7 +19,7 @@ export default class FriendProfile extends Component {
                 <Header>
                     <Left />
                     <Content>
-                        <Title>Profile</Title>
+                        <Title>{this.props.name}</Title>
                     </Content>
                     <Right />
                 </Header>
@@ -45,7 +50,7 @@ export default class FriendProfile extends Component {
                         <Button
                             small
                             dark
-                            onPress={this.onSubmit}>
+                            onPress={this.onMessage}>
                             {/* <Icon name="md-create" /> */}
                             <Text>Message</Text>
                         </Button>
@@ -118,3 +123,4 @@ const styles = StyleSheet.create({
         backgroundColor: "#00BFFF",
     },
 });
+export default withNavigation(FriendProfile);

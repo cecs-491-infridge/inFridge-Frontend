@@ -6,6 +6,7 @@ import FriendScreen from '../Screens/FriendScreen';
 import FriendProfileScreen from '../Screens/FriendProfileScreen'
 //import RecipeScreen from '../Screens/RecipeScreen';
 import RecipeRouter from './RecipeRouter';
+import ChatMessageScreen from '../Screens/ChatMessageScreen';
 
 import ProfileScreen from "../Screens/ProfileScreen";
 
@@ -15,6 +16,8 @@ const FeedNavigator = createStackNavigator(
         Recipes: RecipeRouter,
         Friends: FriendScreen,
         Profile: ProfileScreen,
+        FriendProfile: FriendProfileScreen,
+        ChatMessage: ChatMessageScreen
     },
     {
         initialRouteName: 'Feed',
