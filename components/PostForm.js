@@ -12,6 +12,7 @@ class PostForm extends React.Component {
       body: "",
       location: "",
       tradeType: "",
+      photo: "",
       error: ""
     };
   }
@@ -30,15 +31,20 @@ class PostForm extends React.Component {
     if (!error) {
       const transaction = {
         body: this.state.body,
-        location: "123",
-        tradeType: this.state.tradeType
+        longitude: "123",
+        latitude: "123",
+        tradeType: this.state.tradeType,
+        comments: []
       };
+
+      this.props.onSubmit(transaction, this.state.photo);
 
       this.setState({
         body: "",
-        tradeType: ""
+        tradeType: "",
+        photo: ""
       });
-      this.props.onSubmit(transaction);
+      
     }
   };
 
@@ -46,9 +52,9 @@ class PostForm extends React.Component {
     const tradeType = this.state.tradeType;
 
     if (
-      tradeType === "donate" ||
-      tradeType === "trade" ||
-      tradeType === "sell"
+      tradeType === "Donate" ||
+      tradeType === "Trade" ||
+      tradeType === "Sell"
     ) {
       return true;
     }
@@ -138,7 +144,7 @@ class PostForm extends React.Component {
           <View
                 style={{ alignItems: "center", }}
           >
-            {photo && (
+            {!!photo && (
               <Image
                 boardered
                 source={{ uri: photo.uri }}

@@ -35,11 +35,12 @@ class FriendProfile extends Component {
                             Love cooking Chinese food and baking!d
                         </Text> */}
                         <Button
-                            small
+                            
                             dark
-                            onPress={this.uploadImage}>
+                            // onPress={this.uploadImage}
+                        >
                             {/* <Icon name="image" /> */}
-                            <Text>Follow</Text>
+                            <Text>Add Friend</Text>
                         </Button>
                     </Col>
                     {/* <Col style={{ backgroundColor: '#00CE9F', height: 200 }}> */}
@@ -48,7 +49,7 @@ class FriendProfile extends Component {
                             Food Food Food
                         </Text> */}
                         <Button
-                            small
+                            
                             dark
                             onPress={this.onMessage}>
                             {/* <Icon name="md-create" /> */}

@@ -1,9 +1,9 @@
 // MODULE TO CONFIURE REDUX-PERSIST
 // AND EXPORT COMBINED REDUCERS
 import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
+import { createTransform, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
+import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 import user from './userInfo';
 import transactions from './transactions';
@@ -19,11 +19,14 @@ const rootPersistConfig = {
     blacklist: []
 }
 
-const createConfig = (key, blacklist) => ({
-    key,
-    storage,
-    blacklist
-});
+
+const createConfig = (key, blacklist) => {
+    return {
+        key,
+        storage,
+        blacklist
+    };
+}
 
 const userPersistConfig = createConfig('user', []);
 const transactionsPersistConfig = createConfig('transactions', []);
@@ -43,15 +46,18 @@ const appReducer = combineReducers({
 
 // RESET ROOT REDUCER
 const rootReducer = (state, action) => {
+    console.log(state)
+
     if (action.type === 'USER_LOGOUT') {
         storage.removeItem('persist:root');
         storage.removeItem('persist:user');
-        storage.removeItem('persist:transaction');
+        storage.removeItem('persist:transactions');
         storage.removeItem('persist:fridge');
         storage.removeItem('persist:friends');
         storage.removeItem('persist:sortBy');
 
         state = undefined;
+        console.log(state)
     }
   
     return appReducer(state, action)

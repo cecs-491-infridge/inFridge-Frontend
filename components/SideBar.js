@@ -1,5 +1,5 @@
 import React from "react";
-import { AppRegistry, Image, StatusBar } from "react-native";
+import { AppRegistry, Image, StatusBar, StyleSheet } from "react-native";
 import { Button, Text, Container, List, ListItem, Content, Icon } from "native-base";
 import Logout from './Logout';
 
@@ -12,7 +12,7 @@ export default class SideBar extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container style={styles.container}>
         <Content>
           <Image
             source={{
@@ -60,6 +60,7 @@ export default class SideBar extends React.Component {
             }}
           />
           <Logout
+            onNavigate={this.props.onNavigate}
             navigation={this.props.navigation}
           />
 
@@ -68,3 +69,44 @@ export default class SideBar extends React.Component {
     );
   }
 }
+
+
+const styles = StyleSheet.create({
+  header:{
+    backgroundColor: '#3498db',
+  },
+  container: {
+
+    backgroundColor: '#16a085',
+  },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    marginBottom: 10,
+    color: '#FFF',
+    paddingHorizontal: 10
+  },
+  button: {
+    backgroundColor: '#3498db',
+    padding: 5
+  },
+  buttonContainer: {
+    backgroundColor: '#16a085',
+    paddingVertical: 10,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontWeight: '700'
+  },
+  welcome: {
+    fontSize: 50,
+    textAlign: "center",
+    margin: 10
+  },
+  instructions: {
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5
+  }
+});

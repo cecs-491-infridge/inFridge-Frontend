@@ -4,10 +4,11 @@ export default (state=defaultState, action) => {
 
   switch(action.type) {
 
-      case 'UPDATE_USERID':
+      case 'UPDATE_USER':
        return {
          ...state,
-         userId: action.userId
+         userId: action.userId,
+         username: action.username
        };
 
       case 'UPDATE_TOKEN':

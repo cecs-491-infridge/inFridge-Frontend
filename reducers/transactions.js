@@ -1,12 +1,19 @@
-const defaultState = []
+const defaultState = {
+  list: []
+};
 export default (state=defaultState, action) => {
   switch(action.type) {
 
     case 'ADD_TRANSACTION':
-      return [
+    console.log(state)
+    console.log(action)
+      return {
         ...state,
-        action.transaction
-      ];
+        list: [
+          action.transaction,
+          ...state.list
+        ]
+      };
       break;
 
     case 'DELETE_TRANSACTION':
@@ -14,17 +21,19 @@ export default (state=defaultState, action) => {
       break;
 
     case 'UPDATE_TRANSACTION':
-      return state.map((transaction) => transaction.id === action.id ? { ...transaction, ...action.updates } : transaction);
-      break;
-
-    case 'LIKE_TRANSACTION':
-      return state.map((transaction) => transaction.id === action.postId ? { ...transaction, ...action.updates } : transaction);
+      const list = state.list.map((item) => item._id === action.id ? { ...item, ...action.updates } : item);
+      return {
+        ...state,
+        list
+      }
 
     case 'SET_TRANSACTIONS':
       console.log('TRANSACTION REDUCER SET TRANSACTIONS---------------------------------')
-      console.log(action.transactions);
-      return action.transactions ? action.transactions : defaultState;
-      break;
+      console.log(state);
+      return {
+        ...state,
+        list: action.transactions ? action.transactions : []
+      }
 
     default:
       return state;

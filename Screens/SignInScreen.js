@@ -7,8 +7,9 @@ import axios from "axios";
 import SignIn from "../components/SignIn";
 import { Body, Button, Content, Container, Form, Icon, Input, Item, Header, Label, Left, Right, Text, Title } from "native-base";
 
-import { updateUserId, updateToken } from '../actions/userInfo';
+import { updateUser, updateToken } from '../actions/userInfo';
 import initStore from '../store/initStore';
+import { Alert } from "react-native";
 
 class SignInScreen extends React.Component {
   constructor(props) {
@@ -119,19 +120,37 @@ class SignInScreen extends React.Component {
         if (res.status == 201) {
           //LOGIN WORKS
 
-          const { userId, token } = res.data;
+          const { userId, username, token } = res.data;
           console.log("LOGGGGGEEEEDDDDDD INNNNNNNNNNNNNNNNNNN");
-          this.props.dispatch(updateUserId(userId));
+          this.props.dispatch(updateUser(userId, username));
           this.props.dispatch(updateToken(token));
 
           await initStore(this.props.dispatch);
-          console.log('in')
+          console.log('in');
           this.props.navigation.navigate('AppRouter');
-          console.log('out')
+          console.log('out');
         }
       } catch (err) {
         console.log(err);
+        Alert.alert(
+          'Incorrect Username or Password',
+          'Username or password is incorrect',
+          [
+            {text: 'Dismiss', onPress: () => console.log('Dismiss login Pressed')},
+          ],
+          {cancelable: false},
+        );
       }
+    }
+    else{
+      Alert.alert(
+        'Incorrect Username or Password',
+        'Username or password is incorrect',
+        [
+          {text: 'Dismiss', onPress: () => console.log('Dismiss login Pressed')},
+        ],
+        {cancelable: false},
+      );
     }
   }
 
@@ -146,18 +165,16 @@ class SignInScreen extends React.Component {
 
   render() {
     return (
-      <Container>
+      <View style={{flex:1}}>
         
         {
           this.state.loggingIn &&
-          <Content style={styles.container}>
             <WebView
               style={{ flex: 1 }}
               source={{ uri: this.LINKTOAUTH }}
               /*source={{uri: "https://google.com"}}*/
               onNavigationStateChange={this._onNavigationStateChange.bind(this)}
             />
-          </Content>
         }
 
         {
@@ -210,7 +227,7 @@ class SignInScreen extends React.Component {
             </View>
           </Content>
         }
-      </Container>
+      </View>
     );
   }
 }

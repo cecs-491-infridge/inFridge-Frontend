@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { Body, Button, Col, Container, Drawer, Grid, Header, Item, Input, Icon, Left, Right, Row, Text, Title, Content } from 'native-base';
-import FeedDrawer from '../components/FeedDrawer';
 
-export default class ProfileScreen extends Component {
+// food
+import FeedDrawer from '../components/FeedDrawer';
+import ProfileFood from '../components/ProfileFood';
+import { filterFood, sortFood } from '../selectors/food'
+import { connect } from 'react-redux'
+
+// post
+import Post from '../components/Post';
+
+class ProfileScreen extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      fridge: this.props.fridge
+    }
   }
+
 
   render() {
     return (
@@ -24,18 +37,59 @@ export default class ProfileScreen extends Component {
 
           <Grid>
             <Col style={{ backgroundColor: '#635DB7', height: 200 }}>
-              <Text style={{textAlignVertical: "center",textAlign: "center",}} >
+              <Text style={{ textAlignVertical: "center", textAlign: "center", }} >
                 20 Contributions
               </Text>
             </Col>
             <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
-              <Text style={{textAlignVertical: "center",textAlign: "center",}}>
+              <Text style={{ textAlignVertical: "center", textAlign: "center", }}>
                 Love cooking Chinese food and baking!
               </Text>
             </Col>
-            <Row style={{ backgroundColor: '#3498db', height: 200 }}>
+            <Row style={{ backgroundColor: '#95a5a6', height: 200 }}>
+              <ScrollView>
+                {/* <Separator boarderd>
+                  <Text>Public</Text>
+
+                </Separator> */}
+                {
+                  !!this.state.fridge &&
+                  this.state.fridge.map(food =>
+
+                    <ProfileFood
+                      key={food._id}
+                      food={food}
+                      onDelete={id => this.props.dispatch(startDeleteFood(id))}
+                    />
+                  )
+                }
+                {/* <Separator boarderd>
+                  <Text>Partial Public</Text>
+                </Separator>
+                <Separator boarderd>
+                  <Text>Private</Text>
+                </Separator> */}
+
+              </ScrollView>
             </Row>
-            <Row style={{ backgroundColor: '#3498db', height: 200 }}>
+            <Row style={{ backgroundColor: '#2c3e50', height: 200 }}>
+              <ScrollView>
+                {
+                  this.props.transactions &&
+                  this.props.transactions.map(transaction =>
+                    <Post
+                      key={transaction._id}
+                      transaction={transaction}
+                      onLike={(postId, updates) => {
+                        this.props.dispatch(startLikeTransaction(userId, postId, updates))
+                      }}
+                      onDelete={(id) => {
+                        this.props.dispatch(startDeleteTransaction(id));
+                      }}
+                    />
+                  )
+                }
+              </ScrollView>
             </Row>
           </Grid>
 
@@ -44,6 +98,13 @@ export default class ProfileScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  fridge: sortFood(state.fridge, state.sortBy.fridge),
+  transactions: state.transactions
+});
+
+export default connect(mapStateToProps)(ProfileScreen)
 
 const styles = StyleSheet.create({
   header: {
