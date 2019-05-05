@@ -9,19 +9,11 @@ class PostForm extends React.Component {
     super(props);
 
     this.state = {
-<<<<<<< HEAD
       body: '',
       location: '',
       tradeType: '',
       photo: '',
       error: ''
-=======
-      body: "",
-      location: "",
-      tradeType: "",
-      photo: "",
-      error: ""
->>>>>>> d3e9fc343616c2bdde39de97cf0597f0d905ef4c
     };
   }
 
