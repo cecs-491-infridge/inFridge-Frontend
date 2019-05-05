@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Image, Alert, ScrollView, TextInput, FlatList } from 'react-native';
 import chatSocket from '../utils/chatSocket';
 import axios from 'axios';
-import { testUser } from '../testUser';
-const userId = testUser.userId;
+import { connect } from 'react-redux'
 
 import { Body, Button, Container, Header, Item, Input, Icon, Left, Right, Text, Title } from 'native-base';
 
-export default class ChatMessages extends Component {
+class ChatMessages extends Component {
 
 	constructor(props) {
 		super(props);
@@ -17,6 +16,7 @@ export default class ChatMessages extends Component {
 		chatSocket.bind(this,friendId);
 
 		this.state = {
+			userId:this.props.user.userId,
 			friendId,
 			text:"",
 			data: [] 
@@ -24,23 +24,23 @@ export default class ChatMessages extends Component {
 	}
 
 	async componentDidMount(){
+		console.log(this.state.userId);
 
 		let ret = await axios.get(`http://school.corg.network:3000/get-msgs`, {
 			params:{
-				from:userId,
+				from:this.state.userId,
 				to:this.state.friendId
 			}
 		});
 		
 		if(ret&&ret.status==200){
-			console.log(ret.data);
 			let data = [];
 			for(let i in ret.data){
 				let msg = ret.data[i];
 				data.push({
 					id:data.length+1,
 					date:new Date(msg.time).toLocaleTimeString(),
-					type: userId===msg.from?'out':'in',
+					type: this.state.userId===msg.from?'out':'in',
 					message:msg.msg
 				});
 			}
@@ -69,11 +69,11 @@ export default class ChatMessages extends Component {
 		if(!text||text==""){
 			return;
 		}
-      		let ret = await axios.post(`http://school.corg.network:3000/send-msg`, {
+		let ret = await axios.post(`http://school.corg.network:3000/send-msg`, {
 			msg:text,
 			time:time,
-			from:userId,
-			to:userId
+			from:this.state.userId,
+			to:this.state.friendId
 		})
 		if(ret.status==200){
 			this.setState({
@@ -220,3 +220,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
 });
+const mapStateToProps = (state) => {
+  return {user: state.user}
+};
+ export default connect(mapStateToProps)(ChatMessages)

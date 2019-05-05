@@ -8,11 +8,30 @@ import PostForm from '../components/PostForm';
 import Post from '../components/Post';
 import FriendDivider from '../components/FriendDivider';
 import { startAddTransaction, startDeleteTransaction, startUpdateTransaction } from '../actions/transactions';
+import axios from 'axios';
+import { withNavigation } from 'react-navigation';
 
 class FriendScreen extends React.Component {
   constructor(props) {
     super(props);
+	  this.state = {
+		  friends:[]
+	  };
   }
+
+	async componentDidMount(){
+
+		let ret = await axios.get(`http://school.corg.network:3000/get-all-users`);
+		if(ret)
+			this.setState({
+				friends:ret.data.data
+			});
+	}
+
+	onPress = (id,name) => {
+		this.props.navigation.navigate('FriendProfile',{id,name})
+	}
+		
 
   render() {
     return (
@@ -28,7 +47,7 @@ class FriendScreen extends React.Component {
             <Text>Search</Text>
           </Button>
         </Header>
-          <FriendDivider></FriendDivider>
+          <FriendDivider friends={this.state.friends} onPress={this.onPress}></FriendDivider>
         </ScrollView>
       </FeedDrawer>
     );
@@ -39,4 +58,5 @@ const mapStateToProps = (state) => ({
   transactions: state.transactions
 });
 
-export default connect(mapStateToProps)(FriendScreen)
+//export default connect(mapStateToProps)(FriendScreen)
+export default withNavigation(FriendScreen);

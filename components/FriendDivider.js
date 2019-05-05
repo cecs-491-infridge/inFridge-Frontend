@@ -1,10 +1,37 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Text } from 'native-base';
 export default class FriendDivider extends Component {
+
+	constructor(props){
+		super(props);
+		this.state = {
+			id:this.props.friends._id
+		}
+	}
+
+
   render() {
     return (
       <Container>
         <Content>
+		<List>
+			{this.props.friends.map(friend =>
+				<ListItem
+					button
+					onPress={() => {
+						this.props.onPress(friend._id,friend.name);
+					}}
+				>
+					<Text>{friend.name}</Text>
+				</ListItem>
+			)}
+		</List>
+        </Content>
+      </Container>
+    );
+  }
+}
+		/*
           <List>
           <ListItem itemDivider>
               <Text>C</Text>
@@ -37,8 +64,4 @@ export default class FriendDivider extends Component {
               <Text>Weisheng Wu</Text>
             </ListItem>
           </List>
-        </Content>
-      </Container>
-    );
-  }
-}
+			*/
