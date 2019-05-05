@@ -100,14 +100,14 @@ class FeedScreen extends React.Component {
           >
             <PostForm
               onClose={this.onClosePostForm}
-              onSubmit={(transaction) => {
+              onSubmit={(transaction, photo) => {
                 const token = this.props.user.token;
                 const post = {
                   authorName: this.props.user.username,
                   ...transaction
                 }
 
-                this.props.dispatch(startAddTransaction(token, post));
+                this.props.dispatch(startAddTransaction(token, post, photo));
               }}
             />
           </View>

@@ -6,14 +6,24 @@ const addTransaction = (transaction) => ({
   type: 'ADD_TRANSACTION',
   transaction
 });
-export const startAddTransaction = (token, post) => {
+export const startAddTransaction = (token, post, photo) => {
   return (dispatch) => {
     // Need user id to do this
     // WAIT FOR VICTORIA TO GET USER ID
 
-    return axios.post(`https://school.corg.network:3002/create-transaction`, {
-      token,
-      ...post
+    let data = new FormData();
+    data.append('file', photo);
+    data.append('token', token);
+    data.append('body', post.body);
+    data.append('longitude', post.longitude);
+    data.append('latitude', post.latitude);
+    data.append('tradeType', post.tradeType);
+
+
+    return axios({
+      method: 'post',
+      url: `https://school.corg.network:3002/create-transaction`,
+      data
     })
       .then(res => {
         console.log('--------------------------------------')

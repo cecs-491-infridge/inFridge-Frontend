@@ -12,13 +12,16 @@ class StartUpScreen extends React.Component {
 
   async componentDidMount() {
     if(this.props.user.token) {
+      console.log(2)
         await initStore(this.props.dispatch);
+        console.log(3)
         this.props.navigation.navigate('AppRouter');
     }
     else this.props.navigation.navigate('SignInRouter');
   }
 
   render() {
+    console.log(1)
     return (
         <Loading></Loading>
     );

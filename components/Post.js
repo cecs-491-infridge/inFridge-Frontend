@@ -82,8 +82,9 @@ class Post extends React.Component {
                     !!this.props.transaction.comments.length &&
                     this.props.transaction.comments.map(comment => (
                         <CardItem>
-                            <Text>User: {comment.authorName ? comment.authorName : 'No User'} </Text>
-                            <Text>| Comment: {comment.body}</Text>
+                            <Text>User: {comment.authorName ? comment.authorName : 'No User'}</Text>
+                            <Text>  |  Comment: {comment.body}</Text>
+                            <Text>  |  Time: {comment.createdAt}</Text>
                         </CardItem>
                     ))
                 }

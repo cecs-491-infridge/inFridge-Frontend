@@ -1,18 +1,19 @@
-import React from "react";
-import { TextInput, StyleSheet, Image } from "react-native";
-import { Button, Container, Content, Header, Icon, Item, ListItem, Text, Textarea, Form, View } from "native-base";
-import { List } from "react-native-paper";
-import ImagePicker from "react-native-image-picker";
+import React from 'react';
+import { TextInput, StyleSheet, Image } from 'react-native';
+import { Button, Container, Content, Header, Icon, Item, ListItem, Text, Textarea, Form, View } from 'native-base';
+import { List } from 'react-native-paper';
+import ImagePicker from 'react-native-image-picker';
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      body: "",
-      location: "",
-      tradeType: "",
-      error: ""
+      body: '',
+      location: '',
+      tradeType: '',
+      photo: '',
+      error: ''
     };
   }
 
@@ -20,27 +21,30 @@ class PostForm extends React.Component {
     e.preventDefault();
 
     const error = !this.state.body
-      ? "Please include a Post body"
+      ? 'Please include a Post body'
       : !this.validateTradeType()
-      ? "Please include a valid Trade Type (donate/trade/sell)"
-      : "";
+      ? 'Please include a valid Trade Type (donate/trade/sell)'
+      : '';
 
     this.setState({ error });
 
     if (!error) {
       const transaction = {
         body: this.state.body,
-        longitude: "123",
-        latitude: "123",
+        imageUrl: this.state.photo.uri,
+        longitude: '123',
+        latitude: '123',
         tradeType: this.state.tradeType,
         comments: []
       };
 
+      this.props.onSubmit(transaction, this.state.photo);
+
       this.setState({
-        body: "",
-        tradeType: ""
+        body: '',
+        tradeType: '',
+        photo: ''
       });
-      this.props.onSubmit(transaction);
     }
   };
 
@@ -48,9 +52,9 @@ class PostForm extends React.Component {
     const tradeType = this.state.tradeType;
 
     if (
-      tradeType === "Donate" ||
-      tradeType === "Trade" ||
-      tradeType === "Sell"
+      tradeType === 'Donate' ||
+      tradeType === 'Trade' ||
+      tradeType === 'Sell'
     ) {
       return true;
     }
@@ -60,7 +64,7 @@ class PostForm extends React.Component {
   uploadImage = () => {
     // More info on all the options is below in the API Reference... just some common use cases shown here
     const options = {
-      title: "Select a Photo",
+      title: 'Select a Photo',
       // customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
       // storageOptions: {
       //     skipBackup: true,
@@ -74,20 +78,24 @@ class PostForm extends React.Component {
      * The second arg is the callback which sends object: response (more info in the API Reference)
      */
     ImagePicker.showImagePicker(options, response => {
-      console.log("Response = ", response);
+      console.log('Response = ', response);
 
       // if (response.uri) {
       //     this.setState({ photo: response })
       // }
-      // console.log("####################################################" + this.state.photo)
+      // console.log('####################################################' + this.state.photo)
       if (response.didCancel) {
-        console.log("User cancelled image picker");
+        console.log('User cancelled image picker');
       } else if (response.error) {
-        console.log("ImagePicker Error: ", response.error);
+        console.log('ImagePicker Error: ', response.error);
       } else if (response.customButton) {
-        console.log("User tapped custom button: ", response.customButton);
+        console.log('User tapped custom button: ', response.customButton);
       } else {
-        const source = { uri: response.uri };
+        const source = {
+          uri: response.uri,
+          name: response.fileName,
+          type: response.type
+        };
 
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
@@ -120,7 +128,7 @@ class PostForm extends React.Component {
           <Textarea
             rowSpan={1}
             bordered
-            placeholder="Trade Type"
+            placeholder='Trade Type'
             onChangeText={tradeType => this.setState({ tradeType })}
             value={this.state.tradeType}
           />
@@ -128,23 +136,23 @@ class PostForm extends React.Component {
           <Textarea
             rowSpan={2}
             bordered
-            placeholder="Post body"
+            placeholder='Post body'
             onChangeText={body => this.setState({ body })}
             value={this.state.body}
           />
 
           {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-                        <Button title="Choose Photo" onPress={this.handleChoosePhoto} />
+                        <Button title='Choose Photo' onPress={this.handleChoosePhoto} />
                     </View> */}
           <View
-                style={{ alignItems: "center", }}
+                style={{ alignItems: 'center', }}
           >
-            {photo && (
+            {!!photo && (
               <Image
                 boardered
                 source={{ uri: photo.uri }}
-                style={{ width: 133, height: 100, alignItems: "center", }}
+                style={{ width: 133, height: 100, alignItems: 'center', }}
               />
             )}
           </View>
@@ -159,13 +167,13 @@ class PostForm extends React.Component {
           )} */}
           <View style={styles.buttonContainer}>
             <Button small onPress={this.uploadImage}>
-              <Icon name="image" />
+              <Icon name='image' />
               <Text>Pictures</Text>
             </Button>
           </View>
           <View style={styles.buttonContainer}>
             <Button small onPress={this.onSubmit}>
-              <Icon name="md-create" />
+              <Icon name='md-create' />
               <Text>Post</Text>
             </Button>
           </View>
@@ -178,9 +186,9 @@ class PostForm extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly"
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
   },
   buttonContainer: {}
 });
