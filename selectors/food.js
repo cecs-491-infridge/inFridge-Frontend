@@ -3,6 +3,7 @@ export const selectByName = (foodList, name) => {
 }
 
 export const sortFood = (arr, sortBy) => {
+    console.log(arr);
     let copy = arr.slice();
 
     let sortMethod;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, StyleSheet, Image } from 'react-native';
-import { Button, Container, Content, Header, Icon, Item, ListItem, Text, Textarea, Form, View } from 'native-base';
+import { Button, Container, Content, Header, Icon, Item, ListItem, Right, Left, Text, Textarea, Form, View } from 'native-base';
 import { List } from 'react-native-paper';
 import ImagePicker from 'react-native-image-picker';
 
@@ -9,6 +9,7 @@ class PostForm extends React.Component {
     super(props);
 
     this.state = {
+      postType: 'transaction',
       body: '',
       location: '',
       tradeType: '',
@@ -17,34 +18,60 @@ class PostForm extends React.Component {
     };
   }
 
+  validateTransaction = () => {
+    const error = !this.validateTradeType()
+    ? 'You must include a Trade Type (Donate/Trade/Sell)'
+    : !this.state.body && !this.state.photo
+    ? 'Please include a Post body or an Image'
+    : '';
+
+    return error;
+  }
+
+  validateStatusPost = () => {
+    const error = !this.state.body
+      ? 'Please include a Status Post body'
+      : '';
+
+    return error;
+  }
+
   onSubmit = e => {
     e.preventDefault();
 
-    const error = !this.state.body
-      ? 'Please include a Post body'
-      : !this.validateTradeType()
-      ? 'Please include a valid Trade Type (donate/trade/sell)'
-      : '';
-
+    const error = (this.state.postType === 'transaction') ? this.validateTransaction() : this.validateStatusPost();
     this.setState({ error });
 
     if (!error) {
-      const transaction = {
-        body: this.state.body,
-        imageUrl: this.state.photo.uri,
-        longitude: '123',
-        latitude: '123',
-        tradeType: this.state.tradeType,
-        comments: []
-      };
+      let post;
 
-      this.props.onSubmit(transaction, this.state.photo);
+      if(this.state.postType === 'transaction') {
+        post = {
+          kind: 'Transaction',
+          body: this.state.body,
+          imageUrl: this.state.photo.uri,
+          longitude: '123',
+          latitude: '123',
+          tradeType: this.state.tradeType,
+          comments: []
+        };
+        
+        // Post Transaction
+        this.props.onSubmit(post, this.state.photo);
+      }else {
+        post = {
+          kind: 'Post',
+          body: this.state.body,
+          imageUrl: this.state.photo.uri,
+          comments: []
+        };
 
-      this.setState({
-        body: '',
-        tradeType: '',
-        photo: ''
-      });
+        // Post Status Post
+        this.props.onSubmit(post, this.state.photo);
+      }
+
+      // Reset
+      this.setState({ body: '', tradeType: '', photo: '' });
     }
   };
 
@@ -109,29 +136,51 @@ class PostForm extends React.Component {
 
   render() {
     const { photo } = this.state;
+
     return (
       <Content padder>
         {!!this.state.error && <Text>{this.state.error}</Text>}
 
-        <View>
-          <Button
-            transparent
-            onPress={() => this.props.onClose()}
-          >
-            <Icon name='arrow-back' />
-          </Button>
-        </View>
-        
+        <ListItem>
+          <Left>
+            <Button
+              transparent
+              onPress={() => this.props.onClose()}
+            >
+              <Icon name='arrow-back' />
+            </Button>
+          </Left>
+
+          <Right>
+            <Button
+                style={{width: 150}}
+                onPress={() => this.setState({ postType: 'status' })}
+              >
+                <Text>Status Update</Text>
+              </Button>
+            <Button
+                style={{width: 150}}
+                onPress={() => this.setState({ postType: 'transaction' })}
+              >
+                <Text>Transaction</Text>
+              </Button>
+          </Right>
+        </ListItem>
+
         <Form 
             bordered
         >
+
+        {
+          this.state.postType === 'transaction' &&
           <Textarea
-            rowSpan={1}
+            rowSpan={2}
             bordered
             placeholder='Trade Type'
             onChangeText={tradeType => this.setState({ tradeType })}
             value={this.state.tradeType}
           />
+        }
 
           <Textarea
             rowSpan={2}
@@ -141,10 +190,6 @@ class PostForm extends React.Component {
             value={this.state.body}
           />
 
-          {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
-                        <Button title='Choose Photo' onPress={this.handleChoosePhoto} />
-                    </View> */}
           <View
                 style={{ alignItems: 'center', }}
           >
@@ -157,6 +202,7 @@ class PostForm extends React.Component {
             )}
           </View>
         </Form>
+
 
         <View style={styles.container}>
           {/* {photo && (

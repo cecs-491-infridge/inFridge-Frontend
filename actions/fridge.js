@@ -8,14 +8,6 @@ const addFood = (food) => ({
 });
 export const startAddFood = (data = {}) => {
   console.log('Start add food')
-  
-
-  return async (dispatch) => {
-    const {
-      name,
-      expirationDate
-    } = data;
-    const foodData = { userId, name, expirationDate };
 
     return (dispatch) => {
       const {
@@ -43,7 +35,6 @@ export const startAddFood = (data = {}) => {
           console.log(err);
       });
     }
-  }
 }
 
 const deleteFood = (id) => ({

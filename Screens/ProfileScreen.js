@@ -100,8 +100,8 @@ class ProfileScreen extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  fridge: sortFood(state.fridge, state.sortBy.fridge),
-  transactions: state.transactions
+  fridge: sortFood(state.fridge.list, state.sortBy.fridge),
+  transactions: state.transactions.list
 });
 
 export default connect(mapStateToProps)(ProfileScreen)

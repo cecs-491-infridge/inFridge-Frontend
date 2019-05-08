@@ -11,7 +11,7 @@ import FeedDrawer from '../components/FeedDrawer';
 import { testUser } from '../testUser';
 const userId = testUser.userId;
 
-class FeedScreen extends React.Component {
+export class FeedScreen extends React.Component {
   constructor(props) {
     super(props);
 

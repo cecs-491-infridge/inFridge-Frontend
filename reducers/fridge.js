@@ -17,19 +17,19 @@ export default (state=defaultState, action) => {
       break;
 
     case 'DELETE_FOOD':
-    console.log("DELTE FOODDDODDODODOO")
-    console.log(state);
-      return state.filter(({ _id }) => {
-        console.log(`${_id} !== ${action.id}`)
-        return _id !== action.id
-      });
-      break;
+      console.log("DELTE FOODDDODDODODOO")
+      console.log(state);
+      console.log(action)
 
-    case 'UPDATE_FOOD':
-      const list = state.list.map((item) => item._id === action.id ? { ...item, ...action.updates } : item);
       return {
         ...state,
-        list
+        list: state.list.filter(({ _id }) => _id !== action.id)
+      }
+
+    case 'UPDATE_FOOD':
+      return {
+        ...state,
+        list: state.list.map((item) => item._id === action.id ? { ...item, ...action.updates } : item)
       }
 
     case 'SET_FOOD':

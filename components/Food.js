@@ -10,6 +10,7 @@ class Food extends React.Component {
 
     deleteFood = (e) => {
         const id = this.props.food._id;
+        console.log(this.props.food)
 
         this.props.onDelete(id);
     }

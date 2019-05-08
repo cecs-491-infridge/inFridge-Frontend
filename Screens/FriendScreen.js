@@ -55,7 +55,7 @@ class FriendScreen extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  transactions: state.transactions
+  transactions: state.transactions.list
 });
 
 //export default connect(mapStateToProps)(FriendScreen)

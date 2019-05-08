@@ -69,14 +69,14 @@ class FoodForm extends React.Component {
           <TextInput
             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
             placeholder="Purchase date..."
-            onChangeText={name => this.setState({ purchaseDate })}
-            value={this.state.name}
+            onChangeText={purchaseDate => this.setState({ purchaseDate })}
+            value={this.state.purchaseDate}
           />
           <TextInput
             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
             placeholder="Expiration date..."
-            onChangeText={name => this.setState({ expirationDate })}
-            value={this.state.name}
+            onChangeText={expirationDate => this.setState({ expirationDate })}
+            value={this.state.expirationDate}
           />
         </Form>
 
