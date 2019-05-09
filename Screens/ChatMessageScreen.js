@@ -13,6 +13,7 @@ class ChatMessages extends Component {
 
 		// TODO this id should be parsed from props
 		let friendId = this.props.navigation.getParam('id','NOID');;
+		chatSocket.init(this.props.user.userId);
 		chatSocket.bind(this,friendId);
 
 		this.state = {
@@ -66,7 +67,7 @@ class ChatMessages extends Component {
 		this.setState({
 			data: this.state.data.concat([{
 				id:this.state.data.length+1,
-				date:new Date(data.time).toLocaleTimeString(),
+				date:this.formatAMPM(new Date(data.time)),
 				type:'in',
 				message:data.msg
 			}])
@@ -90,7 +91,7 @@ class ChatMessages extends Component {
 			this.setState({
 				data: this.state.data.concat([{
 					id:this.state.data.length+1,
-					date:time.toLocaleTimeString(),
+					date:this.formatAMPM(time),
 					type:'out',
 					message:text
 				}])
