@@ -10,7 +10,7 @@ class FriendProfile extends Component {
     }
 
 	onMessage = () =>{
-		this.props.navigation.navigate('ChatMessage',{id:this.props.id})
+		this.props.navigation.navigate('ChatMessage',{id:this.props.id,name:this.props.name})
 	}
 
     render() {

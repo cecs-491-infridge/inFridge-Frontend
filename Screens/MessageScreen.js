@@ -58,8 +58,8 @@ class MessageScreen extends Component {
 		this.focusListener.remove();
 	}
 
-	onOpenChatMessage = (id) => {
-		this.props.navigation.navigate('ChatMessage',{id})
+	onOpenChatMessage = (id,name) => {
+		this.props.navigation.navigate('ChatMessage',{id,name})
 	}
 
 
@@ -92,7 +92,7 @@ class MessageScreen extends Component {
 						name={msg.name}
 						msg={msg.msg}
 						time={this.formatAMPM(new Date(msg.time))}
-						onOpenChatMessage={() => this.onOpenChatMessage(msg.id)}/>
+						onOpenChatMessage={() => this.onOpenChatMessage(msg.id,msg.name)}/>
 				)}
 			</List>
 			</Content>

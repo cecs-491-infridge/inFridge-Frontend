@@ -12,11 +12,13 @@ class ChatMessages extends Component {
 		super(props);
 
 		// TODO this id should be parsed from props
+		let friendName = this.props.navigation.getParam('name','NOID');;
 		let friendId = this.props.navigation.getParam('id','NOID');;
 		chatSocket.init(this.props.user.userId);
 		chatSocket.bind(this,friendId);
 
 		this.state = {
+			friendName,
 			userId:this.props.user.userId,
 			friendId,
 			text:"",
@@ -122,7 +124,7 @@ class ChatMessages extends Component {
             </Left>
 
             <Body>
-                <Title>Chat Message Screen</Title>
+                <Title>{this.state.friendName}</Title>
             </Body>
         </Header>
         <FlatList style={styles.list}
