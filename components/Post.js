@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Form, Input, Item, Label, Text, Thumbnail, Button, Icon, Left, Body, Right } from 'native-base';
-import moment from 'moment';
 
 import { testUser } from '../testUser';
 const userId = testUser.userId;
@@ -24,6 +23,17 @@ class Post extends React.Component {
         this.props.onComment(this.props.transaction, comment);
         this.setState({ comment: '' });
     }
+
+    formatAMPM = (date) => {
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var ampm = hours >= 12 ? 'pm' : 'am';
+		hours = hours % 12;
+		hours = hours ? hours : 12; // the hour '0' should be '12'
+		minutes = minutes < 10 ? '0'+minutes : minutes;
+		var strTime = hours + ':' + minutes + ' ' + ampm;
+		return strTime;
+	}
 
     render() {
         // implemented without image with header
@@ -94,7 +104,7 @@ class Post extends React.Component {
                                         {comment.authorName ? comment.authorName : 'No User'}
                                     </Text>
                                     <Text> {comment.body}</Text>
-                                    <Text>  |  {moment(new Date(comment.createdAt)).format('MMMM Do YYYY, h:mm a')}}</Text>
+                                    <Text>  |  {this.formatAMPM(new Date(comment.createdAt))}</Text>
                                 </Text>
 
                             </CardItem>
