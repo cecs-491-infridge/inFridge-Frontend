@@ -43,5 +43,5 @@
     "transformIgnorePatterns": [
       "/node_modules/(?!native-base)/"
     ]
-}
+  }
 }

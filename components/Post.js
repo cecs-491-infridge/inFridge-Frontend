@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Form, Input, Item, Label, Text, Thumbnail, Button, Icon, Left, Body, Right } from 'native-base';
+import moment from 'moment';
 
 import { testUser } from '../testUser';
 const userId = testUser.userId;
@@ -34,10 +35,11 @@ class Post extends React.Component {
                             <Thumbnail source={{ uri: this.props.transaction.imageUrl }} />
                             <Body>
                                 <Text>{this.props.transaction.authorName}</Text>
-                                {!!this.props.transaction.location &&
+                                <Text note>Long Beach</Text>
+                                {/* {!!this.props.transaction.location &&
                                     <Text note>{this.props.transaction.location.latitude}, {this.props.transaction.location.longitude}</Text>
 
-                                }
+                                } */}
                             </Body>
                         </Left>
                         <Right>
@@ -92,7 +94,7 @@ class Post extends React.Component {
                                         {comment.authorName ? comment.authorName : 'No User'}
                                     </Text>
                                     <Text> {comment.body}</Text>
-                                    <Text>  |  Time: {comment.createdAt}</Text>
+                                    <Text>  |  {moment(new Date(comment.createdAt)).format('MMMM Do YYYY, h:mm a')}}</Text>
                                 </Text>
 
                             </CardItem>
