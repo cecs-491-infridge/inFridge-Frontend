@@ -28,7 +28,7 @@ class ProfileScreen extends Component {
           <Header>
             <Left />
             <Content>
-              <Title>User Name</Title>
+              <Title>@wei</Title>
             </Content>
             <Right />
           </Header>
