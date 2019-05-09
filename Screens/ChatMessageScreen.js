@@ -39,7 +39,7 @@ class ChatMessages extends Component {
 				let msg = ret.data[i];
 				data.push({
 					id:data.length+1,
-					date:new Date(msg.time).toLocaleTimeString(),
+					date:this.formatAMPM(new Date(msg.time)),
 					type: this.state.userId===msg.from?'out':'in',
 					message:msg.msg
 				});
@@ -49,6 +49,17 @@ class ChatMessages extends Component {
 			});
 		}
 
+	}
+
+	formatAMPM = (date) => {
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var ampm = hours >= 12 ? 'pm' : 'am';
+		hours = hours % 12;
+		hours = hours ? hours : 12; // the hour '0' should be '12'
+		minutes = minutes < 10 ? '0'+minutes : minutes;
+		var strTime = hours + ':' + minutes + ' ' + ampm;
+		return strTime;
 	}
 
 	received = (data) => {
