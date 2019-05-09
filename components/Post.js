@@ -24,6 +24,17 @@ class Post extends React.Component {
         this.setState({ comment: '' });
     }
 
+    formatAMPM = (date) => {
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var ampm = hours >= 12 ? 'pm' : 'am';
+		hours = hours % 12;
+		hours = hours ? hours : 12; // the hour '0' should be '12'
+		minutes = minutes < 10 ? '0'+minutes : minutes;
+		var strTime = hours + ':' + minutes + ' ' + ampm;
+		return strTime;
+	}
+
     render() {
         // implemented without image with header
         return (
@@ -34,10 +45,11 @@ class Post extends React.Component {
                             <Thumbnail source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
                             <Body>
                                 <Text>{this.props.transaction.authorName}</Text>
-                                {!!this.props.transaction.location &&
+                                <Text note>Long Beach</Text>
+                                {/* {!!this.props.transaction.location &&
                                     <Text note>{this.props.transaction.location.latitude}, {this.props.transaction.location.longitude}</Text>
 
-                                }
+                                } */}
                             </Body>
                         </Left>
                         <Right>
@@ -92,7 +104,7 @@ class Post extends React.Component {
                                         {comment.authorName ? comment.authorName : 'No User'}
                                     </Text>
                                     <Text> {comment.body}</Text>
-                                    <Text>  |  Time: {comment.createdAt}</Text>
+                                    <Text>  |  {this.formatAMPM(new Date(comment.createdAt))}</Text>
                                 </Text>
 
                             </CardItem>

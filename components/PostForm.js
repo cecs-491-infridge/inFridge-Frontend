@@ -57,7 +57,7 @@ class PostForm extends React.Component {
         };
         
         // Post Transaction
-        this.props.onSubmit(post, this.state.photo);
+        this.props.onSubmitTransaction(post, this.state.photo);
       }else {
         post = {
           kind: 'Post',
@@ -67,7 +67,7 @@ class PostForm extends React.Component {
         };
 
         // Post Status Post
-        this.props.onSubmit(post, this.state.photo);
+        this.props.onSubmitStatusPost(post, this.state.photo);
       }
 
       // Reset

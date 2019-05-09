@@ -100,7 +100,7 @@ export class FeedScreen extends React.Component {
           >
             <PostForm
               onClose={this.onClosePostForm}
-              onSubmit={(transaction, photo) => {
+              onSubmitTransaction={(transaction, photo) => {
                 const token = this.props.user.token;
                 const post = {
                   authorName: this.props.user.username,
@@ -109,6 +109,16 @@ export class FeedScreen extends React.Component {
 
                 this.props.dispatch(startAddTransaction(token, post, photo));
               }}
+              onSubmitStatusPost={(transaction, photo) => {
+                const token = this.props.user.token;
+                const post = {
+                  authorName: this.props.user.username,
+                  ...transaction
+                }
+
+                this.props.dispatch(startAddStatusPost(token, post, photo));
+              }
+            }
             />
           </View>
 
