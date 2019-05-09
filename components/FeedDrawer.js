@@ -46,7 +46,7 @@ export default class FeedDrawer extends React.Component {
                         </Button>
                     </Left>
                     <Body>
-                        {/* <Title>inFridge</Title> */}
+                        <Title>inFridge</Title>
                     </Body>
 
                     { !!this.props.onAdd &&

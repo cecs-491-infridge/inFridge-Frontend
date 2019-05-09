@@ -12,12 +12,14 @@ class Post extends React.Component {
         this.state = {
             comment: ''
         }
+        
     }
 
     onComment = () => {
         const comment = {
             postId: this.props.transaction._id,
-            body: this.state.comment
+            body: this.state.comment,
+            createdAt: new Date()
         }
 
         this.props.onComment(this.props.transaction, comment);
