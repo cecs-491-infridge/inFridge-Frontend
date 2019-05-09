@@ -31,7 +31,7 @@ class Post extends React.Component {
                 <Card style={{ flex: 0 }}>
                     <CardItem>
                         <Left>
-                            <Thumbnail source={{ uri: this.props.transaction.imageUrl }} />
+                            <Thumbnail source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
                             <Body>
                                 <Text>{this.props.transaction.authorName}</Text>
                                 {!!this.props.transaction.location &&
