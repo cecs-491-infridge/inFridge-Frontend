@@ -126,6 +126,7 @@ class ChatMessages extends Component {
             <Body>
                 <Title>{this.state.friendName}</Title>
             </Body>
+            <Right></Right>
         </Header>
         <FlatList style={styles.list}
           data={this.state.data}
