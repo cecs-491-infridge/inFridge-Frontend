@@ -22,7 +22,7 @@ export default class InstructionTab extends React.Component {
                             <ListItem title="Instruction">
                                 
                                 <Body>
-                                    <Text>{instruction.number}{"."}{instruction.step}</Text>
+                                    <Text>{instruction.number}{". "}{instruction.step}</Text>
                                 </Body>
 
                             </ListItem>

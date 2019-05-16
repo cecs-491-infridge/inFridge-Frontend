@@ -3,6 +3,9 @@ import { View } from 'react-native';
 import { Body, Button, Card, Container, Header, Icon, Content, Left, List, ListItem, Right, Text, Separator } from 'native-base'
 
 
+/*
+Component that 
+*/
 class RecipeList extends React.Component {
     constructor(props) {
         super(props);

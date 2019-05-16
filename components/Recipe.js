@@ -12,29 +12,38 @@ class Recipe extends React.Component {
 
     onComponentDidMount() {
         console.log(this.props.recipe)
-        
+
     }
 
     onOpenSpecificRecipe = () => {
         this.props.onClick(this.props.recipe.id);
         // this.props.navigation.navigate('SpecificRecipe', {
         //     id: this.props.recipe.id})
-      };
-    
+    };
+
+    Capitalize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
     render() {
-        return(
-            
-            
+        return (
+
+
             <Content>
                 <ListItem button onPress={this.onOpenSpecificRecipe} title="Recipe">
                     <Left>
-                        <Text>{this.props.recipe.title}{"\n"}
+                        <Icon
+                            type="MaterialCommunityIcons"
+                            name='bowl'
+                        //heart
+                        />
+                        <Text>{this.Capitalize(this.props.recipe.title)}{"\n"}
                         </Text>
-                        
+
                     </Left>
                 </ListItem>
             </Content>
         );
-        }
     }
+}
 export default Recipe;

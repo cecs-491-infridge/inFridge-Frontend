@@ -5,6 +5,10 @@ import { Body, Button, Card, Container, Header, Icon, Content, Left, List, ListI
 
 export default class IngredientTab extends React.Component {
 
+    Capitalize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
 
     render() {
         return (
@@ -21,7 +25,7 @@ export default class IngredientTab extends React.Component {
                         ingredient => (
                             <ListItem title="Ingredients">
                                 <Left>
-                                    <Text>{ingredient.name}{" "}</Text>
+                                    <Text>{this.Capitalize(ingredient.name)}{" "}</Text>
                                 </Left>
                                 <Body>
                                 <Text>{ingredient.amount}{" "}{ingredient.unit}</Text>

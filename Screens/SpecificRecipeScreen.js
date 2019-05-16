@@ -61,8 +61,8 @@ export default class SpecificRecipeScreen extends Component {
       })
       //recipeResponse = JSON.parse(recipeResponse.request._response);
 
-      console.log(this.state.instructionList)
-      console.log(this.state.nutritionList)
+      //console.log(this.state.instructionList)
+      //console.log(this.state.nutritionList)
 
      
     }
