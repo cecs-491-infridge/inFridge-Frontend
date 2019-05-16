@@ -4,6 +4,9 @@ import { Body, Button, Container, Header, Content, Form, Icon, Item, Input, Labe
 import axios from "axios";
 import { Alert } from "react-native";
 
+/**
+ * This class is the Sign Up Screen. Once the user confirms they are a student, they are navigated to this screen to create an account with our InFridge database
+ */
 export default class StackedLabelExample extends Component {
   constructor(props) {
     super(props);
@@ -42,6 +45,9 @@ export default class StackedLabelExample extends Component {
     return false;
   }
 
+  /**
+   * verifyMatchedPassword makes sure that the confirm password and the password when creating the account is the same
+   */
   verifyMatchedPassword = () => {
     if (this.state.confirmedPass == this.state.password) {
       return true;
@@ -49,6 +55,11 @@ export default class StackedLabelExample extends Component {
     return false;
   }
 
+  /**
+   * onSubmit is an async function that checks if all the credentials are within the specifications in the functional requirements
+   * This includes the username's length, no symbols, etc.
+   * An Alert is created if it is wrong
+   */
   onSubmit = async () => {
     if (!this.verifyUsernameLength())
     {

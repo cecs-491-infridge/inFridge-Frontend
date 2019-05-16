@@ -11,6 +11,14 @@ import { updateUser, updateToken } from '../actions/userInfo';
 import initStore from '../store/initStore';
 import { Alert } from "react-native";
 
+/**
+ * SignInScreen asks for username and password to login
+ * There's 1 button to login
+ * Alerts are made if the login credentials are incorrect
+ * There's 1 button to sign up if you don't have an account
+ * The sign up button begins by calling the backend for a URL for Microsoft Graph API login to display on WebView
+ * This redirects to your organization's webpage - OKTA
+ */
 class SignInScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -45,6 +53,9 @@ class SignInScreen extends React.Component {
   //   }
   // }
 
+  /**
+   * onSignIn is an async function that calls the backend to display the webview URL
+   */
   onSignIn = async () => {
 
     console.log("\t\t\t\t\t\t\t\t\t\t---------------------------WENT INTO THE GOOGLE METHODDDDDDDDDDDDDDDDDDDDDDDDDDDD");
@@ -66,6 +77,12 @@ class SignInScreen extends React.Component {
 
   }
 
+  /**
+   * onNavigationStateChange is an async function that reads every time the URL in the WebView component changes
+   * When it reads "https://school.corg.network:3002/graph-response?" there should be an authentication token that is at the end of this URL
+   * When is parses the authentication token, it calls the backend to verify the access token
+   * Once the backend succesfully verifies the access token, the frontend navigates to the application - giving the user access to their account
+   */
   _onNavigationStateChange = async function (webViewState) {
     this.count++;
     console.log("here is the url:");
@@ -101,13 +118,23 @@ class SignInScreen extends React.Component {
     }
   }
 
+  /**
+   * startLogin is a function that sets the this.state.loggingIn variable to true
+   */
   startLogin = () => {
     this.setState({ loggingIn: true });
   }
+  
+  /**
+   * completeLogin is a function that sets the this.state.loggingIn variable to false
+   */
   completeLogin = () => {
     this.setState({ loggingIn: false });
   }
 
+  /**
+   * loginInFridge is an async functino that checks the user's credentials with the database in the backend
+   */
   loginInFridge = async () => {
     console.log("BUTTON PRESSED!!!!!!!!!!");
     if (this.validateCred()) {
@@ -154,6 +181,9 @@ class SignInScreen extends React.Component {
     }
   }
 
+  /**
+   * This validates the length of the user's username and password
+   */
   validateCred = () => {
     if (this.state.username.length > 0) {
       if (this.state.password.length > 0) {
